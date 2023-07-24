@@ -175,5 +175,5 @@ const Dabba = styled(Box)`
   
   & .MuiFormGroup-root {
     flex-direction: row;
-  }
+  ${'' /* } */}
 `;

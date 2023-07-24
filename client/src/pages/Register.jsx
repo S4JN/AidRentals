@@ -13,7 +13,7 @@ const Register = () => {
 
 
 
-
+<Link href='/signin'>Sign In</Link>
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -95,6 +95,16 @@ const Register = () => {
                     margin="normal"
                     required
                     fullWidth
+                    id="name"
+                    label="Enter Your Name"
+                    name="name"
+                    autoComplete="name"
+                    autoFocus
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
                     id="email"
                     label="Email Address"
                     name="email"
@@ -107,6 +117,16 @@ const Register = () => {
                     fullWidth
                     name="password"
                     label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                    <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Confirm Password"
                     type="password"
                     id="password"
                     autoComplete="current-password"
