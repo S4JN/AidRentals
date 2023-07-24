@@ -8,35 +8,16 @@ import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ type }) => {
-    const [destination, setDestination] = useState("");
-    const [openDate, setOpenDate] = useState(false);
-    const [date, setDate] = useState([
-        {
-            startDate: new Date(),
-            endDate: new Date(),
-            key: "selection",
-        },
-    ]);
-    const [openOptions, setOpenOptions] = useState(false);
-    const [options, setOptions] = useState({
-        adult: 1,
-        children: 0,
-        room: 1,
-    });
+    const [active, setIsactive]=useState("")
 
     const navigate = useNavigate();
 
     const handleOption = (name, operation) => {
-        setOptions((prev) => {
-            return {
-                ...prev,
-                [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
-            };
-        });
+      
     };
 
     const handleSearch = () => {
-        navigate("/hotels", { state: { destination, date, options } });
+        
     };
 
     return (
