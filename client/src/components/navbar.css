@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+
+.navbar{
+    height: 50px;
+    background-color: #003580;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navContainer{
+    width: 100%;
+    max-width: 1024px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navItems{
+    font-size: 0.9rem;
+
+  }
+  
+  .logo{
+    font-weight: 500;
+    font-size: 2rem;
+    
+  }
+  
+  .nnnn {
+    margin-left: 20px;
+    
+    padding: 5px 10px;
+    cursor: pointer;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+  }
+  

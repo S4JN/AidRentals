@@ -24,8 +24,7 @@ const Login = () => {
     if (!role || !email || !password) {
       console.log("enter all fields");
       console.log(role, email, password);
-      toast.error("Enter All Fields");
-
+     
     } else {
 
       console.log({
@@ -48,7 +47,7 @@ const Login = () => {
   return (
     <>
    
-        <ThemeProvider theme={defaultTheme}>
+        
           <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
             <Grid
@@ -147,7 +146,7 @@ const Login = () => {
               </Box>
             </Grid>
           </Grid>
-        </ThemeProvider>
+     
      
     </>
   );

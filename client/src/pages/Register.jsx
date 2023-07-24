@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, Button, CssBaseline, RadioGroup, Radio, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography } from '@mui/material';
 import { LockOutlined } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import styled from '@emotion/styled';
 
 
-const Login = () => {
+const Register = () => {
 
   
 
@@ -24,7 +25,7 @@ const Login = () => {
     if (!role || !email || !password) {
       console.log("enter all fields");
       console.log(role, email, password);
-      toast.error("Enter All Fields");
+     
 
     } else {
 
@@ -48,7 +49,6 @@ const Login = () => {
   return (
     <>
    
-        <ThemeProvider theme={defaultTheme}>
           <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
             <Grid
@@ -147,13 +147,13 @@ const Login = () => {
               </Box>
             </Grid>
           </Grid>
-        </ThemeProvider>
+ 
      
     </>
   );
 };
 
-export default Login;
+export default Register;
 
 
 const RegisterTo = styled(Typography)`
