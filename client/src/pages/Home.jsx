@@ -10,7 +10,6 @@ const Home = () => {
       <Navbar />
       <Header />
       <div className='homeContainer'>
-
         <Featured />
       </div>
       <Footer />
