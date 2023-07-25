@@ -13,6 +13,10 @@ const Register = () => {
     const email = data.get('email');
     const password = data.get('password');
     const role = data.get('role');
+    const address = data.get("address");
+    const city = data.get("city");
+    const state= data.get("state");
+    const zip = data.get("zipCode");
 
     if (!role || !email || !password) {
       console.log("enter all fields");
@@ -25,12 +29,17 @@ const Register = () => {
         email: data.get('email'),
         password: data.get('password'),
         role: data.get("role"),
+        address: data.get("address"),
+        city: city,
+        state: state,
+        zip: zip
+        
         // selectedRole
       });
     }
   };
 
-  const [selectedRole, setSelectedRole] = useState('donar');
+  const [selectedRole, setSelectedRole] = useState('customer');
 
 
   const handleRoleChange = (event) => {
@@ -79,7 +88,7 @@ const Register = () => {
                 <RadioGroup aria-label="role" name="role" value={selectedRole} onChange={handleRoleChange}>
                   <FormControlLabel value="Customer" control={<Radio />} label="Customer" />
                   {/* <FormControlLabel value="admin" control={<Radio />} label="Admin" /> */}
-                  <FormControlLabel value="organisation" control={<Radio />} label="Organisation" />
+                  <FormControlLabel value="Organisation" control={<Radio />} label="Organisation" />
                   <FormControlLabel value="Compunder" control={<Radio />} label="Compunder" />
                 </RadioGroup>
               </Dabba>
@@ -108,6 +117,7 @@ const Register = () => {
                 <TextField
                   margin="normal"
                   required
+                  fullWidth
 
                   name="password"
                   label="Password"
@@ -118,6 +128,7 @@ const Register = () => {
                 <TextField
                   margin="normal"
                   required
+                  fullWidth
 
                   name="cpassword"
                   label="Confirm Password"
@@ -230,7 +241,7 @@ const Dabba = styled(Box)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: .5%;
+  padding-top: 5%;
 
   & .MuiFormControlLabel-root {
     margin-right: 10px; /* Adjust the spacing between radio buttons */
