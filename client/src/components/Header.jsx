@@ -8,10 +8,9 @@ import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ type }) => {
-    const [active, setIsactive]=useState("")
 
+    const [activeButton, setActiveButton] = useState('headerButton1');
     const navigate = useNavigate();
-
     const handleOption = (name, operation) => {
       
     };
@@ -19,6 +18,10 @@ const Header = ({ type }) => {
     const handleSearch = () => {
         
     };
+    
+  const handleButtonClick = (headerButtonId) => {
+    setActiveButton(headerButtonId);
+  };
 
     return (
         <div className="header">
@@ -28,19 +31,19 @@ const Header = ({ type }) => {
                 }
             >
                 <div className="headerList">
-                    <div className="headerListItem active">
+                    <div  className={`headerListItem ${activeButton === 'headerButton1' ? 'active' : ''}`} onClick={() => handleButtonClick('headerButton1')}>
                         <span>Compunder</span>
                     </div>
-                    <div className="headerListItem">
+                    <div  className={`headerListItem ${activeButton === 'headerButton2' ? 'active' : ''}`} onClick={() => handleButtonClick('headerButton2')}>
                         <span>Compunder</span>
                     </div>
-                    <div className="headerListItem">
+                    <div  className={`headerListItem ${activeButton === 'headerButton3' ? 'active' : ''}`} onClick={() => handleButtonClick('headerButton3')}>
                         <span>Compunder</span>
                     </div>
-                    <div className="headerListItem">
+                    <div  className={`headerListItem ${activeButton === 'headerButton4' ? 'active' : ''}`} onClick={() => handleButtonClick('headerButton4')}>
                         <span>Compunder</span>
                     </div>
-                    <div className="headerListItem">
+                    <div  className={`headerListItem ${activeButton === 'headerButton5' ? 'active' : ''}`} onClick={() => handleButtonClick('headerButton5')}>
                         <span>Compunder</span>
                     </div>
                 </div>
@@ -66,9 +69,9 @@ const Header = ({ type }) => {
                             </div>
 
                             <div className="headerSearchItem">
-                                <button className="headerBtn" onClick={handleSearch}>
+                                <headerButton className="headerBtn" onClick={handleSearch}>
                                     Search
-                                </button>
+                                </headerButton>
                             </div>
 
                         </div>
