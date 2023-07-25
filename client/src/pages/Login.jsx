@@ -3,19 +3,11 @@ import { Avatar, Button, CssBaseline, RadioGroup, Radio, TextField, FormControlL
 import { LockOutlined } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from '@emotion/styled';
+import loginImage from '../assets/ImageLogin.jpg'
+import homePage from '../assests/wp2968489.webp'
 
-
-import homePage from '../assets/wp2968489.webp'
 
 const Login = () => {
-
-  
-
-
-
-
-
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -48,8 +40,6 @@ const Login = () => {
 
   return (
     <>
-   
-        
           <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
             <Grid
@@ -58,11 +48,7 @@ const Login = () => {
               sm={4}
               md={7}
               sx={{
-<<<<<<< Updated upstream
-                backgroundImage: 'url(imagee.jpg)',
-=======
                 backgroundImage: `url(${homePage})`,
->>>>>>> Stashed changes
                 backgroundRepeat: 'no-repeat',
                 backgroundColor: (t) =>
                   t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -136,13 +122,13 @@ const Login = () => {
                     </Grid>
                     <Grid item>
                       <RegisterTo variant="body2" >
-                        "Don't have an account? Sign Up"
+                        Don't have an account?  <Link href='/register'>Sign Up</Link>
                       </RegisterTo>
                     </Grid>
                   </Grid>
                   <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 5 }}>
                     {'Copyright © '}
-                    <Link color="inherit" href="">
+                    <Link color="inherit" href="/AboutUs">
                       AidRentals
                     </Link>{' '}
                     {new Date().getFullYear()}
@@ -181,5 +167,5 @@ const Dabba = styled(Box)`
   
   & .MuiFormGroup-root {
     flex-direction: row;
-  ${'' /* } */}
+  }
 `;
