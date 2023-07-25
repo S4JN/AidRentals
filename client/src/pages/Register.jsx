@@ -2,19 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, Button, CssBaseline, RadioGroup, Radio, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography } from '@mui/material';
 import { LockOutlined } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import loginImage from '../assets/ImageLogin.jpg'
 import styled from '@emotion/styled';
 
 
 const Register = () => {
-
-  
-
-
-
-
-
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -57,7 +49,7 @@ const Register = () => {
               sm={4}
               md={7}
               sx={{
-                backgroundImage: 'url(imagee.jpg)',
+                backgroundImage: `url(${loginImage})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundColor: (t) =>
                   t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -68,7 +60,7 @@ const Register = () => {
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
               <Box
                 sx={{
-                  my: 8,
+                  my: 4,
                   mx: 4,
                   display: 'flex',
                   flexDirection: 'column',
@@ -79,7 +71,7 @@ const Register = () => {
                   <LockOutlined />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                  Sign in
+                  Sign Up
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }} >
                   <Dabba>
@@ -91,6 +83,16 @@ const Register = () => {
                       <FormControlLabel value="Compunder" control={<Radio />} label="Compunder" />
                     </RadioGroup>
                   </Dabba>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Enter Your Name"
+                    name="name"
+                    autoComplete="name"
+                    autoFocus
+                  />
                   <TextField
                     margin="normal"
                     required
@@ -111,6 +113,26 @@ const Register = () => {
                     id="password"
                     autoComplete="current-password"
                   />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="cpassword"
+                    label="Confirm Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="contact"
+                    label="Contact Number"
+                    type="tel"
+                    id="password"
+                    autoComplete="current-password"
+                  />
                   {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
@@ -121,7 +143,7 @@ const Register = () => {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                   >
-                    Sign In
+                    Sign Up
                   </Button>
                   <Grid container>
                     <Grid item xs>
@@ -131,13 +153,13 @@ const Register = () => {
                     </Grid>
                     <Grid item>
                       <RegisterTo variant="body2" >
-                        "Don't have an account? Sign Up"
+                        Already have an account? <Link href='/login'>Sign In</Link>
                       </RegisterTo>
                     </Grid>
                   </Grid>
                   <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 5 }}>
                     {'Copyright © '}
-                    <Link color="inherit" href="">
+                    <Link color="inherit" href="/AboutUs">
                       AidRentals
                     </Link>{' '}
                     {new Date().getFullYear()}
@@ -164,7 +186,7 @@ const Dabba = styled(Box)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: 5%;
+  padding-top: .5%;
 
   & .MuiFormControlLabel-root {
     margin-right: 10px; /* Adjust the spacing between radio buttons */
