@@ -1,8 +1,23 @@
-const inventoryController = (req, res) => {
-    res.status(200).send({
-        message: "test route",
-        success: true,
-    });
+const { Inventory } = require("../models/inventorySchema");
+
+const inventoryController = async (req, res) => {
+    try {
+
+        const item = new Inventory(req.body);
+        await item.save();
+        return res.status(201).send({
+            success: true,
+            message: "Item added",
+            item
+        })
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Internal Serval Error in registering the user"
+        });
+    }
 };
 
 module.exports = { inventoryController }

@@ -1,7 +1,7 @@
 const express = require("express");
 const testRoutes = require("./routes/testRoutes");
 const authRoutes = require("./routes/authRoutes");
-// const inventoryRoutes = require("./routes/inventoryRoutes");
+const inventoryRoutes = require("./routes/inventoryRoutes");
 const morgan = require("morgan");
 const cors = require("cors");
 const app= express();
@@ -18,7 +18,7 @@ app.use(morgan("dev"));
 
 app.use("/api/v1/test",testRoutes);
 app.use("/api/v1/auth",authRoutes);
-// app.use("/api/v1/inventory",inventoryRoutes);
+app.use("/api/v1/inventory",inventoryRoutes);
 
 //made using mvc pattern 
 
