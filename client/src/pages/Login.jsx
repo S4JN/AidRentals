@@ -5,6 +5,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from '@emotion/styled';
 
 
+import homePage from '../assets/wp2968489.webp'
+
 const Login = () => {
 
   
@@ -56,7 +58,11 @@ const Login = () => {
               sm={4}
               md={7}
               sx={{
+<<<<<<< Updated upstream
                 backgroundImage: 'url(imagee.jpg)',
+=======
+                backgroundImage: `url(${homePage})`,
+>>>>>>> Stashed changes
                 backgroundRepeat: 'no-repeat',
                 backgroundColor: (t) =>
                   t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
