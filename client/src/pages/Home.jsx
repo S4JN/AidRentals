@@ -4,6 +4,9 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Featured from '../components/Featured/Featured'
 import { Box, styled, Typography } from '@mui/material'
+import Itemlist from '../components/Lists/Itemlist'
+import FeaturedList from '../components/FeaturedList/FeaturedList'
+import Mail from '../components/MailList/Mail'
 
 
 const Home = () => {
@@ -13,9 +16,13 @@ const Home = () => {
       <Header />
       <Container className='homeContainer'>
         <Featured />
-        <div>
+        <Wrapper>
+          <Heading variant="h2">We have various categories</Heading>
+          <Itemlist />
           <Heading variant="h2">Browse the inventory</Heading>
-        </div>
+          <FeaturedList /> 
+        </Wrapper>
+          <Mail />
       </Container>
       <Footer />
     </div>
@@ -25,17 +32,40 @@ const Home = () => {
 export default Home
 
 const Container = styled(Box)`
-${'' /* margin-top: 50px; */}
+   margin-top: 50px;
   display: flex;
   flex-direction: column;
-   align-items: start;
-   gap: 30px;
+  align-items: center;
+  gap: 30px;
+`
+const Wrapper = styled(Box)`
+
+  ${'' /* width: 100%;
+  max-width: 1024px; */}
+
+
 `
 
 const Heading = styled(Typography)`
   font-weight: bold;
+  margin: 3% 0;
+  width: 1024px;
   font-size: 32px;
-  margin-top: 5%;
-  margin-left: 200px;
+  text-align: start;
 `
 
+// .homeContainer{
+//   margin-top: 50px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 30px;
+// }
+
+// .homeTitle{
+//   width: 1024px;
+//   font-size: 20px;
+// ${'' /* font-weight: bold;
+// font-size: 32px;
+// margin-top: 5%;
+// text-align: start; */}
