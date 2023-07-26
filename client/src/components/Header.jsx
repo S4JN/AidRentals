@@ -14,7 +14,6 @@ const Header = ({ type }) => {
     const handleOption = (name, operation) => {
       
     };
-
     const handleSearch = () => {
         
     };
