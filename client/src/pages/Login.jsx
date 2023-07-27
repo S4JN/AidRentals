@@ -51,7 +51,7 @@ const Login = () => {
               md={7}
               sx={{
 
-                backgroundImage: `url(${homePage})`,
+             
 
                 backgroundImage:`url(${loginImage})`,
 
