@@ -4,6 +4,7 @@
     margin: 0 20px;
 
     font-size: 12px;
+    text-align: left;
   }
   
   .fLists{
@@ -22,4 +23,8 @@
     margin-bottom: 10px;
     color: #003580;
     cursor: pointer;
+  }
+
+  .fText{
+    text-align: center;
   }

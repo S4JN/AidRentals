@@ -8,7 +8,8 @@
   justify-content: center;
   position: relative;
   font-family: 'Work Sans', sans-serif;
-  width: 100%;
+  width: 100% !important;
+ 
 }
 
 .headerContainer {
