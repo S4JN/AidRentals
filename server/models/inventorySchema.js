@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 
 
+const fileSchema = new Schema({
+    filename:{type:String , required:true},
+    path:{ type:String , required:true},
+    uuid:{ type:String, required:true}
+},{timestamps:true})
+
 const inventorySchema = new mongoose.Schema({
     name: {
         type: String,
@@ -10,6 +16,7 @@ const inventorySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
+    file:[fileSchema],
     description: {
         type: String,
         required: true

@@ -8,16 +8,16 @@ import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 
 const Header = ({ type }) => {
-  const [activeButton, setActiveButton] = useState('headerButton1');
-  const navigate = useNavigate();
-  
-  const handleOption = (name, operation) => {
-    // Implementation of the handleOption function
-  };
 
-  const handleSearch = () => {
-    // Implementation of the handleSearch function
-  };
+    const [activeButton, setActiveButton] = useState('headerButton1');
+    const navigate = useNavigate();
+    const handleOption = (name, operation) => {
+      
+    };
+
+    const handleSearch = () => {
+        
+    };
     
   const handleButtonClick = (headerButtonId) => {
     setActiveButton(headerButtonId);
