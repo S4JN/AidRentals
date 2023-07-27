@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react";
 import "./footer.css";
 
 const Footer = () => {
+
+
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
   return (
     <div className="footer">
       <div className="fLists">
@@ -9,7 +17,7 @@ const Footer = () => {
           <li className="fListItem">Regions</li>
           <li className="fListItem">Cities</li>
           <li className="fListItem">Districts</li>
-          
+
           <li className="fListItem">Hospitals</li>
         </ul>
         <ul className="fList">
@@ -30,14 +38,14 @@ const Footer = () => {
         <ul className="fList">
           <li className="fListItem">Curtomer Service</li>
           <li className="fListItem">Partner Help</li>
- 
+
           <li className="fListItem">Press center</li>
           <li className="fListItem">Safety Resource Center</li>
-          
+
           <li className="fListItem">Terms & conditions</li>
         </ul>
       </div>
-      <div className="fText">Copyright © 2023 Major.</div>
+      <div className="fText">Copyright © {currentYear} Major.</div>
     </div>
   );
 };
