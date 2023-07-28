@@ -20,9 +20,9 @@ const Home = () => {
           <Heading variant="h2">We have various categories</Heading>
           <Itemlist />
           <Heading variant="h2">Browse the inventory</Heading>
-          <FeaturedList /> 
+          <FeaturedList />
         </Wrapper>
-          <Mail />
+        <Mail />
       </Container>
       <Footer />
     </div>

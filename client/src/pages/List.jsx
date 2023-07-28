@@ -3,9 +3,9 @@ import React from 'react';
 import "./css/list.css"
 
 import Navbar from '../components/Navbar';
-import Temp from '../components/Header/Temp';
+import Header from '../components/Header';
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
@@ -13,7 +13,14 @@ import SearchItem from '../components/SearchItem/SearchItem';
 
 const List = () => {
   const location = useLocation();
-  const [destination, setDestination] = useState(location.state?.destination || '');
+  console.log(location.state?.searchItem);
+
+ 
+
+  const [searchItem, setSearchItem]= useState(location.state?.searchItem);
+
+
+  // const [destination, setDestination] = useState(location.state?.destination || '');
   const [date, setDate] = useState(location.state?.date || [
     {
       startDate: new Date(),
@@ -31,7 +38,7 @@ const List = () => {
   return (
     <div>
       <Navbar />
-      <Temp />
+      <Header type={"list"} />
 
       <div className="listContainer">
         <div className="listWrapper">
@@ -39,7 +46,7 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Name</label>
-              <input placeholder={destination} type="text" />
+              <input placeholder={searchItem} type="text" />
             </div>
             <div className="lsItem">
               <label>Renting Date</label>

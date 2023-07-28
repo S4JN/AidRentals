@@ -10,13 +10,16 @@ import HomeIcon from '@mui/icons-material/Home';
 const Header = ({ type }) => {
 
     const [activeButton, setActiveButton] = useState('headerButton1');
+    const [searchItem, setSearchItem]= useState("");
+
     const navigate = useNavigate();
     const handleOption = (name, operation) => {
       
     };
 
     const handleSearch = () => {
-        
+        // console.log(searchItem);
+        navigate("/list",{state: {searchItem}});
     };
     
   const handleButtonClick = (headerButtonId) => {
@@ -62,7 +65,7 @@ const Header = ({ type }) => {
                   type="text"
                   placeholder="Whats your need?"
                   className="headerSearchInput"
-                  onChange={(e) => setDestination(e.target.value)}
+                  onChange={(e) => setSearchItem(e.target.value)}
                 />
               </div>
 
