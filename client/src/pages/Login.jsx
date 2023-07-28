@@ -3,7 +3,7 @@ import { Avatar, Button, CssBaseline, RadioGroup, Radio, TextField, FormControlL
 import { LockOutlined } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from '@emotion/styled';
-// import loginImage from '../assets/ImageLogin.jpg'
+import loginImage from '../assets/ImageLogin.jpg'
 
 import homePage from '../assets/wp2968489.webp'
 
@@ -53,7 +53,7 @@ const Login = () => {
 
              
 
-                backgroundImage:`url(${loginImage})`,
+                backgroundImage:`url(${homePage})`,
 
                 backgroundRepeat: 'no-repeat',
                 backgroundColor: (t) =>
