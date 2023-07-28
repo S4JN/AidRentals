@@ -15,9 +15,9 @@ const List = () => {
   const location = useLocation();
   console.log(location.state?.searchItem);
 
- 
 
-  const [searchItem, setSearchItem]= useState(location.state?.searchItem);
+
+  const [searchItem, setSearchItem] = useState(location.state?.searchItem);
 
 
   // const [destination, setDestination] = useState(location.state?.destination || '');
@@ -53,13 +53,16 @@ const List = () => {
               <span onClick={() => setOpenDate(!openDate)}>
                 {`${format(date[0].startDate, 'MM/dd/yyyy')} to ${format(date[0].endDate, 'MM/dd/yyyy')}`}
               </span>
-              {openDate && (
-                <DateRange
-                  onChange={(item) => setDate([item.selection])}
-                  minDate={new Date()}
-                  ranges={date}
-                />
-              )}
+              <div className='tttt'>
+                {openDate && (
+                  <DateRange
+                    onChange={(item) => setDate([item.selection])}
+                    minDate={new Date()}
+                    ranges={date}
+                  />
+                )}
+              </div>
+
             </div>
             <div className="lsItem">
               <label>Options</label>
