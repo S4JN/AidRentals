@@ -12,6 +12,7 @@
     flex-direction: column;
     gap: 10px;
     position: relative;
+    margin-top: 20px;
   }
   
   .bookNow {
@@ -28,7 +29,10 @@
   }
   
   .hotelTitle {
-    font-size: 24px;
+    font-size: 44px;
+    margin: 0;
+    font-family: 'Domine', serif;
+    font-weight: bolder;
   }
   
   .hotelAddress {
@@ -115,7 +119,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.413);
+    background-color: rgba(0, 0, 0, 0.713);
     z-index: 999;
     display: flex;
     align-items: center;

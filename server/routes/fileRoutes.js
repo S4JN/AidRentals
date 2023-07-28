@@ -20,7 +20,7 @@ const upload = multer({
 
  
 
-router.post('/', upload, async (req, res) => {
+router.post('/upload-image', upload, async (req, res) => {
   const { name, owner, description, rentalPrice, life, isRented, tags } = req.body;
 
   const files = req.files.map(file => ({

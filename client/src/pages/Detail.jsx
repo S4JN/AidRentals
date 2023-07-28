@@ -15,19 +15,19 @@ const Detail = () => {
 
     const photos = [
         {
-            src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
+            src: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=874&q=80",
         },
         {
-            src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707367.jpg?k=cbacfdeb8404af56a1a94812575d96f6b80f6740fd491d02c6fc3912a16d8757&o=&hp=1",
+            src: "https://plus.unsplash.com/premium_photo-1678310819897-edfe9b9def64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
         },
         {
-            src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261708745.jpg?k=1aae4678d645c63e0d90cdae8127b15f1e3232d4739bdf387a6578dc3b14bdfd&o=&hp=1",
+            src: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80",
         },
         {
-            src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707776.jpg?k=054bb3e27c9e58d3bb1110349eb5e6e24dacd53fbb0316b9e2519b2bf3c520ae&o=&hp=1",
+            src: "https://plus.unsplash.com/premium_photo-1678448763284-5d8b56a95313?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
         },
         {
-            src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261708693.jpg?k=ea210b4fa329fe302eab55dd9818c0571afba2abd2225ca3a36457f9afa74e94&o=&hp=1",
+            src: "https://images.unsplash.com/photo-1630531210843-d6f343ad1f90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=872&q=80",
         },
         {
             src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
@@ -93,13 +93,13 @@ const Detail = () => {
                     <h1 className="hotelTitle">Tower Street Apartments</h1>
                     <div className="hotelAddress">
 
-                        <span>Elton St 125 New york</span>
+                        <span>Multi Equipment Set</span>
                     </div>
                     <span className="hotelDistance">
                         Excellent location – 500m from center
                     </span>
                     <span className="hotelPriceHighlight">
-                        Book a stay over $114 at this property and get a free airport taxi
+                        Rent these items at the cheapest price.
                     </span>
                     <div className="hotelImages">
                         {photos.map((photo, i) => (
@@ -115,7 +115,7 @@ const Detail = () => {
                     </div>
                     <div className="hotelDetails">
                         <div className="hotelDetailsTexts">
-                            <h1 className="hotelTitle">Stay in the heart of City</h1>
+                            <h1 className="hotelTitle">Multi Functionality Items</h1>
                             <p className="hotelDesc">
                                 Introducing our state-of-the-art oximeter, available for rent now! Our oximeter is a cutting-edge medical device designed to accurately measure your oxygen saturation levels and pulse rate, providing crucial insights into your overall health and well-being. With its user-friendly interface and compact design, it's perfect for monitoring your oxygen levels from the comfort of your home or on the go.
 
@@ -131,15 +131,15 @@ const Detail = () => {
                             </p>
                         </div>
                         <div className="hotelDetailsPrice">
-                            <h1>Perfect for a 9-night stay!</h1>
+                            <h1>Rent Now!</h1>
                             <span>
-                                Located in the real heart of Krakow, this property has an
-                                excellent location score of 9.8!
+                                By Renting we will provide you with the details of the owner contact him directly,
+                                we will also provide your details to him.
                             </span>
                             <h2>
-                                <b>$945</b> (9 nights)
+                                <b>₹100</b> (per day)
                             </h2>
-                            <button>Reserve or Book Now!</button>
+                            <button>Rent</button>
                         </div>
                     </div>
                 </div>

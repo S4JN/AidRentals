@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, Button, CssBaseline, RadioGroup, Radio, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography } from '@mui/material';
 import { LockOutlined } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import loginImage from '../assets/ImageLogin.jpg'
+import loginImage from '../assets/ImageLogin.jpg'
 import styled from '@emotion/styled';
 
-import homePage from '../assets/wp2968489.webp'
 
 const Register = () => {
   const handleSubmit = (event) => {
@@ -59,11 +58,7 @@ const Register = () => {
           sm={4}
           md={7}
           sx={{
-
-            backgroundImage: `url(${homePage})`,
-
             backgroundImage: `url(${loginImage})`,
-
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
