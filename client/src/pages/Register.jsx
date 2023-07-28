@@ -4,7 +4,7 @@ import { LockOutlined } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import loginImage from '../assets/ImageLogin.jpg'
 import styled from '@emotion/styled';
-
+import homePage from '../assets/wp2968489.webp'
 
 const Register = () => {
   const handleSubmit = (event) => {
