@@ -65,20 +65,24 @@ const Detail = () => {
                     <div className="slider">
 
                         <CloseIcon
-                            
+
                             className="close"
                             onClick={() => setOpen(false)}
                         />
+
+
                         <ArrowBackIcon
-                            
+
                             className="arrow"
                             onClick={() => handleMove("l")}
                         />
+
+
                         <div className="sliderWrapper">
                             <img src={photos[slideNumber].src} alt="" className="sliderImg" />
                         </div>
                         <ArrowForwardIcon
-                            
+
                             className="arrow"
                             onClick={() => handleMove("r")}
                         />
