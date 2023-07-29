@@ -15,7 +15,7 @@ const inventoryController = async (req, res) => {
         console.log(error);
         res.status(500).send({
             success: false,
-            message: "Internal Serval Error in registering the user"
+            message: "idhr error"
         });
     }
 };

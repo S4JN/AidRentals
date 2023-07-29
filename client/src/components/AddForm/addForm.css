@@ -1,4 +1,8 @@
+
+
+
 .formContainer {
+    /* position: sticky; */
     display: flex;
     flex-direction: column;
     max-width: 400px;
@@ -6,8 +10,24 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
+    position: relative;
+    
     background-color: #f8f8f8;
 }
+.closebtn {
+  position: absolute;
+  background-color: #0071c2;
+  color: #f8f8f8;
+  border-radius: 100%;
+ 
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+
+
 
   .formContainer label {
     margin-bottom: 10px;
