@@ -23,10 +23,16 @@
   margin: 20px 0px 0px 0px;
 }
 
+.adjust{
+  display: flex;
+  align-items: center;
+  
+}
 .headerList {
   display: flex;
   gap: 40px;
   margin-bottom: 50px;
+  margin-top: 15px;
 }
 
 .headerListItem {
@@ -35,10 +41,19 @@
   gap: 10px;
   cursor: pointer;
 }
+.lmarg{
+  margin-left: 5px;
+  font-size: 16px;
+}
+.headerListItem svg {
+  margin-left: 3px; 
+  width: 30px; 
+  height: 30px;
+}
 
 .headerListItem.active {
   border: 1px solid white;
-  padding: 10px;
+  padding: 8px;
   border-radius: 20px;
 }
 

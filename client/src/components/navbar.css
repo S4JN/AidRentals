@@ -17,21 +17,26 @@
   }
   .navItems{
     font-size: 0.9rem;
-
+    display: flex;
   }
   
   .logo{
-    font-weight: 500;
+    font-weight: 1000;
     font-size: 2rem;
     
   }
   
   .nnnn {
     margin-left: 20px;
-    
-    padding: 5px 10px;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     color: white;
     font-family: 'Work Sans', sans-serif;
+  }
+  .nnnn svg{
+    width: 20px;
+    height: 20px;
   }
   
