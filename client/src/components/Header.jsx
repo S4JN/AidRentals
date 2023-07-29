@@ -22,11 +22,12 @@ const Header = ({ type }) => {
 
     const handleSearch = () => {
         // console.log(searchItem);
-        navigate("/list",{state: {searchItem}});
+        navigate("/explore",{state: {searchItem}});
     };
     
   const handleButtonClick = (headerButtonId) => {
     setActiveButton(headerButtonId);
+    
   };
 
   return (

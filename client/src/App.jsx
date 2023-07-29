@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom"
-import { Home, Login, Register,List,Detail } from "./pages/index.js"
+import { Home, Login, Register, List, Detail } from "./pages/index.js"
 import AboutUs from "./pages/AboutUs.jsx"
+import PublicRoute from "./components/Routes/PublicRoute.js"
+import ProtectedRoute from "./components/Routes/ProtectedRoute.js"
 
 
 
@@ -10,12 +12,42 @@ function App() {
     <>
       <div className='App'>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/list" element={<List />}></Route>
-          <Route path="/detail" element={<Detail />}></Route>
-          <Route path="/AboutUs" element={<AboutUs/>}> </Route>
+          <Route path="/" element={
+
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+
+          }></Route>
+          <Route path="/login" element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }></Route>
+
+          <Route path="/register" element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>}>            
+            </Route>
+            
+          <Route path="/explore" element={
+          <ProtectedRoute>
+            <List />
+          </ProtectedRoute>}>
+          </Route>
+          
+          <Route path="/detail" element={
+          <ProtectedRoute>
+            <Detail />
+          </ProtectedRoute>}>
+          </Route>
+
+          <Route path="/AboutUs" element={
+          <PublicRoute>
+            <AboutUs />
+          </PublicRoute>}>
+          </Route>
         </Routes>
 
       </div>

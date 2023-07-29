@@ -5,41 +5,58 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import loginImage from '../assets/ImageLogin.jpg'
 import styled from '@emotion/styled';
 import homePage from '../assets/wp2968489.webp'
+import { useNavigate } from 'react-router-dom';
+import axios from "axios"
 
 const Register = () => {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit =async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const name=data.get('name');
     const email = data.get('email');
+    const phoneNumber=data.get('phoneNumber');
     const password = data.get('password');
     const role = data.get('role');
     const address = data.get("address");
     const city = data.get("city");
     const state= data.get("state");
-    const zip = data.get("zipCode");
+    const zip = data.get("zip");
 
     if (!role || !email || !password) {
       console.log("enter all fields");
       console.log(role, email, password);
 
-
     } else {
 
       console.log({
+        name:data.get('name'),
         email: data.get('email'),
         password: data.get('password'),
+        phoneNumber,
         role: data.get("role"),
         address: data.get("address"),
         city: city,
         state: state,
         zip: zip
-        
         // selectedRole
       });
+      try {
+        //phoneNumber
+        const { data } = await axios.post("http://localhost:8000/api/v1/auth/register", { name,email,phoneNumber,password,role,address,city,state,zip });
+        if (data.success) {
+          console.log(data);
+          navigate("/login");
+      }
+      } catch (error) {
+        console.log(error);
+      }
     }
+
   };
 
-  const [selectedRole, setSelectedRole] = useState('customer');
+  const [selectedRole, setSelectedRole] = useState('user');
 
 
   const handleRoleChange = (event) => {
@@ -86,10 +103,8 @@ const Register = () => {
               <Dabba>
 
                 <RadioGroup aria-label="role" name="role" value={selectedRole} onChange={handleRoleChange}>
-                  <FormControlLabel value="Customer" control={<Radio />} label="Customer" />
-                  {/* <FormControlLabel value="admin" control={<Radio />} label="Admin" /> */}
-                  <FormControlLabel value="Organisation" control={<Radio />} label="Organisation" />
-                  <FormControlLabel value="Compunder" control={<Radio />} label="Compunder" />
+                  <FormControlLabel value="user" control={<Radio />} label="Customer" />
+                  <FormControlLabel value="organisation" control={<Radio />} label="Organisation" />
                 </RadioGroup>
               </Dabba>
               <TextField
@@ -143,10 +158,10 @@ const Register = () => {
                 margin="normal"
                 required
                 fullWidth
-                name="contact"
+                name="phoneNumber"
                 label="Contact Number"
-                type="tel"
-                id="contact"
+                
+                id="phoneNumber"
               />
               <TextField
                 margin="normal"
@@ -185,8 +200,8 @@ const Register = () => {
                   required
                   id="zipCode"
                   label="Zip Code"
-                  name="zipCode"
-                  autoComplete="zipCode"
+                  name="zip"
+                  autoComplete="zip"
                   autoFocus
                 />
 
