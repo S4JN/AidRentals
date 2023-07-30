@@ -48,9 +48,9 @@ function App() {
           </Route>
 
           <Route path="/AboutUs" element={
-            <PublicRoute>
+            
               <AboutUs />
-            </PublicRoute>
+            
           }>
           </Route>
         </Routes>

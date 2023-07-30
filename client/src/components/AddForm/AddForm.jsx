@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import "./addForm.css"
 import axios from 'axios'
+import { useUserContext } from '../../context/UserContext';
 
 const AddForm = ({ setShowForm, showForm }) => {
+  const { user } = useUserContext();
+
+
 
   const [formData, setFormData] = useState({
     name: '',
-    file: '',
+    
     description: '',
     rentalPrice: '',
     life: '',
@@ -22,6 +26,7 @@ const AddForm = ({ setShowForm, showForm }) => {
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,9 +40,9 @@ const AddForm = ({ setShowForm, showForm }) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       };
-      console.log(localStorage.getItem("token"));
+      
       const { data } = axios.post("http://localhost:8000/api/v1/inventory/add", formData, config);
-      console.log(data);
+      console.log(data?.success);
     } catch (error) {
       console.log(error);
     }
@@ -68,17 +73,7 @@ const AddForm = ({ setShowForm, showForm }) => {
           />
         </label>
 
-        {/* <label>
-          Owner:
-          <input
-            type="text"
-            name="owner"
-            value={formData.owner}
-            onChange={handleChange}
-          // required
-          />
-        </label> */}
-
+       
         <label>
           Images
           <input
@@ -158,3 +153,5 @@ const AddForm = ({ setShowForm, showForm }) => {
 }
 
 export default AddForm;
+
+

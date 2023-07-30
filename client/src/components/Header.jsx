@@ -12,21 +12,21 @@ import PersonSearchSharpIcon from '@mui/icons-material/PersonSearchSharp';
 import InfoSharpIcon from '@mui/icons-material/InfoSharp';
 
 const Header = ({ type }) => {
-    const location=useLocation();
-    const route=location.pathname;
-    const [activeButton, setActiveButton] = useState(route);
-    const [searchItem, setSearchItem]= useState("");
+  const location = useLocation();
+  const route = location.pathname;
+  const [activeButton, setActiveButton] = useState(route);
+  const [searchItem, setSearchItem] = useState("");
 
-    const navigate = useNavigate();
-    const handleOption = (name, operation) => {
-      
-    };
+  const navigate = useNavigate();
+  const handleOption = (name, operation) => {
 
-    const handleSearch = () => {
-        // console.log(searchItem);
-        navigate("/explore",{state: {searchItem}});
-    };
-    
+  };
+
+  const handleSearch = () => {
+    // console.log(searchItem);
+    navigate("/explore", { state: { searchItem } });
+  };
+
   const handleButtonClick = (headerButtonId) => {
     setActiveButton(headerButtonId);
   };
@@ -40,16 +40,16 @@ const Header = ({ type }) => {
       >
         <div className="headerList">
           <div className={`headerListItem ${activeButton === '/' ? 'active' : ''}`} onClick={() => handleButtonClick('/')}>
-          <div className="adjust"><HomeIcon /> <span className="lmarg">Home</span></div>  
+            <div className="adjust" onClick={()=> navigate("/")}><HomeIcon /> <span className="lmarg">Home</span></div>
           </div>
           <div className={`headerListItem ${activeButton === '/explore' ? 'active' : ''}`} onClick={() => handleButtonClick('/explore')}>
-          <div className="adjust"><TravelExploreIcon/> <span className="lmarg">Explore</span></div>
+            <div className="adjust" onClick={()=> navigate("/explore")} ><TravelExploreIcon /> <span className="lmarg">Explore</span></div>
           </div>
           <div className={`headerListItem ${activeButton === 'AboutUs' ? 'active' : ''}`} onClick={() => handleButtonClick('/AboutUs')}>
-          <div className="adjust"><InfoSharpIcon /> <span className="lmarg">About US</span></div>
+            <div className="adjust" onClick={()=> navigate("/aboutus")}><InfoSharpIcon /> <span className="lmarg">About US</span></div>
           </div>
           <div className={`headerListItem ${activeButton === 'ViewProfile' ? 'active' : ''}`} onClick={() => handleButtonClick('/ViewProfile')}>
-          <div className="adjust"><PersonSearchSharpIcon/> <span className="lmarg">View Profile</span></div>
+            <div className="adjust"><PersonSearchSharpIcon /> <span className="lmarg">View Profile</span></div>
           </div>
         </div>
 
@@ -60,7 +60,7 @@ const Header = ({ type }) => {
             </h1>
             <p className="headerDesc">
               Rent your medical instruments for the needy, keep prices low.
-              db ki ma ka bhosda
+
             </p>
 
             <div className="headerSearch">
