@@ -3,6 +3,7 @@ import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
 import AddForm from "./AddForm/AddForm";
 import { useState } from "react";
+import { useUserContext } from "../context/UserContext";
 
 
 const Navbar = () => {
@@ -10,6 +11,8 @@ const Navbar = () => {
   
 
   const [showForm, setShowForm] = useState(false);
+  const { user } = useUserContext();
+
 
   const handleClick = () => {
     setShowForm(true);
@@ -30,7 +33,8 @@ const Navbar = () => {
           <div className="navItems">
             <span className="nnnn" onClick={handleClick}><AddSharpIcon />Add item</span>
             <span className="nnnn">Track my Request</span>
-            <span className="nnnn">{"userDe"}</span>
+            <span className="nnnn">{user?.name}<br />{user?.role}</span>
+            
             <span className="nnnn"><LogoutSharpIcon />Sign Out</span>
           </div>
         </div>

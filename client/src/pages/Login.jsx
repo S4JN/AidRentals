@@ -7,18 +7,19 @@ import loginImage from '../assets/ImageLogin.jpg'
 
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../context/UserContext';
 
 
 
 const Login = () => {
 
+  const { setUser } = useUserContext();
 
-  
 
 
 
   const navigate = useNavigate();
-  
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,6 +47,7 @@ const Login = () => {
           localStorage.setItem("token", data.token)
 
           console.log(data.user);
+          setUser(data.user);
           navigate("/")
 
         }
