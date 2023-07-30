@@ -18,11 +18,8 @@ const upload = multer({
 }).array('files',5);   //max photos 5 limit set kri hai
 
 
- 
-
-router.post('/upload-image', upload, async (req, res) => {
+router.post('/', upload, async (req, res) => {
   const { name, owner, description, rentalPrice, life, isRented, tags } = req.body;
-
   const files = req.files.map(file => ({
     filename: file.filename,
     path: file.path,

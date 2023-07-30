@@ -1,6 +1,7 @@
 import "./header.css";
 import { DateRange } from "react-date-range";
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
@@ -11,8 +12,9 @@ import PersonSearchSharpIcon from '@mui/icons-material/PersonSearchSharp';
 import InfoSharpIcon from '@mui/icons-material/InfoSharp';
 
 const Header = ({ type }) => {
-
-    const [activeButton, setActiveButton] = useState('headerButton1');
+    const location=useLocation();
+    const route=location.pathname;
+    const [activeButton, setActiveButton] = useState(route);
     const [searchItem, setSearchItem]= useState("");
 
     const navigate = useNavigate();
@@ -24,9 +26,8 @@ const Header = ({ type }) => {
         // console.log(searchItem);
         navigate("/list",{state: {searchItem}});
     };
-    
-  const handleButtonClick = (headerButtonId) => {
-    setActiveButton(headerButtonId);
+  const handleButtonClick = () => {
+    setActiveButton(route);
   };
 
   return (
@@ -37,17 +38,16 @@ const Header = ({ type }) => {
         }
       >
         <div className="headerList">
-          <div className={`headerListItem ${activeButton === 'headerButton1' ? 'active' : ''}`} onClick={() => handleButtonClick('headerButton1')}>
+          <div className={`headerListItem ${activeButton === '/' ? 'active' : ''}`} onClick={() => handleButtonClick()}>
           <div className="adjust"><HomeIcon /> <span className="lmarg">Home</span></div>  
           </div>
-          {/* Additional headerList items go here */}
-          <div className={`headerListItem ${activeButton === 'headerButton3' ? 'active' : ''}`} onClick={() => handleButtonClick('headerButton3')}>
+          <div className={`headerListItem ${activeButton === '/list' ? 'active' : ''}`} onClick={() => handleButtonClick()}>
           <div className="adjust"><TravelExploreIcon/> <span className="lmarg">Explore</span></div>
           </div>
-          <div className={`headerListItem ${activeButton === 'headerButton4' ? 'active' : ''}`} onClick={() => handleButtonClick('headerButton4')}>
+          <div className={`headerListItem ${activeButton === 'AboutUs' ? 'active' : ''}`} onClick={() => handleButtonClick()}>
           <div className="adjust"><InfoSharpIcon /> <span className="lmarg">About US</span></div>
           </div>
-          <div className={`headerListItem ${activeButton === 'headerButton5' ? 'active' : ''}`} onClick={() => handleButtonClick('headerButton5')}>
+          <div className={`headerListItem ${activeButton === 'ViewProfile' ? 'active' : ''}`} onClick={() => handleButtonClick()}>
           <div className="adjust"><PersonSearchSharpIcon/> <span className="lmarg">View Profile</span></div>
           </div>
         </div>
