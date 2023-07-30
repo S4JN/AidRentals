@@ -23,10 +23,11 @@ const Header = ({ type }) => {
     };
 
     const handleSearch = () => {
-        // console.log(searchItem);
+        //console.log(searchItem);
         navigate("/list",{state: {searchItem}});
     };
-  const handleButtonClick = () => {
+  const handleButtonClick = (redir) => {
+    navigate(redir);
     setActiveButton(route);
   };
 
@@ -38,16 +39,16 @@ const Header = ({ type }) => {
         }
       >
         <div className="headerList">
-          <div className={`headerListItem ${activeButton === '/' ? 'active' : ''}`} onClick={() => handleButtonClick()}>
+          <div className={`headerListItem ${activeButton === '/' ? 'active' : ''}`} onClick={() => handleButtonClick('/')}>
           <div className="adjust"><HomeIcon /> <span className="lmarg">Home</span></div>  
           </div>
-          <div className={`headerListItem ${activeButton === '/list' ? 'active' : ''}`} onClick={() => handleButtonClick()}>
+          <div className={`headerListItem ${activeButton === '/list' ? 'active' : ''}`} onClick={() => handleButtonClick('/list')}>
           <div className="adjust"><TravelExploreIcon/> <span className="lmarg">Explore</span></div>
           </div>
-          <div className={`headerListItem ${activeButton === 'AboutUs' ? 'active' : ''}`} onClick={() => handleButtonClick()}>
+          <div className={`headerListItem ${activeButton === 'AboutUs' ? 'active' : ''}`} onClick={() => handleButtonClick('/AboutUs')}>
           <div className="adjust"><InfoSharpIcon /> <span className="lmarg">About US</span></div>
           </div>
-          <div className={`headerListItem ${activeButton === 'ViewProfile' ? 'active' : ''}`} onClick={() => handleButtonClick()}>
+          <div className={`headerListItem ${activeButton === 'ViewProfile' ? 'active' : ''}`} onClick={() => handleButtonClick('/ViewProfile')}>
           <div className="adjust"><PersonSearchSharpIcon/> <span className="lmarg">View Profile</span></div>
           </div>
         </div>
