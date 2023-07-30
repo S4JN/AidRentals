@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const app= express();
 const connectDB = require("./config/db.js");
-
+const filesRoutes=require('./routes/fileRoutes');
 //dotenv config
 require("dotenv").config();
 
@@ -19,7 +19,7 @@ app.use(morgan("dev"));
 app.use("/api/v1/test",testRoutes);
 app.use("/api/v1/auth",authRoutes);
 app.use("/api/v1/inventory",inventoryRoutes);
-
+app.use("/add",filesRoutes);
 //made using mvc pattern 
 
 const PORT = process.env.PORT || 8000;
