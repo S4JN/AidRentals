@@ -9,8 +9,16 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
 
+
 const Login = () => {
-  const navigate= useNavigate();
+
+
+  
+
+
+
+  const navigate = useNavigate();
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,21 +39,16 @@ const Login = () => {
         // selectedRole
       });
 
-      // const config = {
-      //   headers: {
-      //     "Content-type": "application/json",
-      //   },
-      // };
-      // const data = await axios.post("http://localhost:8080/api/user/login", { email, password }, config);
-      // console.log(data);
+
       try {
         const { data } = await axios.post("http://localhost:8000/api/v1/auth/login", { role, email, password });
         if (data.success) {
           localStorage.setItem("token", data.token)
-          console.log(data);
+
+          console.log(data.user);
           navigate("/")
-          
-      }
+
+        }
 
       } catch (error) {
         console.log(error);

@@ -24,7 +24,7 @@ const Header = ({ type }) => {
 
     const handleSearch = () => {
         // console.log(searchItem);
-        navigate("/list",{state: {searchItem}});
+        navigate("/explore",{state: {searchItem}});
     };
     
   const handleButtonClick = (headerButtonId) => {
@@ -42,7 +42,7 @@ const Header = ({ type }) => {
           <div className={`headerListItem ${activeButton === '/' ? 'active' : ''}`} onClick={() => handleButtonClick('/')}>
           <div className="adjust"><HomeIcon /> <span className="lmarg">Home</span></div>  
           </div>
-          <div className={`headerListItem ${activeButton === '/list' ? 'active' : ''}`} onClick={() => handleButtonClick('/list')}>
+          <div className={`headerListItem ${activeButton === '/explore' ? 'active' : ''}`} onClick={() => handleButtonClick('/explore')}>
           <div className="adjust"><TravelExploreIcon/> <span className="lmarg">Explore</span></div>
           </div>
           <div className={`headerListItem ${activeButton === 'AboutUs' ? 'active' : ''}`} onClick={() => handleButtonClick('/AboutUs')}>

@@ -6,7 +6,6 @@ const AddForm = ({ setShowForm, showForm }) => {
 
   const [formData, setFormData] = useState({
     name: '',
-    owner: '',
     file: '',
     description: '',
     rentalPrice: '',
@@ -37,7 +36,7 @@ const AddForm = ({ setShowForm, showForm }) => {
         },
       };
       console.log(localStorage.getItem("token"));
-      const {data}= axios.post("http://localhost:8000/api/v1/inventory/add",formData,config);
+      const { data } = axios.post("http://localhost:8000/api/v1/inventory/add", formData, config);
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -46,7 +45,7 @@ const AddForm = ({ setShowForm, showForm }) => {
 
   };
 
-  const handleClick=()=>{
+  const handleClick = () => {
     console.log("clicked");
 
     setShowForm(false)
@@ -57,7 +56,7 @@ const AddForm = ({ setShowForm, showForm }) => {
   return (
     <div className='box'>
       <form onSubmit={handleSubmit} className='formContainer'>
-      <button className='closebtn' onClick={handleClick}>X</button>
+        <button className='closebtn' onClick={handleClick}>X</button>
         <label>
           Name:
           <input
@@ -65,26 +64,26 @@ const AddForm = ({ setShowForm, showForm }) => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            // required
+          // required
           />
         </label>
 
-        <label>
+        {/* <label>
           Owner:
           <input
             type="text"
             name="owner"
             value={formData.owner}
             onChange={handleChange}
-            // required
+          // required
           />
-        </label>
+        </label> */}
 
         <label>
           Images
           <input
             type="file"
-            name="files"
+            name="file"
             onChange={handleChange}
           />
         </label>
@@ -95,7 +94,7 @@ const AddForm = ({ setShowForm, showForm }) => {
             name="description"
             value={formData.description}
             onChange={handleChange}
-            // required
+          // required
           />
         </label>
 
@@ -106,7 +105,7 @@ const AddForm = ({ setShowForm, showForm }) => {
             name="rentalPrice"
             value={formData.rentalPrice}
             onChange={handleChange}
-            // required
+          // required
           />
         </label>
 
@@ -137,7 +136,7 @@ const AddForm = ({ setShowForm, showForm }) => {
             name="tags"
             value={formData.tags}
             onChange={handleChange}
-            // required
+          // required
           />
         </label>
 

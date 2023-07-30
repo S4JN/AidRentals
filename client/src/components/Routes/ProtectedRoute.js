@@ -8,7 +8,7 @@ const ProtectedRoute = ({children}) => {
     //get user
     const getUser = async()=>{
         try {
-            console.log(localStorage.getItem("token"));
+            // console.log(localStorage.getItem("token"));
             //tobe solved
 
 
@@ -21,8 +21,8 @@ const ProtectedRoute = ({children}) => {
             const {data}= await axios.get("http://localhost:8000/api/v1/auth/current-user",config);
             if(data?.success){
              
-                console.log("user exists");
-                console.log(data);
+                // console.log("user exists");
+                // console.log(data);
             }
         } catch (error) {
             // localStorage.clear();

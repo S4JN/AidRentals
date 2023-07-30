@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 
 const fileSchema = new mongoose.Schema({
-    filename:{type:String , required:true},
-    path:{ type:String , required:true},
-    uuid:{ type:String, required:true}
-},{timestamps:true})
+    filename: { type: String, required: true },
+    path: { type: String, required: true },
+    uuid: { type: String, required: true }
+}, { timestamps: true })
 
 const inventorySchema = new mongoose.Schema({
     name: {
@@ -16,7 +16,7 @@ const inventorySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    file:[fileSchema],
+    file: [fileSchema],
     description: {
         type: String,
         required: true
@@ -25,7 +25,7 @@ const inventorySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    life:{
+    life: {
         type: String,
     },
     isRented: {
@@ -36,7 +36,7 @@ const inventorySchema = new mongoose.Schema({
         type: String,
         required: true
     }],
-    rating: { type: String, enum: ["1", "2", "3", "4","5"], default: '3' },
+    rating: { type: String, enum: ["1", "2", "3", "4", "5"], default: '3' },
 
 });
 

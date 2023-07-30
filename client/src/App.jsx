@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { Home, Login, Register, List, Detail } from "./pages/index.js"
 import AboutUs from "./pages/AboutUs.jsx"
-import PublicRoute from "./components/Routes/PublicRoute.js"
-import ProtectedRoute from "./components/Routes/ProtectedRoute.js"
+
 
 
 
@@ -14,39 +13,36 @@ function App() {
         <Routes>
           <Route path="/" element={
 
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
+
+            <Home />
 
           }></Route>
           <Route path="/login" element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
+            <Login />
           }></Route>
 
           <Route path="/register" element={
-            <PublicRoute>
-              <Register />
-            </PublicRoute>}>            
-            </Route>
-            
-          <Route path="/explore" element={
-          <ProtectedRoute>
-            <List />
-          </ProtectedRoute>}>
+
+            <Register />
+          }>
           </Route>
-          
+
+          <Route path="/explore" element={
+
+            <List />
+          }>
+          </Route>
+
           <Route path="/detail" element={
-          <ProtectedRoute>
+
             <Detail />
-          </ProtectedRoute>}>
+          }>
           </Route>
 
           <Route path="/AboutUs" element={
-          <PublicRoute>
+
             <AboutUs />
-          </PublicRoute>}>
+          }>
           </Route>
         </Routes>
 
