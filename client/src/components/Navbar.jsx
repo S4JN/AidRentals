@@ -20,13 +20,16 @@ const Navbar = () => {
   const handleClick = () => {
     setShowForm(true);
   }
+  const handleFormClose = () => {
+    setShowForm(false); // Set showForm to false to close the form
+  };
 
   return (
     <div>
       <div>
       {showForm && (
-        <div className="overlay" onClick={handleClick}>
-          <AddForm setShowForm={setShowForm} showForm={showForm} />
+        <div className="overlay" >
+          <AddForm setShowForm={setShowForm} showForm={showForm} handleFormClose={handleFormClose} />
         </div>
       )}
       </div>

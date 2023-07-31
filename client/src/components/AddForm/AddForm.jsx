@@ -3,7 +3,7 @@ import "./addForm.css"
 import axios from 'axios'
 import { useUserContext } from '../../context/UserContext';
 
-const AddForm = ({ setShowForm, showForm }) => {
+const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
   const { user } = useUserContext();
 
 
@@ -51,17 +51,15 @@ const AddForm = ({ setShowForm, showForm }) => {
   };
 
   const handleClick = () => {
-    console.log("clicked");
-
-    setShowForm(false)
-
-  }
+    handleFormClose();
+  };
+  
 
 
   return (
     <div className='box'>
+        <button className='' onClick={handleClick}>X</button>
       <form onSubmit={handleSubmit} className='formContainer'>
-        <button className='closebtn' onClick={handleClick}>X</button>
         <label>
           Name:
           <input
