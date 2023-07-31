@@ -8,11 +8,11 @@ const AboutUs = () => {
     <div>
       <Navbar />
       <Header type="list" />
-      <div class="team-card">
-        <div class="team-avatar">
+      <div className="team-card">
+        <div className="team-avatar">
 
         </div>
-        <div class="team-info">
+        <div className="team-info">
           <h2>Meet Our Team</h2>
           <h3>Srajan, Varad, and Aditya</h3>
           <p>We are a group of three highly skilled developers currently pursuing our final year of BE in IET DAVV.</p>
