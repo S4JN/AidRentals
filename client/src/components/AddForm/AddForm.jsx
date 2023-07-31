@@ -58,7 +58,7 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
 
   return (
     <div className='box'>
-        <button className='' onClick={handleClick}>X</button>
+        <button className='closebtn' onClick={handleClick}>X</button>
       <form onSubmit={handleSubmit} className='formContainer'>
         <label>
           Name:

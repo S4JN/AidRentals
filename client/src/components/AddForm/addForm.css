@@ -15,14 +15,13 @@
     background-color: #f8f8f8;
 }
 .closebtn {
-  position: absolute;
+  
   background-color: #0071c2;
   color: #f8f8f8;
   border-radius: 100%;
- 
-  top: 0;
-  right: 0;
-  padding: 10px;
+  border: 0;
+  
+  opacity: 0;
   cursor: pointer;
 }
 

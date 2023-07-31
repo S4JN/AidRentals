@@ -52,7 +52,9 @@ function App() {
               <AboutUs />
             
           }>
+     
           </Route>
+          <Route path="/ViewProfile" element={<AboutUs />}></Route>
         </Routes>
 
       </div>
