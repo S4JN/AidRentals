@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import SearchItem from '../components/SearchItem/SearchItem';
@@ -10,6 +10,7 @@ import './css/list.css';
 
 const List = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   console.log(location.state?.searchItem);
 
   const [searchItem, setSearchItem] = useState(location.state?.searchItem);
@@ -85,7 +86,7 @@ const List = () => {
   
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const [itemsPerPage] = useState(5);
 
   // Calculate the index of the last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -95,7 +96,15 @@ const List = () => {
   const currentItems = searchItems.slice(indexOfFirstItem, indexOfLastItem);
 
   // Function to handle pagination page change
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    // Update the hash fragment in the URL with the current page number
+    // navigate(`${location.pathname}#${pageNumber}`);
+  };
+
+
+
+
 
   return (
     <div>
