@@ -1,5 +1,8 @@
 import React from 'react';
 import './pagination.css';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
   const pageNumbers = [];
@@ -15,6 +18,7 @@ const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
           <button className="page-link" onClick={() => paginate(currentPage - 1)}>
             {'<'}
           </button>
+        
         </li>
       )}
       {pageNumbers.map((number) => (
@@ -30,8 +34,9 @@ const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
       {currentPage < pageNumbers.length && (
         <li className="page-item">
           <button className="page-link" onClick={() => paginate(currentPage + 1)}>
-            {'>'}
+          {">"}
           </button>
+         
         </li>
       )}
     </ul>
