@@ -10,7 +10,7 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
 
   const [formData, setFormData] = useState({
     name: '',
-    
+    file: null,
     description: '',
     rentalPrice: '',
     life: '',
@@ -24,6 +24,7 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : value,
+      
     }));
   };
   
