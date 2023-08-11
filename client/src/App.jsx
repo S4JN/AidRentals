@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Home, Login, Register, List, Detail } from "./pages/index.js"
+import { Home, Login, Register, List, Detail, ViewProfile } from "./pages/index.js"
 import AboutUs from "./pages/AboutUs.jsx"
 import PublicRoute from "./components/Routes/PublicRoute"
 import ProtectedRoute from "./components/Routes/ProtectedRoute"
@@ -48,11 +48,20 @@ function App() {
           </Route>
 
           <Route path="/AboutUs" element={
-            
-              <AboutUs />
-            
+
+            <AboutUs />
+
           }>
+
           </Route>
+          <Route path="/ViewProfile" element={
+          <ProtectedRoute>
+            <ViewProfile />
+          </ProtectedRoute>
+          
+          }></Route>
+
+          
         </Routes>
 
       </div>

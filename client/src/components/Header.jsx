@@ -48,7 +48,7 @@ const Header = ({ type }) => {
           <div className={`headerListItem ${activeButton === '/AboutUs' ? 'active' : ''}`} onClick={() => handleButtonClick('/AboutUs')}>
           <div className="adjust"><InfoSharpIcon /> <span className="lmarg">About US</span></div>
           </div>
-          <div className={`headerListItem ${activeButton === 'ViewProfile' ? 'active' : ''}`} onClick={() => handleButtonClick('/ViewProfile')}>
+          <div className={`headerListItem ${activeButton === '/ViewProfile' ? 'active' : ''}`} onClick={() => handleButtonClick('/ViewProfile')}>
           <div className="adjust"><PersonSearchSharpIcon/> <span className="lmarg">View Profile</span></div>
           </div>
         </div>
@@ -60,7 +60,6 @@ const Header = ({ type }) => {
             </h1>
             <p className="headerDesc">
               Rent your medical instruments for the needy, keep prices low.
-              db ki ma ka bhosda
             </p>
 
             <div className="headerSearch">

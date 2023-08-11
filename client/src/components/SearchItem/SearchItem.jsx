@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./searchItem.css";
 
-const SearchItem = () => {
+const SearchItem = ({name}) => {
     const navigate= useNavigate();
 
     const handleItemsClick=()=>{
@@ -17,7 +17,7 @@ const SearchItem = () => {
                 className="siImg"
             />
             <div className="siDesc">
-                <h1 className="siTitle">Oxymeter</h1>
+                <h1 className="siTitle">{name}</h1>
                 <span className="siDistance">5 yrs old</span>
                 <span className="siTaxiOp">In best Condition</span>
                 <span className="siSubtitle">

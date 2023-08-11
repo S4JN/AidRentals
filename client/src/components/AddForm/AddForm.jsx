@@ -6,9 +6,11 @@ import { useUserContext } from '../../context/UserContext';
 const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
   const { user } = useUserContext();
 
+
+
   const [formData, setFormData] = useState({
     name: '',
-    file:null,
+    file: null,
     description: '',
     rentalPrice: '',
     life: '',
@@ -22,42 +24,32 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : value,
+      
     }));
   };
   
-  const handleFileChange = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      file: e.target.files[0],
-    }));
-  };
-  
-  const handleSubmit = async (event) => {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const allData = new FormData();
-    allData.append('file', formData.file); 
-    allData.append('name', formData.name);
-    allData.append('description', formData.description);
-    allData.append('rentalPrice', formData.rentalPrice);
-    allData.append('life', formData.life);
-    allData.append('isRented', formData.isRented);
-    allData.append('tags', formData.tags);
-    allData.append('rating', formData.rating);
-  
+    // Handle form submission
+    // setShowForm(false)
+    console.log(formData);
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/inventory/add', allData, {
+
+      const config = {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      console.log(response.data);
-      // Handle success, show a success message or perform any other actions
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+      
+      const { data } = axios.post("http://localhost:8000/api/v1/inventory/add", formData, config);
+      console.log(data?.success);
     } catch (error) {
-      console.error('Error submitting form:', error);
-      // Handle error, show an error message or perform any other actions
-    } 
+      console.log(error);
+    }
+
+
   };
-  
 
   const handleClick = () => {
     handleFormClose();
@@ -67,7 +59,7 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
 
   return (
     <div className='box'>
-        <button className='' onClick={handleClick}>X</button>
+        <button className='closebtn' onClick={handleClick}>X</button>
       <form onSubmit={handleSubmit} className='formContainer'>
         <label>
           Name:
@@ -76,7 +68,7 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            required
+          // required
           />
         </label>
 
@@ -86,7 +78,7 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
           <input
             type="file"
             name="file"
-            onChange={handleFileChange}
+            onChange={handleChange}
           />
         </label>
 
@@ -96,7 +88,7 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
             name="description"
             value={formData.description}
             onChange={handleChange}
-           required
+          // required
           />
         </label>
 
@@ -107,7 +99,7 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
             name="rentalPrice"
             value={formData.rentalPrice}
             onChange={handleChange}
-            required
+          // required
           />
         </label>
 
@@ -138,13 +130,13 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
             name="tags"
             value={formData.tags}
             onChange={handleChange}
-            required
+          // required
           />
         </label>
 
         <label>
           Rating:
-          <select name="rating" value={formData.rating} onChange={handleChange} >
+          <select name="rating" value={formData.rating} onChange={handleChange}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -160,4 +152,3 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
 }
 
 export default AddForm;
-
