@@ -20,50 +20,26 @@ const inventoryController = async (req, res) => {
     }
 };
 
-module.exports = { inventoryController }
-
-// const upload = require("../config/gridFsStorage");
-// const { Inventory } = require("../models/inventorySchema");
-// // const upload = require("../config/gridFsStorage.js")
 
 
-// const inventoryController = async (req, res) => {
-//   try {
-//     // Upload the images to GridFS and get their filenames
-//     await upload.array('images')(req, res, async function (err) {
-//       if (err) {
-//         console.error(err);
-//         return res.status(500).send({
-//           success: false,
-//           message: "Error uploading images",
-//         });
-//       }
+const getInventory = async (req, res) => {
+  try {
+      const inventories = await Inventory.find(); // Retrieve all inventories from the database
+      return res.status(200).send({
+          success: true,
+          message: "Inventories retrieved",
+          inventories
+      });
+  } catch (error) {
+      console.log(error);
+      res.status(500).send({
+          success: false,
+          message: "Error fetching inventories"
+      });
+  }
+};
 
-//       // Get the image filenames from the request object
-//       const imageFilenames = req.files.map(file => file.filename);
-      
-//       // Create the inventory item with the image filenames
-//       const item = new Inventory({
-//         ...req.body,
-//         images: imageFilenames,
-//       });
 
-//       // Save the inventory item to the database
-//       await item.save();
+module.exports = { inventoryController, getInventory }
 
-//       return res.status(201).send({
-//         success: true,
-//         message: "Item added",
-//         item
-//       });
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send({
-//       success: false,
-//       message: "Error saving the item",
-//     });
-//   }
-// };
 
-// module.exports = { inventoryController };
