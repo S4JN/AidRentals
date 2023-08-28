@@ -60,7 +60,7 @@ const Header = ({ type }) => {
             </h1>
             <p className="headerDesc">
               Rent your medical instruments for the needy, keep prices low.
-              db ki ma ka bhosda
+              
             </p>
 
             <div className="headerSearch">

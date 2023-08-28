@@ -154,3 +154,163 @@ const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
 export default AddForm;
 
 
+// import React, { useState } from 'react';
+// import axios from 'axios';
+
+// const InventoryForm = () => {
+//   const [formData, setFormData] = useState({
+//     name: '',
+//     owner: '',
+//     description: '',
+//     rentalPrice: '',
+//     life: '',
+//     isRented: false,
+//     tags: '',
+//     rating: '3',
+//     images: [],
+//   });
+
+//   const handleInputChange = (event) => {
+//     const { name, value } = event.target;
+//     setFormData({ ...formData, [name]: value });
+//   };
+
+//   const handleImageChange = (event) => {
+//     const imageFiles = event.target.files;
+//     setFormData({ ...formData, images: imageFiles });
+//   };
+
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
+
+//     const data = new FormData();
+//     Object.entries(formData).forEach(([key, value]) => {
+//       if (key === 'images') {
+//         for (let i = 0; i < value.length; i++) {
+//           data.append('images', value[i]);
+//         }
+//       } else {
+//         data.append(key, value);
+//       }
+//     });
+
+    
+
+//     try {
+//       const config = {
+//         headers: {
+//           Authorization: `Bearer ${localStorage.getItem("token")}`,
+//         },
+//       };
+//       await axios.post('http://localhost:8000/api/v1/inventory/add', data,config, {
+//         headers: { 'Content-Type': 'multipart/form-data' },
+        
+//       });
+//       alert('Item added successfully!');
+//       // Reset the form after successful submission
+//       setFormData({
+//         name: '',
+//         owner: '',
+//         description: '',
+//         rentalPrice: '',
+//         life: '',
+//         isRented: false,
+//         tags: '',
+//         rating: '3',
+//         images: [],
+//       });
+//     } catch (error) {
+//       console.error(error);
+//       alert('Error adding the item.');
+//     }
+//   };
+
+//   return (
+//     <div  className='srajan'>
+//       <h2>Add Inventory Item</h2>
+//       <form onSubmit={handleSubmit}>
+//         <div>
+//           <label>Name:</label>
+//           <input
+//             type="text"
+//             name="name"
+//             value={formData.name}
+//             onChange={handleInputChange}
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label>Owner:</label>
+//           <input
+//             type="text"
+//             name="owner"
+//             value={formData.owner}
+//             onChange={handleInputChange}
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label>Description:</label>
+//           <textarea
+//             name="description"
+//             value={formData.description}
+//             onChange={handleInputChange}
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label>Rental Price:</label>
+//           <input
+//             type="text"
+//             name="rentalPrice"
+//             value={formData.rentalPrice}
+//             onChange={handleInputChange}
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label>Life:</label>
+//           <input
+//             type="text"
+//             name="life"
+//             value={formData.life}
+//             onChange={handleInputChange}
+//           />
+//         </div>
+//         <div>
+//           <label>Tags (comma-separated):</label>
+//           <input
+//             type="text"
+//             name="tags"
+//             value={formData.tags}
+//             onChange={handleInputChange}
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label>Rating:</label>
+//           <select name="rating" value={formData.rating} onChange={handleInputChange}>
+//             <option value="1">1</option>
+//             <option value="2">2</option>
+//             <option value="3">3</option>
+//             <option value="4">4</option>
+//             <option value="5">5</option>
+//           </select>
+//         </div>
+//         <div>
+//           <label>Images:</label>
+//           <input
+//             type="file"
+//             name="images"
+//             multiple
+//             onChange={handleImageChange}
+//             required
+//           />
+//         </div>
+//         <button type="submit">Submit</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default InventoryForm;

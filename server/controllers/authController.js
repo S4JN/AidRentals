@@ -59,7 +59,7 @@ const login = async (req, res) => {
                 message: "Wrong Password"
             });
         }
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
         return res.status(200).send({
             success: true,
             message: "User Logged In",
