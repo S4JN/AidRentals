@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // const { Inventory } = require("../models/inventorySchema");
 
 // const inventoryController = async (req, res) => {
@@ -38,9 +39,31 @@ const inventoryController = async (req, res) => {
         return res.status(500).send({
           success: false,
           message: "Error uploading images",
-        });
-      }
+=======
+const { Inventory } = require("../models/inventorySchema");
 
+const inventoryController = async (req, res) => {
+    try {
+
+        const item = new Inventory(req.body);
+        await item.save();
+        return res.status(201).send({
+            success: true,
+            message: "Item added",
+            item
+        })
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "idhr error"
+>>>>>>> 28b7301d234403e2de9bf43dbed178032541d589
+        });
+    }
+};
+
+<<<<<<< HEAD
       // Get the image filenames from the request object
       // here change is required
 
@@ -51,24 +74,28 @@ const inventoryController = async (req, res) => {
       const item = new Inventory({
         ...req.body,
         images: imageFilenames,
-      });
+=======
 
-      // Save the inventory item to the database
-      await item.save();
 
-      return res.status(201).send({
-        success: true,
-        message: "Item added",
-        item
+const getInventory = async (req, res) => {
+  try {
+      const inventories = await Inventory.find(); // Retrieve all inventories from the database
+      return res.status(200).send({
+          success: true,
+          message: "Inventories retrieved",
+          inventories
+>>>>>>> 28b7301d234403e2de9bf43dbed178032541d589
       });
-    });
   } catch (error) {
-    console.error(error);
-    res.status(500).send({
-      success: false,
-      message: "Error saving the item",
-    });
+      console.log(error);
+      res.status(500).send({
+          success: false,
+          message: "Error fetching inventories"
+      });
   }
 };
 
-module.exports = { inventoryController };
+
+module.exports = { inventoryController, getInventory }
+
+
