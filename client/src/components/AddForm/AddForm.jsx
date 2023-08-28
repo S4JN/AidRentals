@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-=======
 import FileBase from 'react-file-base64';
 import { useUserContext } from '../../context/UserContext';
 import { useEffect } from 'react';
@@ -13,17 +11,12 @@ const AddForm = ({ setShowForm }) => {
   const _id = user._id;
 
   const [currentStep, setCurrentStep] = useState(1);
->>>>>>> 28b7301d234403e2de9bf43dbed178032541d589
 
-const AddForm = () => {
   const [formData, setFormData] = useState({
     name: '',
-<<<<<<< HEAD
-=======
     owner: _id,
->>>>>>> 28b7301d234403e2de9bf43dbed178032541d589
     description: '',
-    price: '',
+    rentalPrice: '',
     life: '',
     tags: '',
     image: '',
@@ -37,90 +30,6 @@ const AddForm = () => {
     }));
   };
 
-<<<<<<< HEAD
-  const handleImageChange = (e) => {
-    const imageFile = e.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      image: URL.createObjectURL(imageFile),
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form Data:', formData);
-
-    // Here you can implement the logic to send the form data to the server or perform any other actions.
-  };
-
-  return (
-    <div style={{backgroundColor: "white", padding: "30px"}}>
-      <h2>Add Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Description:</label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Price:</label>
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Life:</label>
-          <input
-            type="text"
-            name="life"
-            value={formData.life}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Tags:</label>
-          <input
-            type="text"
-            name="tags"
-            value={formData.tags}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Image:</label>
-          <input
-            type="file"
-            name='files'
-            accept="image/*"
-            onChange={handleImageChange}
-            required
-            multiple
-          />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-=======
   const handleImageChange = (base64) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -148,11 +57,11 @@ const AddForm = () => {
   };
 
   const nextStep = () => {
-    if (currentStep === 1 && !isStep1Valid()) {
-      alert("fill all the fields first")
-      console.log("fill fields");
-      return;
-    }
+    // if (currentStep === 1 && !isStep1Valid()) {
+    //   alert("fill all the fields first")
+    //   console.log("fill fields");
+    //   return;
+    // }
     setCurrentStep(currentStep + 1);
   };
 
@@ -174,7 +83,7 @@ const AddForm = () => {
 
   return (
     <div style={{ backgroundColor: "white", padding: "30px" }} className='mainBox'>
-      <h2>Add Form - Step {currentStep}</h2>
+      <h2>Step {currentStep}</h2>
       <form onSubmit={currentStep === 2 ? handleSubmit : (e) => e.preventDefault()}>
         {currentStep === 1 && (
           <>
@@ -254,7 +163,6 @@ const AddForm = () => {
             </div>
           </>
         )}
->>>>>>> 28b7301d234403e2de9bf43dbed178032541d589
       </form>
       <div>
         <button onClick={() => setShowForm(false)}>Close</button>
@@ -263,8 +171,4 @@ const AddForm = () => {
   );
 };
 
-<<<<<<< HEAD
 export default AddForm;
-=======
-export default AddForm;
->>>>>>> 28b7301d234403e2de9bf43dbed178032541d589
