@@ -22,23 +22,17 @@
 
 // module.exports = { inventoryController }
 
-const upload = require("../config/gridFsStorage");
+const upload = require("../middlewares/gridfs");
 const { Inventory } = require("../models/inventorySchema");
-<<<<<<< HEAD
-const upload = require("../config/gridFsStorage");
-=======
-// const upload = require("../config/gridFsStorage.js")
 
->>>>>>> ad79c41ef07377f383954f774b5bd615409ca00f
+
+
 
 const inventoryController = async (req, res) => {
   try {
     // Upload the images to GridFS and get their filenames
-    await upload.array('images')(req, res, async function (err) {
-<<<<<<< HEAD
+    await upload.array('files')(req, res, async function (err) {
         console.log(req)
-=======
->>>>>>> ad79c41ef07377f383954f774b5bd615409ca00f
       if (err) {
         console.error(err);
         return res.status(500).send({
@@ -48,12 +42,10 @@ const inventoryController = async (req, res) => {
       }
 
       // Get the image filenames from the request object
-<<<<<<< HEAD
       // here change is required
-      const imageFilenames = req.file;
-=======
+
       const imageFilenames = req.files.map(file => file.filename);
->>>>>>> ad79c41ef07377f383954f774b5bd615409ca00f
+
       
       // Create the inventory item with the image filenames
       const item = new Inventory({
