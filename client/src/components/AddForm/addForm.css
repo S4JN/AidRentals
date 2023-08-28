@@ -1,4 +1,22 @@
-.mainBox{
-  height: 30rem;
+/* .mainBox{
+  height: 90vh;
   width: 90%;
+} */
+
+
+ .PriceandLife {
+  display: flex;
+  justify-content: space-between; /* Adjust this property to control spacing */
+  align-items: center; /* Align items vertically */
+}
+
+.PriceandLife > div {
+  flex: 1; 
+  margin: 0 10px;
+  
+}
+
+form > div {
+  align-items: center;
+  margin: 10px 0;
 }
