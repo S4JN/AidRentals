@@ -34,11 +34,22 @@ export default function AddForm({ setShowForm }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  
+    // If the field name is "tags", split the comma-separated value into an array
+    if (name === "tags") {
+      const tagsArray = value.split(",").map(tag => tag.trim());
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: tagsArray,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
+  
 
   const handleImageChange = (base64) => {
     setFormData((prevData) => ({

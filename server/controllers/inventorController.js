@@ -38,6 +38,33 @@ const getInventory = async (req, res) => {
       });
   }
 };
+// const getInventory = async (req, res) => {
+//     try {
+//       const page = parseInt(req.query.page) || 1; // Get the requested page from query parameters
+//       const itemsPerPage = 3;
+      
+//       const totalItems = await Inventory.countDocuments();
+//       const totalPages = Math.ceil(totalItems / itemsPerPage);
+  
+//       const inventories = await Inventory.find()
+//         .skip((page - 1) * itemsPerPage)
+//         .limit(itemsPerPage);
+  
+//       return res.status(200).send({
+//         success: true,
+//         message: "Inventories retrieved",
+//         inventories,
+//         currentPage: page,
+//         totalPages
+//       });
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).send({
+//         success: false,
+//         message: "Error fetching inventories"
+//       });
+//     }
+//   };
 
 
 module.exports = { inventoryController, getInventory }
