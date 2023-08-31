@@ -2,39 +2,40 @@ const { Inventory } = require("../models/inventorySchema");
 const cloudinary = require("../config/cloudinary");
 
 const inventoryController = async (req, res) => {
-
-
-
-
-    const { image } = req.body;
-
+    const { image } = req.body; // Assuming images is an array of image data
 
     try {
+        const uploadedImages = [];
 
-        // this below line of code is giving me the link
-        //run a loop
-        const result = await cloudinary.uploader.upload(image,{
-            folder: "photos"
-        })
+        for (const i of image) {
+            const result = await cloudinary.uploader.upload(i, {
+                folder: "photos"
+            });
+            uploadedImages.push(result.secure_url);
+        }
 
-        req.body.image= result.secure_url;
+        const itemData = {
+            ...req.body,
+            image: uploadedImages
+        };
 
-        const item = new Inventory(req.body);
+        const item = new Inventory(itemData);
         await item.save();
+
         return res.status(201).send({
             success: true,
             message: "Item added",
             item
-        })
-    }
-    catch (error) {
+        });
+    } catch (error) {
         console.log(error);
         res.status(500).send({
             success: false,
-            message: "idhr error"
+            message: "An error occurred"
         });
     }
 };
+
 
 
 

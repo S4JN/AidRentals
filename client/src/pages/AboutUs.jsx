@@ -40,7 +40,9 @@ const AboutUs = () => {
               {/* For example: */}
               <p>{inventory.name}</p>
               <p>{inventory.description}</p>
-              <img src={inventory.image} />
+              {inventory.image.map((im, index) => (
+                <img key={index} src={im} alt={`Inventory ${index}`} />
+              ))}
             </li>
           ))}
         </ul>

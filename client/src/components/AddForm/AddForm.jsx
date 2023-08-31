@@ -13,6 +13,7 @@ import { useUserContext } from '../../context/UserContext';
 import axios from 'axios';
 import "./addForm.css"
 import { FallingLines, RotatingLines } from 'react-loader-spinner'
+import ImageResizer from 'react-image-file-resizer';
 
 
 
@@ -27,7 +28,7 @@ export default function AddForm({ setShowForm }) {
 
   const [activeStep, setActiveStep] = useState(0);
   const [loading, setLoading] = useState(false);
-  
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -36,7 +37,7 @@ export default function AddForm({ setShowForm }) {
     rentalPrice: '',
     life: '',
     tags: '',
-    image: "",
+    image: [],
   });
 
   const handleInputChange = (e) => {
@@ -58,13 +59,35 @@ export default function AddForm({ setShowForm }) {
   };
 
 
-  const handleImageChange = (base64) => {
+
+  const handleImageChange = async (files) => {
+    const resizedImages = [];
+
+    for (const file of files) {
+      try {
+        await ImageResizer.imageFileResizer(
+          file,
+          300, // maxWidth
+          300, // maxHeight
+          'JPEG', // compressFormat
+          70, // quality
+          0, // rotation
+          (uri) => {
+            resizedImages.push(uri);
+          },
+          'base64' // outputType
+        );
+      } catch (error) {
+        console.error('Error resizing image:', error);
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
-      image: base64,
+      image: resizedImages, // Set the resized base64 images
     }));
-   
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -280,11 +303,20 @@ export default function AddForm({ setShowForm }) {
                     <div>
                       <label>Image:</label>
                       <div>
-                        <FileBase
+                        {/* <input type="file" multiple onChange={(e) => handleImageChange(e.target.files)} /> */}
+                        <input
                           type="file"
-                          multiple={false}
-                          onDone={({ base64 }) => handleImageChange(base64)}
+                          multiple
+                          accept="image/*"
+                          onChange={(e) => handleImageChange(e.target.files)}
                         />
+
+                        {/* <FileBase
+                          type="file"
+                          multiple={true}
+                          onDone={({ base64 }) => handleImageChange(base64)} // Pass an array of base64 strings
+                        /> */}
+
                       </div>
                     </div>
                     <div>
