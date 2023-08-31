@@ -27,6 +27,7 @@ export default function AddForm({ setShowForm }) {
 
   const [activeStep, setActiveStep] = useState(0);
   const [loading, setLoading] = useState(false);
+  
 
   const [formData, setFormData] = useState({
     name: '',
@@ -62,6 +63,7 @@ export default function AddForm({ setShowForm }) {
       ...prevData,
       image: base64,
     }));
+   
   };
 
   const handleSubmit = async (e) => {
@@ -85,6 +87,7 @@ export default function AddForm({ setShowForm }) {
       setShowForm(false)
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -119,15 +122,15 @@ export default function AddForm({ setShowForm }) {
 
       {loading ? (
         <>
-        <RotatingLines
+          <RotatingLines
             strokeColor="white"
             strokeWidth="5"
             animationDuration="1"
             width="104"
             visible={true}
-/>
-        <br />
-        
+          />
+          <br />
+
         </>
       ) : (
 
@@ -207,7 +210,6 @@ export default function AddForm({ setShowForm }) {
                           onChange={handleInputChange}
                           required
                           style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-
                         />
                       </div>
                     </div>
