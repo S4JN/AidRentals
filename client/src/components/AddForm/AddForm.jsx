@@ -1,316 +1,344 @@
-import { useState } from 'react';
-import "./addForm.css"
-import axios from 'axios'
+import React, { useState } from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import FileBase from 'react-file-base64';
 import { useUserContext } from '../../context/UserContext';
+import axios from 'axios';
+import "./addForm.css"
+import { FallingLines, RotatingLines } from 'react-loader-spinner'
+import ImageResizer from 'react-image-file-resizer';
 
-const AddForm = ({ setShowForm, showForm,handleFormClose }) => {
+
+
+
+const steps = ['Item details', "Upload Address", 'Upload Image'];
+
+
+
+export default function AddForm({ setShowForm }) {
   const { user } = useUserContext();
+  const _id = user._id;
 
+  const [activeStep, setActiveStep] = useState(0);
+  const [loading, setLoading] = useState(false);
 
 
   const [formData, setFormData] = useState({
     name: '',
-    file: null,
+    owner: _id,
     description: '',
     rentalPrice: '',
     life: '',
-    isRented: false,
     tags: '',
-    rating: '3',
+    image: [],
   });
 
-  const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: type === 'checkbox' ? checked : value,
-      
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    // If the field name is "tags", split the comma-separated value into an array
+    if (name === "tags") {
+      const tagsArray = value.split(",").map(tag => tag.trim());
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: tagsArray,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };
+
+
+
+  const handleImageChange = async (files) => {
+    const resizedImages = [];
+
+    for (const file of files) {
+      try {
+        await ImageResizer.imageFileResizer(
+          file,
+          300, // maxWidth
+          300, // maxHeight
+          'JPEG', // compressFormat
+          70, // quality
+          0, // rotation
+          (uri) => {
+            resizedImages.push(uri);
+          },
+          'base64' // outputType
+        );
+      } catch (error) {
+        console.error('Error resizing image:', error);
+      }
+    }
+
+    setFormData((prevData) => ({
+      ...prevData,
+      image: resizedImages, // Set the resized base64 images
     }));
   };
-  
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission
-    // setShowForm(false)
-    console.log(formData);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Form Data:', formData);
+
     try {
-
       const config = {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       };
-      
-      const { data } = axios.post("http://localhost:8000/api/v1/inventory/add", formData, config);
-      console.log(data?.success);
+      setLoading(true);
+      const { data } = await axios.post(
+        'http://localhost:8000/api/v1/inventory/add',
+        formData,
+        config
+      );
+      console.log(data);
+      setLoading(false);
+      setShowForm(false)
     } catch (error) {
       console.log(error);
+      setLoading(false);
+    }
+  };
+
+  const nextStep = () => {
+    if (!isStep1Valid()) {
+      alert("fill all the fields first")
+      console.log("fill fields");
+      return;
     }
 
 
+    setActiveStep(activeStep + 1);
   };
 
-  const handleClick = () => {
-    handleFormClose();
+  const backStep = () => {
+    setActiveStep(activeStep - 1);
   };
-  
 
+  const isStep1Valid = () => {
+    return (
+      formData.name !== '' &&
+      formData.description !== '' &&
+      formData.rentalPrice !== '' &&
+      formData.life !== '' &&
+      formData.tags !== ''
+    );
+  };
 
   return (
-    <div className='box'>
-        <button className='closebtn' onClick={handleClick}>X</button>
-      <form onSubmit={handleSubmit} className='formContainer'>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          // required
+    <>
+
+
+      {loading ? (
+        <>
+          <RotatingLines
+            strokeColor="white"
+            strokeWidth="5"
+            animationDuration="1"
+            width="104"
+            visible={true}
           />
-        </label>
+          <br />
 
-       
-        <label>
-          Images
-          <input
-            type="file"
-            name="file"
-            onChange={handleChange}
-          />
-        </label>
+        </>
+      ) : (
 
-        <label>
-          Description:
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          // required
-          />
-        </label>
 
-        <label>
-          Rental Price:
-          <input
-            type="text"
-            name="rentalPrice"
-            value={formData.rentalPrice}
-            onChange={handleChange}
-          // required
-          />
-        </label>
 
-        <label>
-          Life:
-          <input
-            type="text"
-            name="life"
-            value={formData.life}
-            onChange={handleChange}
-          />
-        </label>
+        <>
+          <CssBaseline />
 
-        <label>
-          Is Rented:
-          <input
-            type="checkbox"
-            name="isRented"
-            checked={formData.isRented}
-            onChange={handleChange}
-          />
-        </label>
+          <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+            <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+              <Typography component="h1" variant="h4" align="center">
+                Add an Item
+              </Typography>
+              <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
 
-        <label>
-          Tags (comma-separated):
-          <input
-            type="text"
-            name="tags"
-            value={formData.tags}
-            onChange={handleChange}
-          // required
-          />
-        </label>
+              <form onSubmit={handleSubmit}>
+                {activeStep === 0 && (
+                  <>
+                    {/* Step 1 */}
+                    <div>
+                      <label>Item Name:</label>
+                      <br />
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
 
-        <label>
-          Rating:
-          <select name="rating" value={formData.rating} onChange={handleChange}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </label>
+                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+                      />
+                    </div>
+                    <div>
+                      <label>Description:</label>
+                      <br />
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  )
+                      <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleInputChange}
+                        required
+                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+
+                      />
+                    </div>
+
+
+                    <div className='PriceandLife'>
+                      <div>
+                        <label>Price:</label>
+                        <br />
+
+                        <input
+                          type="number"
+                          name="rentalPrice"
+                          value={formData.rentalPrice}
+                          onChange={handleInputChange}
+                          required
+                          style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+
+                        />
+                      </div>
+                      <div>
+                        <label>Life:</label>
+                        <br />
+
+                        <input
+                          type="text"
+                          name="life"
+                          value={formData.life}
+                          onChange={handleInputChange}
+                          required
+                          style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label>Tags:</label>
+                      <br />
+
+                      <input
+                        type="text"
+                        name="tags"
+                        value={formData.tags}
+                        onChange={handleInputChange}
+                        required
+                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+
+                      />
+                    </div>
+                    <div>
+
+                      <Button onClick={() => setShowForm(false)} sx={{ mt: 3, ml: 1 }}>
+                        Close
+                      </Button>
+
+                      <Button
+                        variant="contained"
+                        onClick={nextStep}
+                        sx={{ mt: 3, ml: 1 }}
+                      >
+                        Next
+                      </Button>
+                    </div>
+                  </>
+                )}
+                {activeStep === 1 && (
+                  <>
+                    {/* Step 2 */}
+                    <div>
+                      <label>Address:</label>
+                      <input type='text' />
+                      <label>country:</label>
+                      <input type='text' />
+                      <label>city:</label>
+                      <input type='text' />
+                      <label>zip:</label>
+                      <input type='number' />
+                    </div>
+                    <div>
+                      <Button onClick={backStep} sx={{ mt: 3, ml: 1 }}>
+                        Previous
+                      </Button>
+                      <Button onClick={() => setShowForm(false)} sx={{ mt: 3, ml: 1 }}>
+                        Close
+                      </Button>
+                      <Button
+                        variant="contained"
+                        onClick={nextStep}
+                        sx={{ mt: 3, ml: 1 }}
+                      >
+                        Next
+                      </Button>
+                    </div>
+
+                  </>
+                )}
+                {activeStep === 2 && (
+                  <>
+                    {/* Step 3 */}
+                    <div>
+                      <label>Image:</label>
+                      <div>
+                        {/* <input type="file" multiple onChange={(e) => handleImageChange(e.target.files)} /> */}
+                        <input
+                          type="file"
+                          multiple
+                          accept="image/*"
+                          onChange={(e) => handleImageChange(e.target.files)}
+                        />
+
+                        {/* <FileBase
+                          type="file"
+                          multiple={true}
+                          onDone={({ base64 }) => handleImageChange(base64)} // Pass an array of base64 strings
+                        /> */}
+
+                      </div>
+                    </div>
+                    <div>
+                      <Button onClick={backStep} sx={{ mt: 3, ml: 1 }}>
+                        Previous
+                      </Button>
+                      <Button onClick={() => setShowForm(false)} sx={{ mt: 3, ml: 1 }}>
+                        Close
+                      </Button>
+                      <Button type="submit" variant="contained" sx={{ mt: 3, ml: 1 }} >
+                        Submit
+                      </Button>
+                    </div>
+
+                  </>
+                )}
+              </form>
+            </Paper>
+          </Container>
+        </>
+
+      )}
+    </>
+  );
 }
-
-export default AddForm;
-
-
-// import React, { useState } from 'react';
-// import axios from 'axios';
-
-// const InventoryForm = () => {
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     owner: '',
-//     description: '',
-//     rentalPrice: '',
-//     life: '',
-//     isRented: false,
-//     tags: '',
-//     rating: '3',
-//     images: [],
-//   });
-
-//   const handleInputChange = (event) => {
-//     const { name, value } = event.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
-
-//   const handleImageChange = (event) => {
-//     const imageFiles = event.target.files;
-//     setFormData({ ...formData, images: imageFiles });
-//   };
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-
-//     const data = new FormData();
-//     Object.entries(formData).forEach(([key, value]) => {
-//       if (key === 'images') {
-//         for (let i = 0; i < value.length; i++) {
-//           data.append('images', value[i]);
-//         }
-//       } else {
-//         data.append(key, value);
-//       }
-//     });
-
-    
-
-//     try {
-//       const config = {
-//         headers: {
-//           Authorization: `Bearer ${localStorage.getItem("token")}`,
-//         },
-//       };
-//       await axios.post('http://localhost:8000/api/v1/inventory/add', data,config, {
-//         headers: { 'Content-Type': 'multipart/form-data' },
-        
-//       });
-//       alert('Item added successfully!');
-//       // Reset the form after successful submission
-//       setFormData({
-//         name: '',
-//         owner: '',
-//         description: '',
-//         rentalPrice: '',
-//         life: '',
-//         isRented: false,
-//         tags: '',
-//         rating: '3',
-//         images: [],
-//       });
-//     } catch (error) {
-//       console.error(error);
-//       alert('Error adding the item.');
-//     }
-//   };
-
-//   return (
-//     <div  className='srajan'>
-//       <h2>Add Inventory Item</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label>Name:</label>
-//           <input
-//             type="text"
-//             name="name"
-//             value={formData.name}
-//             onChange={handleInputChange}
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label>Owner:</label>
-//           <input
-//             type="text"
-//             name="owner"
-//             value={formData.owner}
-//             onChange={handleInputChange}
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label>Description:</label>
-//           <textarea
-//             name="description"
-//             value={formData.description}
-//             onChange={handleInputChange}
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label>Rental Price:</label>
-//           <input
-//             type="text"
-//             name="rentalPrice"
-//             value={formData.rentalPrice}
-//             onChange={handleInputChange}
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label>Life:</label>
-//           <input
-//             type="text"
-//             name="life"
-//             value={formData.life}
-//             onChange={handleInputChange}
-//           />
-//         </div>
-//         <div>
-//           <label>Tags (comma-separated):</label>
-//           <input
-//             type="text"
-//             name="tags"
-//             value={formData.tags}
-//             onChange={handleInputChange}
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label>Rating:</label>
-//           <select name="rating" value={formData.rating} onChange={handleInputChange}>
-//             <option value="1">1</option>
-//             <option value="2">2</option>
-//             <option value="3">3</option>
-//             <option value="4">4</option>
-//             <option value="5">5</option>
-//           </select>
-//         </div>
-//         <div>
-//           <label>Images:</label>
-//           <input
-//             type="file"
-//             name="images"
-//             multiple
-//             onChange={handleImageChange}
-//             required
-//           />
-//         </div>
-//         <button type="submit">Submit</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default InventoryForm;

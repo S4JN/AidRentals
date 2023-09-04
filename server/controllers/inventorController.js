@@ -1,69 +1,89 @@
-// const { Inventory } = require("../models/inventorySchema");
-
-// const inventoryController = async (req, res) => {
-//     try {
-
-//         const item = new Inventory(req.body);
-//         await item.save();
-//         return res.status(201).send({
-//             success: true,
-//             message: "Item added",
-//             item
-//         })
-//     }
-//     catch (error) {
-//         console.log(error);
-//         res.status(500).send({
-//             success: false,
-//             message: "idhr error"
-//         });
-//     }
-// };
-
-// module.exports = { inventoryController }
-
-const upload = require("../config/gridFsStorage");
 const { Inventory } = require("../models/inventorySchema");
-// const upload = require("../config/gridFsStorage.js")
-
+const cloudinary = require("../config/cloudinary");
 
 const inventoryController = async (req, res) => {
-  try {
-    // Upload the images to GridFS and get their filenames
-    await upload.array('images')(req, res, async function (err) {
-      if (err) {
-        console.error(err);
-        return res.status(500).send({
-          success: false,
-          message: "Error uploading images",
+    const { image } = req.body; // Assuming images is an array of image data
+
+    try {
+        const uploadedImages = [];
+
+        for (const i of image) {
+            const result = await cloudinary.uploader.upload(i, {
+                folder: "photos"
+            });
+            uploadedImages.push(result.secure_url);
+        }
+
+        const itemData = {
+            ...req.body,
+            image: uploadedImages
+        };
+
+        const item = new Inventory(itemData);
+        await item.save();
+
+        return res.status(201).send({
+            success: true,
+            message: "Item added",
+            item
         });
-      }
-
-      // Get the image filenames from the request object
-      const imageFilenames = req.files.map(file => file.filename);
-      
-      // Create the inventory item with the image filenames
-      const item = new Inventory({
-        ...req.body,
-        images: imageFilenames,
-      });
-
-      // Save the inventory item to the database
-      await item.save();
-
-      return res.status(201).send({
-        success: true,
-        message: "Item added",
-        item
-      });
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({
-      success: false,
-      message: "Error saving the item",
-    });
-  }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "An error occurred"
+        });
+    }
 };
 
-module.exports = { inventoryController };
+
+
+
+const getInventory = async (req, res) => {
+    try {
+        const inventories = await Inventory.find(); // Retrieve all inventories from the database
+        return res.status(200).send({
+            success: true,
+            message: "Inventories retrieved",
+            inventories
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error fetching inventories"
+        });
+    }
+};
+// const getInventory = async (req, res) => {
+//     try {
+//       const page = parseInt(req.query.page) || 1; // Get the requested page from query parameters
+//       const itemsPerPage = 3;
+
+//       const totalItems = await Inventory.countDocuments();
+//       const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+//       const inventories = await Inventory.find()
+//         .skip((page - 1) * itemsPerPage)
+//         .limit(itemsPerPage);
+
+//       return res.status(200).send({
+//         success: true,
+//         message: "Inventories retrieved",
+//         inventories,
+//         currentPage: page,
+//         totalPages
+//       });
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).send({
+//         success: false,
+//         message: "Error fetching inventories"
+//       });
+//     }
+//   };
+
+
+module.exports = { inventoryController, getInventory }
+
+
