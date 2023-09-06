@@ -9,8 +9,8 @@ const Map = ({address, city, zip}) => {
     const country= "India";
   return (
     <MapContainer
-    center={[22.7196, 75.8577]}
-    zoom={50}
+    center={[47.2654296, 11.3927685]}
+    zoom={80}
     scrollWheelZoom={true}
     style={{
         height: "40vh",
