@@ -3,9 +3,9 @@
 ## Tags                      done
 ## loader                    done  
 ## map
-## multiple files now ye      
+## multiple files now ye      done
 
-# decrease size of image
+# decrease size of image      Tend to do
 
 
 
