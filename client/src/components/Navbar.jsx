@@ -4,11 +4,9 @@ import AddSharpIcon from '@mui/icons-material/AddSharp';
 import AddForm from "./AddForm/AddForm";
 import { useState } from "react";
 import { useUserContext } from "../context/UserContext";
-
+import AddLocation from "./AddForm/AddLocation";
 
 const Navbar = () => {
-
-  
 
   const [showForm, setShowForm] = useState(false);
   const { user } = useUserContext();
@@ -29,7 +27,7 @@ const Navbar = () => {
       <div>
       {showForm && (
         <div className="overlay" >
-          <AddForm setShowForm={setShowForm} showForm={showForm} handleFormClose={handleFormClose} />
+          <AddLocation  handleFormClose={handleFormClose} />
         </div>
       )}
       </div>

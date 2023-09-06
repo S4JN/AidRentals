@@ -73,11 +73,7 @@ const inventorySchema = new mongoose.Schema({
     required: true,
   }],
   rating: { type: String, enum: ["1", "2", "3", "4", "5"], default: '3' },
-<<<<<<< HEAD
-  images: [{ type: String }], 
-=======
   image: { type: String }, 
->>>>>>> 28b7301d234403e2de9bf43dbed178032541d589
 });
 
 const Inventory = mongoose.model('Inventory', inventorySchema);

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import FileBase from 'react-file-base64';
 import { useUserContext } from '../../context/UserContext';
-import { useEffect } from 'react';
 import "./addForm.css"
 
 import axios from "axios";
