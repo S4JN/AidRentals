@@ -7,9 +7,9 @@ import "./css/detail.css"
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useUserContext } from '../context/UserContext';
 
 const Detail = () => {
-
     const [slideNumber, setSlideNumber] = useState(0);
     const [open, setOpen] = useState(false);
 

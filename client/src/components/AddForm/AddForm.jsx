@@ -38,9 +38,9 @@ export default function AddForm({ setShowForm }) {
     rentalPrice: '',
     life: '',
     tags: '',
-    address: '',
-    city: '',
-    zip: '',
+    address: `${user?.address}`,
+    city: `${user?.city}`,
+    zip: `${user?.zip}`,
     image: [],
   });
 

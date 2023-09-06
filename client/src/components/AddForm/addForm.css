@@ -3,8 +3,7 @@
   width: 90%;
 } */
 
-
- .PriceandLife {
+.PriceandLife {
   display: flex;
   justify-content: space-between; /* Adjust this property to control spacing */
   align-items: center; /* Align items vertically */
