@@ -72,6 +72,10 @@ const inventorySchema = new mongoose.Schema({
     type: String,
     required: true,
   }],
+  address: { type: String, required: true },
+  city: { type: String, required: true },
+  zip: { type: String, required: true },
+
   rating: { type: String, enum: ["1", "2", "3", "4", "5"], default: '3' },
   image: [{ type: String }], 
 

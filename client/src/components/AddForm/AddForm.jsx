@@ -8,12 +8,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import FileBase from 'react-file-base64';
+
 import { useUserContext } from '../../context/UserContext';
 import axios from 'axios';
 import "./addForm.css"
 import { FallingLines, RotatingLines } from 'react-loader-spinner'
 import ImageResizer from 'react-image-file-resizer';
+import Map from '../Map/Map';
 
 
 
@@ -37,6 +38,9 @@ export default function AddForm({ setShowForm }) {
     rentalPrice: '',
     life: '',
     tags: '',
+    address: '',
+    city: '',
+    zip: '',
     image: [],
   });
 
@@ -271,14 +275,28 @@ export default function AddForm({ setShowForm }) {
                     {/* Step 2 */}
                     <div>
                       <label>Address:</label>
-                      <input type='text' />
-                      <label>country:</label>
-                      <input type='text' />
+                      <input
+                        type='text'
+                        name='address'
+                        value={formData.address}
+                        onChange={handleInputChange}
+                      />
                       <label>city:</label>
-                      <input type='text' />
+                      <input
+                        type='text'
+                        name='city'
+                        value={formData.city}
+                        onChange={handleInputChange}
+                      />
                       <label>zip:</label>
-                      <input type='number' />
+                      <input
+                        type='text'
+                        name='zip'
+                        value={formData.zip}
+                        onChange={handleInputChange}
+                      />
                     </div>
+                    <Map city={formData.city} address={formData.address} zip={formData.zip}  />
                     <div>
                       <Button onClick={backStep} sx={{ mt: 3, ml: 1 }}>
                         Previous

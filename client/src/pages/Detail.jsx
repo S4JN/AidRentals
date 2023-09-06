@@ -143,6 +143,10 @@ const Detail = () => {
                         </div>
                     </div>
                 </div>
+
+                <div style={{height: "300px", width: "80%" , padding: "20px" ,backgroundColor: "brown"}}>
+                    Map
+                </div>
                 <Mail />
                 <Footer />
             </div>
