@@ -44,3 +44,9 @@ connectDB()
     });
   })
   .catch((error) => console.error("Error connecting to the database:", error));
+
+
+  // cloudinary api_key :992642159884851
+  // cloud_name: dresaxcif
+  // secret: 1V1_d_9Ta9fnmv2WuJdzcW4ONLM
+  // API_env_variable: CLOUDINARY_URL=cloudinary://992642159884851:1V1_d_9Ta9fnmv2WuJdzcW4ONLM@dresaxcif

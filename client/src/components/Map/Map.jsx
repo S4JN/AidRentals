@@ -1,12 +1,16 @@
-import React,{useState} from 'react'
+import React from 'react'
 import {MapContainer, TileLayer} from 'react-leaflet'
-import GeoCoderMarker from '../GeoCoderMarker/GeoCoderMarker'
-const Map = ({address, city, country}) => {
-    
+import GeoCoderMarker from '../GeoCoderMarker/GeoCoderMarker';
+
+
+
+
+const Map = ({address, city, zip}) => {
+    const country= "India";
   return (
     <MapContainer
-    center={[53.35, 18.8]}
-    zoom={1}
+    center={[47.2654296, 11.3927685]}
+    zoom={80}
     scrollWheelZoom={true}
     style={{
         height: "40vh",
@@ -17,7 +21,7 @@ const Map = ({address, city, country}) => {
     }}
     >
         <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'/>
-        <GeoCoderMarker address={`${address}, ${city}, ${country}`} />
+        <GeoCoderMarker address={address} city={city} country={country} />
     </MapContainer>
   )
 }
