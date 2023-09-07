@@ -10,7 +10,7 @@ const Map = ({address, city, zip}) => {
   return (
     <MapContainer
     center={[47.2654296, 11.3927685]}
-    zoom={80}
+    zoom={10}
     scrollWheelZoom={true}
     style={{
         height: "40vh",
