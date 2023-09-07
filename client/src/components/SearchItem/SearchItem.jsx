@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./searchItem.css";
 import { Typography } from "@mui/material";
 
-const SearchItem = ({ name, life, tags, description, image, price,rating }) => {
+const SearchItem = ({ name,_id, life, tags, description, image, price,rating }) => {
     const navigate = useNavigate();
 
-    const handleItemsClick = () => {
+    
+
+    const handleItemsClick = (id) => {
+        //idhr change krna h ab
+        console.log(id);
         console.log("clicked");
-        navigate("/detail")
+        navigate(`/item-detail/${id}`)
     }
 
     const truncateDescription = (description, maxLength) => {
@@ -62,7 +66,7 @@ const SearchItem = ({ name, life, tags, description, image, price,rating }) => {
                 <div className="siDetailTexts">
                     <span className="siPrice">₹{price} </span>
                     <span className="siTaxOp">Includes taxes and fees</span>
-                    <button className="siCheckButton" onClick={handleItemsClick}>See availability</button>
+                    <button className="siCheckButton" onClick={()=>handleItemsClick(_id)}>See availability</button>
                 </div>
             </div>
         </div>
