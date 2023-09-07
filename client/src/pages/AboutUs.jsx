@@ -118,6 +118,11 @@ const AboutUs = () => {
         ))}
       </ul>
       <Pagination
+        color="primary"
+        size="large"
+        showFirstButton 
+        showLastButton
+        boundaryCount={1}
         count={totalPages}
         page={currentPage}
         onChange={handlePageChange}
