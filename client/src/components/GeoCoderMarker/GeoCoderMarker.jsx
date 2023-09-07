@@ -30,7 +30,11 @@ const GeoCoderMarker = ({ address, city, country }) => {
               const lon = weatherData[0].lon;
               console.log({ lat, lon });
               setPosition([lat, lon]);
+<<<<<<< HEAD
               map.flyTo([lat, lon], 10)
+=======
+              map.flyTo([lat, lon], 11)
+>>>>>>> 57f051741bb7fdfe7d5eb2e845b8f1b2f8c41957
             }
           })
           .catch(error => {
