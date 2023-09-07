@@ -48,20 +48,23 @@ function App() {
           </Route>
 
           <Route path="/AboutUs" element={
-
             <AboutUs />
-
           }>
-
           </Route>
-          <Route path="/ViewProfile" element={
-          <ProtectedRoute>
-            <ViewProfile />
-          </ProtectedRoute>
+
           
+
+
+
+
+          <Route path="/ViewProfile" element={
+            <ProtectedRoute>
+              <ViewProfile />
+            </ProtectedRoute>
+
           }></Route>
 
-          
+
         </Routes>
 
       </div>

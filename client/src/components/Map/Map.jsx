@@ -2,15 +2,12 @@ import React from 'react'
 import {MapContainer, TileLayer} from 'react-leaflet'
 import GeoCoderMarker from '../GeoCoderMarker/GeoCoderMarker';
 
-
-
-
 const Map = ({address, city, zip}) => {
     const country= "India";
   return (
     <MapContainer
     center={[47.2654296, 11.3927685]}
-    zoom={1}
+    zoom={10}
     scrollWheelZoom={true}
     style={{
         height: "40vh",
