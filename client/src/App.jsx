@@ -40,7 +40,7 @@ function App() {
           }>
           </Route>
 
-          <Route path="/detail" element={
+          <Route path="/item-detail/:id" element={
             <ProtectedRoute>
               <Detail />
             </ProtectedRoute>
@@ -51,11 +51,6 @@ function App() {
             <AboutUs />
           }>
           </Route>
-
-          
-
-
-
 
           <Route path="/ViewProfile" element={
             <ProtectedRoute>
