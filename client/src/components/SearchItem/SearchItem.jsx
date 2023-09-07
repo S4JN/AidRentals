@@ -3,19 +3,19 @@ import { useNavigate } from "react-router-dom";
 import "./searchItem.css";
 import { Typography } from "@mui/material";
 
-const SearchItem = ({ name,_id, life, tags, description, image, price,rating }) => {
+const SearchItem = ({ item }) => {
     const navigate = useNavigate();
 
     
 
-    const handleItemsClick = (id) => {
+    const handleItemsClick = (item) => {
         //idhr change krna h ab
-        console.log(id);
+        // console.log(item);
         console.log("clicked");
-        navigate(`/item-detail/${id}`)
+        navigate(`/item-detail/${item._id}`, {state: item})
     }
 
-    const truncateDescription = (description, maxLength) => {
+    const truncateDescription = ( description, maxLength) => {
         if (description.length > maxLength) {
             return description.slice(0, maxLength) + '...';
         }
@@ -28,21 +28,21 @@ const SearchItem = ({ name,_id, life, tags, description, image, price,rating }) 
     return (
         <div className="searchItem">
             <img
-                src={image[0]}
+                src={item.image[0]}
                 alt=""
                 className="siImg"
             />
             <div className="siDesc">
-                <h1 className="siTitle">{name}</h1>
-                <span className="siDistance">{life} yrs old</span>
+                <h1 className="siTitle">{item.name}</h1>
+                <span className="siDistance">{item.life} yrs old</span>
                 <span className="siTaxiOp">In best Condition</span>
                 <span className="siSubtitle">
-                    {truncateDescription(description, 100)}
+                    {truncateDescription(item.description, 100)}
                 </span>
 
 
                 <span className="siFeatures">
-                    {tags.map((tag, index) => (
+                    {item.tags.map((tag, index) => (
                         <React.Fragment key={index}>
                             {index > 0 && ' • '}
                             {tag}
@@ -61,12 +61,12 @@ const SearchItem = ({ name,_id, life, tags, description, image, price,rating }) 
             <div className="siDetails">
                 <div className="siRating">
                     <span>Excellent</span>
-                    <button>{rating}.0⋆</button>
+                    <button>{item.rating}.0⋆</button>
                 </div>
                 <div className="siDetailTexts">
-                    <span className="siPrice">₹{price} </span>
+                    <span className="siPrice">₹{item.rentalPrice} </span>
                     <span className="siTaxOp">Includes taxes and fees</span>
-                    <button className="siCheckButton" onClick={()=>handleItemsClick(_id)}>See availability</button>
+                    <button className="siCheckButton" onClick={()=>handleItemsClick(item)}>See availability</button>
                 </div>
             </div>
         </div>

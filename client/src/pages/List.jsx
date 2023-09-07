@@ -132,14 +132,7 @@ const List = () => {
               
               <SearchItem
                 key={item._id}
-                _id={item._id}
-                name={item.name}
-                life={item.life}
-                price={item.rentalPrice}
-                tags={item.tags}
-                description={item.description}
-                image={item.image}
-                rating={item.rating}
+                item={item}
               />
             ))}
 
