@@ -7,11 +7,6 @@ import "./css/detail.css"
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-<<<<<<< HEAD
-import { useUserContext } from '../context/UserContext';
-
-const Detail = () => {
-=======
 import { useLocation } from 'react-router-dom';
 import Map from '../components/Map/Map';
 
@@ -21,7 +16,6 @@ const Detail = () => {
     console.log(state);
 
 
->>>>>>> d1b8b80229b69a92d7f13ed843d9974a8fbefcb7
     const [slideNumber, setSlideNumber] = useState(0);
     const [open, setOpen] = useState(false);
 
@@ -45,12 +39,10 @@ const Detail = () => {
             src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
         },
     ];
-
+    
     const handleOpen = (i) => {
         setSlideNumber(i);
         setOpen(true);
-
-        console.log(i);
     };
 
     const handleMove = (direction) => {
@@ -64,7 +56,11 @@ const Detail = () => {
 
         setSlideNumber(newSlideNumber)
     };
+    const [isFormVisible, setIsFormVisible] = useState(false);
 
+    const toggleForm = () => {
+        setIsFormVisible(!isFormVisible);
+    };
 
 
 
@@ -100,15 +96,45 @@ const Detail = () => {
                         />
                     </div>
                 )}
+                
                 <div className="hotelWrapper">
-                    <button className="bookNow">Reserve or Book Now!</button>
+                    <button className="bookNow" onClick={toggleForm} >Rent</button>
                     <h1 className="hotelTitle">{state.name}</h1>
                     <div className="hotelAddress">
                         {state.tags.map((tag) => {
                             return <span key={tag}> {tag} </span>;
                         })}
-
                     </div>
+                    {isFormVisible && (
+                    <div className="overlay">
+                        <div>
+                        <form className="confirmation-form">
+                        <button onClick={toggleForm} className='close'>X</button>
+                        <h1>Final Confirmation</h1>
+                        <h4>Here are the product details</h4>
+                        <ul className="confirmation-list">
+                            <li>
+                                <span className="confirmation-key">Product Name:</span> {state.name}
+                            </li>
+                            <li>
+                                <span className="confirmation-key">Price per day:</span> {state.rentalPrice}
+                            </li>
+                            <li>
+                                <span className="confirmation-key">Life:</span> {state.life}
+                            </li>
+                            <li>
+                                <span className="confirmation-key">Location:</span> {state.address}, {state.city}
+                            </li>
+                            <li>
+                                <span className="confirmation-key">City:</span> {state.city}
+                            </li>
+                        </ul>
+                        
+                        <button type="submit">Submit</button>
+                    </form>
+                    </div>
+                    </div>
+                     )}
                     <span className="hotelDistance">
                         Excellent location – {state.address}, {state.city}
                     </span>
@@ -143,7 +169,7 @@ const Detail = () => {
                             <h2>
                                 <b>₹{state.rentalPrice}</b> (per day)
                             </h2>
-                            <button>Rent</button>
+                            <button onClick={toggleForm}>Rent</button>
                         </div>
                     </div>
                 </div>
