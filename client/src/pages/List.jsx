@@ -129,15 +129,10 @@ const List = () => {
           </div>
           <div className="listResult">
             {inventories.map((item) => (
+              
               <SearchItem
-                key={item.id}
-                name={item.name}
-                life={item.life}
-                price={item.rentalPrice}
-                tags={item.tags}
-                description={item.description}
-                image={item.image}
-                rating={item.rating}
+                key={item._id}
+                item={item}
               />
             ))}
 
