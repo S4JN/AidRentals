@@ -8,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useLocation } from 'react-router-dom';
+import Map from '../components/Map/Map';
 
 const Detail = () => {
 
@@ -97,10 +98,10 @@ const Detail = () => {
                     <button className="bookNow">Reserve or Book Now!</button>
                     <h1 className="hotelTitle">{state.name}</h1>
                     <div className="hotelAddress">
-                        {state.tags.map((tag)=>{
+                        {state.tags.map((tag) => {
                             return <span key={tag}> {tag} </span>;
                         })}
-                        
+
                     </div>
                     <span className="hotelDistance">
                         Excellent location – {state.address}, {state.city}
@@ -124,7 +125,7 @@ const Detail = () => {
                         <div className="hotelDetailsTexts">
                             {/* <h1 className="hotelTitle">{state.name}</h1> */}
                             <p className="hotelDesc">
-                               {state.description}
+                                {state.description}
                             </p>
                         </div>
                         <div className="hotelDetailsPrice">
@@ -141,9 +142,10 @@ const Detail = () => {
                     </div>
                 </div>
 
-                <div style={{height: "300px", width: "80%" , padding: "20px" ,backgroundColor: "brown"}}>
-                    Map
+                <div style={{ height: "100%",width:"100%", maxWidth: "1024px", padding: "20px"}}>
+                    <Map city={state.city} address={state.address} zip={state.zip} />
                 </div>
+
                 <Mail />
                 <Footer />
             </div>
