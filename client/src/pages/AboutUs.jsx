@@ -95,13 +95,13 @@ const AboutUs = () => {
     setCurrentPage(page);
     const url = new URL(window.location);
     url.searchParams.set('page', page);
-    window.history.pushState({page}, '', url);
+    window.history.pushState({ page }, '', url);
     getInventory(page);
   };
 
   return (
-    <div> 
-    <Navbar />
+    <div>
+      <Navbar />
       <Header type="list" />
       <h1>Inventory List</h1>
       <ul>
@@ -111,13 +111,18 @@ const AboutUs = () => {
             <p>Owner: {item.owner} , Price: {item.rentalPrice} </p>
             <p>{item.description}</p>
             {item.image.map((im, index) => (
-                <img key={index} src={im} alt={`Inventory ${index}`} />
-               ))}
+              <img key={index} src={im} alt={`Inventory ${index}`} />
+            ))}
 
           </li>
         ))}
       </ul>
       <Pagination
+        color="primary"
+        size="large"
+        showFirstButton 
+        showLastButton
+        boundaryCount={1}
         count={totalPages}
         page={currentPage}
         onChange={handlePageChange}

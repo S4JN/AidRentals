@@ -59,7 +59,7 @@ const getInventory = async (req, res) => {
     try {
         // REQ PAGE FROM QUERY IF NOT PROVIDED THEN 1
         const page = parseInt(req.query.page) || 1;
-        const itemsPerPage = 1;
+        const itemsPerPage = 3;
 
         const totalItems = await Inventory.countDocuments();
         const totalPages = Math.ceil(totalItems / itemsPerPage);
