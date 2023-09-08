@@ -190,6 +190,7 @@
   .confirmation-form button {
     background-color: #0056b3;
     color: #fff;
+    text-align: center;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -218,7 +219,7 @@
     right: 10px;
     font-size: 20px !important;
     height: 30px;
-    width: 30px;
+    width: 40px;
     cursor: pointer;
     color:black !important;
     background-color: transparent !important;
