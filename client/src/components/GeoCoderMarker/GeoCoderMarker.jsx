@@ -4,7 +4,6 @@ import L from 'leaflet'
 import "leaflet/dist/leaflet.css"
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
-import * as ELG from 'esri-leaflet-geocoder'
 import axios from "axios"
 
 
