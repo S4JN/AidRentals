@@ -39,6 +39,8 @@ const Item = ({ name, city, price, rating, review,image }) => {
 
 const FeaturedList = () => {
 
+ 
+
   const getRatingColor = (ratingValue) => {
     if (ratingValue >= 1 && ratingValue <= 2) {
       return 'red';

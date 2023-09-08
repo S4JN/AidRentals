@@ -10,14 +10,14 @@ const Itemlist = () => {
         alt=""
         className="pListImg"
       />
-      <div className="pListTitles">
+            <div className="pListTitles">
         <h1>Category</h1>
         <h2>233</h2>
       </div>
     </div>
     <div className="pListItem">
       <img
-        src="https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-apartments_300/9f60235dc09a3ac3f0a93adbc901c61ecd1ce72e.jpg"
+       src="https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-apartments_300/9f60235dc09a3ac3f0a93adbc901c61ecd1ce72e.jpg"
         alt=""
         className="pListImg"
       />
@@ -28,7 +28,7 @@ const Itemlist = () => {
     </div>
     <div className="pListItem">
       <img
-        src="https://cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_resorts/6f87c6143fbd51a0bb5d15ca3b9cf84211ab0884.jpg"
+      src="https://5.imimg.com/data5/SELLER/Default/2021/9/BB/QC/NL/5038493/neonatal-pulse-oximeter.png"
         alt=""
         className="pListImg"
       />
@@ -39,7 +39,7 @@ const Itemlist = () => {
     </div>
     <div className="pListItem">
       <img
-        src="https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-villas_300/dd0d7f8202676306a661aa4f0cf1ffab31286211.jpg"
+        src="https://5.imimg.com/data5/SELLER/Default/2021/9/BB/QC/NL/5038493/neonatal-pulse-oximeter.png"
         alt=""
         className="pListImg"
       />
@@ -50,7 +50,7 @@ const Itemlist = () => {
     </div>
     <div className="pListItem">
       <img
-        src="https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg"
+        src="https://5.imimg.com/data5/SELLER/Default/2021/9/BB/QC/NL/5038493/neonatal-pulse-oximeter.png"
         alt=""
         className="pListImg"
       />

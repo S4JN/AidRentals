@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from '../components/Navbar'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -7,9 +6,14 @@ import { Box, styled, Typography } from '@mui/material'
 import Itemlist from '../components/Lists/Itemlist'
 import FeaturedList from '../components/FeaturedList/FeaturedList'
 import Mail from '../components/MailList/Mail'
+import { useEffect } from 'react'
 
 
 const Home = () => {
+
+
+
+
   return (
     <div>
       <Navbar />

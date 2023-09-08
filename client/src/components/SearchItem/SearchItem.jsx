@@ -1,31 +1,58 @@
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./searchItem.css";
+import { Typography } from "@mui/material";
 
-const SearchItem = () => {
-    const navigate= useNavigate();
+const SearchItem = ({ item }) => {
+    const navigate = useNavigate();
 
-    const handleItemsClick=()=>{
+    
+
+    const handleItemsClick = (item) => {
+        //idhr change krna h ab
+        // console.log(item);
         console.log("clicked");
-        navigate("/detail")
-      }
+        navigate(`/item-detail/${item._id}`, {state: item})
+    }
+
+    const truncateDescription = ( description, maxLength) => {
+        if (description.length > maxLength) {
+            return description.slice(0, maxLength) + '...';
+        }
+        return description;
+    };
+
+
+
 
     return (
         <div className="searchItem">
             <img
-                src="https://5.imimg.com/data5/SELLER/Default/2021/9/BB/QC/NL/5038493/neonatal-pulse-oximeter.png"
+                src={item.image[0]}
                 alt=""
                 className="siImg"
             />
             <div className="siDesc">
-                <h1 className="siTitle">Oxymeter</h1>
-                <span className="siDistance">5 yrs old</span>
+                <h1 className="siTitle">{item.name}</h1>
+                <span className="siDistance">{item.life} yrs old</span>
                 <span className="siTaxiOp">In best Condition</span>
                 <span className="siSubtitle">
-                    Pulse Oxymeter in best Condition(desp)
+                    {truncateDescription(item.description, 100)}
                 </span>
+
+
                 <span className="siFeatures">
-                    Cell vala • Chargable • Small Size
+                    {item.tags.map((tag, index) => (
+                        <React.Fragment key={index}>
+                            {index > 0 && ' • '}
+                            {tag}
+                        </React.Fragment>
+                    ))}
                 </span>
+
+                {/* <span className="siFeatures">
+                    tag1 • tag2 • tag3
+                </span> */}
                 <span className="siCancelOp">Free cancellation </span>
                 <span className="siCancelOpSubtitle">
                     Prices are per day!
@@ -34,12 +61,12 @@ const SearchItem = () => {
             <div className="siDetails">
                 <div className="siRating">
                     <span>Excellent</span>
-                    <button>8.9</button>
+                    <button>{item.rating}.0⋆</button>
                 </div>
                 <div className="siDetailTexts">
-                    <span className="siPrice">₹10 </span>
+                    <span className="siPrice">₹{item.rentalPrice} </span>
                     <span className="siTaxOp">Includes taxes and fees</span>
-                    <button className="siCheckButton" onClick={handleItemsClick}>See availability</button>
+                    <button className="siCheckButton" onClick={()=>handleItemsClick(item)}>See availability</button>
                 </div>
             </div>
         </div>

@@ -106,7 +106,7 @@ const Detail = () => {
                         })}
                     </div>
                     {isFormVisible && (
-                        <RentForm state={state} toggleForm={toggleForm}/>
+                        <RentForm state={state} toggleForm={toggleForm} />
                      )}
                     <span className="hotelDistance">
                         Excellent location – {state.address}, {state.city}
