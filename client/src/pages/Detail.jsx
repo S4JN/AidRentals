@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import Navbar from '../components/Navbar';
 import Mail from "../components/MailList/Mail"
 import Footer from "../components/Footer"
@@ -7,8 +7,14 @@ import "./css/detail.css"
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
+import { useLocation } from 'react-router-dom';
+import Map from '../components/Map/Map';
+import RentForm from '../components/RentForm/RentForm'
 const Detail = () => {
+
+    const { state } = useLocation();
+    console.log(state);
+
 
     const [slideNumber, setSlideNumber] = useState(0);
     const [open, setOpen] = useState(false);
@@ -33,12 +39,10 @@ const Detail = () => {
             src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
         },
     ];
-
+    
     const handleOpen = (i) => {
         setSlideNumber(i);
         setOpen(true);
-
-        console.log(i);
     };
 
     const handleMove = (direction) => {
@@ -52,7 +56,11 @@ const Detail = () => {
 
         setSlideNumber(newSlideNumber)
     };
+    const [isFormVisible, setIsFormVisible] = useState(false);
 
+    const toggleForm = () => {
+        setIsFormVisible(!isFormVisible);
+    };
 
 
 
@@ -79,7 +87,7 @@ const Detail = () => {
 
 
                         <div className="sliderWrapper">
-                            <img src={photos[slideNumber].src} alt="" className="sliderImg" />
+                            <img src={state.image[slideNumber]} alt="" className="sliderImg" />
                         </div>
                         <ArrowForwardIcon
 
@@ -88,25 +96,30 @@ const Detail = () => {
                         />
                     </div>
                 )}
+                
                 <div className="hotelWrapper">
-                    <button className="bookNow">Reserve or Book Now!</button>
-                    <h1 className="hotelTitle">Tower Street Apartments</h1>
+                    <button className="bookNow" onClick={toggleForm} >Rent</button>
+                    <h1 className="hotelTitle">{state.name}</h1>
                     <div className="hotelAddress">
-
-                        <span>Multi Equipment Set</span>
+                        {state.tags.map((tag) => {
+                            return <span key={tag}> {tag} </span>;
+                        })}
                     </div>
+                    {isFormVisible && (
+                        <RentForm state={state} toggleForm={toggleForm}/>
+                     )}
                     <span className="hotelDistance">
-                        Excellent location – 500m from center
+                        Excellent location – {state.address}, {state.city}
                     </span>
                     <span className="hotelPriceHighlight">
                         Rent these items at the cheapest price.
                     </span>
                     <div className="hotelImages">
-                        {photos.map((photo, i) => (
+                        {state.image.map((photo, i) => (
                             <div className="hotelImgWrapper" key={i}>
                                 <img
                                     onClick={() => handleOpen(i)}
-                                    src={photo.src}
+                                    src={photo}
                                     alt=""
                                     className="hotelImg"
                                 />
@@ -115,19 +128,9 @@ const Detail = () => {
                     </div>
                     <div className="hotelDetails">
                         <div className="hotelDetailsTexts">
-                            <h1 className="hotelTitle">Multi Functionality Items</h1>
+                            {/* <h1 className="hotelTitle">{state.name}</h1> */}
                             <p className="hotelDesc">
-                                Introducing our state-of-the-art oximeter, available for rent now! Our oximeter is a cutting-edge medical device designed to accurately measure your oxygen saturation levels and pulse rate, providing crucial insights into your overall health and well-being. With its user-friendly interface and compact design, it's perfect for monitoring your oxygen levels from the comfort of your home or on the go.
-
-                                Renting our oximeter is a cost-effective and convenient solution, allowing you to keep track of your respiratory health without the need for a permanent purchase. Whether you're recovering from an illness, managing a chronic condition, or simply seeking peace of mind, our oximeter offers reliable and instant readings that you can trust.
-
-                                Rest assured, our oximeter is meticulously maintained, thoroughly sanitized, and calibrated to ensure precise results every time. Our rental process is seamless, making it easy to get the oximeter you need when you need it most. Don't compromise on your health – experience the benefits of our advanced oximeter today by renting one for yourself or your loved ones. Stay informed, stay safe!
-
-
-
-
-
-
+                                {state.description}
                             </p>
                         </div>
                         <div className="hotelDetailsPrice">
@@ -137,12 +140,17 @@ const Detail = () => {
                                 we will also provide your details to him.
                             </span>
                             <h2>
-                                <b>₹100</b> (per day)
+                                <b>₹{state.rentalPrice}</b> (per day)
                             </h2>
-                            <button>Rent</button>
+                            <button onClick={toggleForm}>Rent</button>
                         </div>
                     </div>
                 </div>
+
+                <div style={{ height: "100%",width:"100%", maxWidth: "1024px", padding: "20px"}}>
+                    <Map city={state.city} address={state.address} zip={state.zip} />
+                </div>
+
                 <Mail />
                 <Footer />
             </div>
