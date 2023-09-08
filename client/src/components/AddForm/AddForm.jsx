@@ -165,196 +165,198 @@ export default function AddForm({ setShowForm }) {
 
         <>
           <CssBaseline />
+          <div className='bhari'>
 
-          <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-            <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-              <Typography component="h1" variant="h4" align="center">
-                Add an Item
-              </Typography>
-              <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-                {steps.map((label) => (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
+            <Container component="main"  sx={{ mb: 4 }}>
+              <Paper variant="outlined"  sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+                <Typography component="h1" variant="h4" align="center">
+                  Add an Item
+                </Typography>
+                <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
 
-              <form onSubmit={handleSubmit}>
-                {activeStep === 0 && (
-                  <>
-                    {/* Step 1 */}
-                    <div>
-                      <label>Item Name:</label>
-                      <br />
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-
-                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-                      />
-                    </div>
-                    <div>
-                      <label>Description:</label>
-                      <br />
-
-                      <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={handleInputChange}
-                        required
-                        maxLength="216"
-                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-
-                      />
-                    </div>
-
-
-                    <div className='PriceandLife'>
+                <form onSubmit={handleSubmit}>
+                  {activeStep === 0 && (
+                    <>
+                      {/* Step 1 */}
                       <div>
-                        <label>Price:</label>
+                        <label>Item Name:</label>
                         <br />
-
                         <input
-                          type="number"
-                          name="rentalPrice"
-                          value={formData.rentalPrice}
+                          type="text"
+                          name="name"
+                          value={formData.name}
                           onChange={handleInputChange}
                           required
+
+                          style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+                        />
+                      </div>
+                      <div>
+                        <label>Description:</label>
+                        <br />
+
+                        <textarea
+                          name="description"
+                          value={formData.description}
+                          onChange={handleInputChange}
+                          required
+                          maxLength="216"
                           style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
 
                         />
                       </div>
+
+
+                      <div className='PriceandLife'>
+                        <div>
+                          <label>Price:</label>
+                          <br />
+
+                          <input
+                            type="number"
+                            name="rentalPrice"
+                            value={formData.rentalPrice}
+                            onChange={handleInputChange}
+                            required
+                            style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+
+                          />
+                        </div>
+                        <div>
+                          <label>Life:</label>
+                          <br />
+
+                          <input
+                            type="text"
+                            name="life"
+                            value={formData.life}
+                            onChange={handleInputChange}
+                            required
+                            style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+                          />
+                        </div>
+                      </div>
                       <div>
-                        <label>Life:</label>
+                        <label>Tags:</label>
                         <br />
 
                         <input
                           type="text"
-                          name="life"
-                          value={formData.life}
+                          name="tags"
+                          value={formData.tags}
                           onChange={handleInputChange}
                           required
                           style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+
                         />
                       </div>
-                    </div>
-                    <div>
-                      <label>Tags:</label>
-                      <br />
-
-                      <input
-                        type="text"
-                        name="tags"
-                        value={formData.tags}
-                        onChange={handleInputChange}
-                        required
-                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-
-                      />
-                    </div>
-                    <div>
-
-                      <Button onClick={() => setShowForm(false)} sx={{ mt: 3, ml: 1 }}>
-                        Close
-                      </Button>
-
-                      <Button
-                        variant="contained"
-                        onClick={nextStep}
-                        sx={{ mt: 3, ml: 1 }}
-                      >
-                        Next
-                      </Button>
-                    </div>
-                  </>
-                )}
-                {activeStep === 1 && (
-                  <>
-                    {/* Step 2 */}
-                    <div>
-                      <label>Address:</label>
-                      <input
-                        type='text'
-                        name='address'
-                        value={formData.address}
-                        onChange={handleInputChange}
-                      />
-                      <label>city:</label>
-                      <input
-                        type='text'
-                        name='city'
-                        value={formData.city}
-                        onChange={handleInputChange}
-                      />
-                      <label>zip:</label>
-                      <input
-                        type='text'
-                        name='zip'
-                        value={formData.zip}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <Map city={formData.city} address={formData.address} zip={formData.zip}  />
-                    <div>
-                      <Button onClick={backStep} sx={{ mt: 3, ml: 1 }}>
-                        Previous
-                      </Button>
-                      <Button onClick={() => setShowForm(false)} sx={{ mt: 3, ml: 1 }}>
-                        Close
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={nextStep}
-                        sx={{ mt: 3, ml: 1 }}
-                      >
-                        Next
-                      </Button>
-                    </div>
-
-                  </>
-                )}
-                {activeStep === 2 && (
-                  <>
-                    {/* Step 3 */}
-                    <div>
-                      <label>Image:</label>
                       <div>
-                        {/* <input type="file" multiple onChange={(e) => handleImageChange(e.target.files)} /> */}
-                        <input
-                          type="file"
-                          multiple
-                          accept="image/*"
-                          onChange={(e) => handleImageChange(e.target.files)}
-                        />
 
-                        {/* <FileBase
+                        <Button onClick={() => setShowForm(false)} sx={{ mt: 3, ml: 1 }}>
+                          Close
+                        </Button>
+
+                        <Button
+                          variant="contained"
+                          onClick={nextStep}
+                          sx={{ mt: 3, ml: 1 }}
+                        >
+                          Next
+                        </Button>
+                      </div>
+                    </>
+                  )}
+                  {activeStep === 1 && (
+                    <>
+                      {/* Step 2 */}
+                      <div>
+                        <label>Address:</label>
+                        <input
+                          type='text'
+                          name='address'
+                          value={formData.address}
+                          onChange={handleInputChange}
+                        />
+                        <label>city:</label>
+                        <input
+                          type='text'
+                          name='city'
+                          value={formData.city}
+                          onChange={handleInputChange}
+                        />
+                        <label>zip:</label>
+                        <input
+                          type='text'
+                          name='zip'
+                          value={formData.zip}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <Map city={formData.city} address={formData.address} zip={formData.zip} />
+                      <div>
+                        <Button onClick={backStep} sx={{ mt: 3, ml: 1 }}>
+                          Previous
+                        </Button>
+                        <Button onClick={() => setShowForm(false)} sx={{ mt: 3, ml: 1 }}>
+                          Close
+                        </Button>
+                        <Button
+                          variant="contained"
+                          onClick={nextStep}
+                          sx={{ mt: 3, ml: 1 }}
+                        >
+                          Next
+                        </Button>
+                      </div>
+
+                    </>
+                  )}
+                  {activeStep === 2 && (
+                    <>
+                      {/* Step 3 */}
+                      <div>
+                        <label>Image:</label>
+                        <div>
+                          {/* <input type="file" multiple onChange={(e) => handleImageChange(e.target.files)} /> */}
+                          <input
+                            type="file"
+                            multiple
+                            accept="image/*"
+                            onChange={(e) => handleImageChange(e.target.files)}
+                          />
+
+                          {/* <FileBase
                           type="file"
                           multiple={true}
                           onDone={({ base64 }) => handleImageChange(base64)} // Pass an array of base64 strings
                         /> */}
 
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <Button onClick={backStep} sx={{ mt: 3, ml: 1 }}>
-                        Previous
-                      </Button>
-                      <Button onClick={() => setShowForm(false)} sx={{ mt: 3, ml: 1 }}>
-                        Close
-                      </Button>
-                      <Button type="submit" variant="contained" sx={{ mt: 3, ml: 1 }} >
-                        Submit
-                      </Button>
-                    </div>
+                      <div>
+                        <Button onClick={backStep} sx={{ mt: 3, ml: 1 }}>
+                          Previous
+                        </Button>
+                        <Button onClick={() => setShowForm(false)} sx={{ mt: 3, ml: 1 }}>
+                          Close
+                        </Button>
+                        <Button type="submit" variant="contained" sx={{ mt: 3, ml: 1 }} >
+                          Submit
+                        </Button>
+                      </div>
 
-                  </>
-                )}
-              </form>
-            </Paper>
-          </Container>
+                    </>
+                  )}
+                </form>
+              </Paper>
+            </Container>
+          </div>
         </>
 
       )}
