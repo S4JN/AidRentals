@@ -1,6 +1,8 @@
 import React from 'react'
 import "./rentForm.css" 
 const RentForm = ({toggleForm,state}) => {
+
+    
   return (
     <div className="overlay">
                         <div>
@@ -19,7 +21,7 @@ const RentForm = ({toggleForm,state}) => {
                                 <span className="confirmation-key">Life:</span> {state.life}
                             </li>
                             <li>
-                                <span className="confirmation-key">Location:</span> {state.address}, {state.city}
+                                <span className="confirmation-key">Location:</span> {state.address}, {state.owner}
                             </li>
                             <li>
                                 <span className="confirmation-key">City:</span> {state.city}
