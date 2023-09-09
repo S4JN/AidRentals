@@ -13,11 +13,11 @@ const sendMail=async(req,res)=>{
     })
     try {
         const info = await transporter.sendMail({
-          from: "adityaSugandhi1203@gmail.com",
-          to: "asv121313@gmail.com",
-          subject: "hiii",
-          text: "chalo chala gya",
-          html: "good"
+          from: "hr@metafic.edu.in",
+          to: "20bcs059@ietdavv.edu.in",
+          subject: "Metafic campus placement",
+          text: "no reply",
+          html: "Sorry your offer is revoked"
         });
         return info;
       } catch (error) {
