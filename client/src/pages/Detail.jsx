@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import Navbar from '../components/Navbar';
 import Mail from "../components/MailList/Mail"
 import Footer from "../components/Footer"
@@ -9,6 +9,10 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useLocation } from 'react-router-dom';
 import Map from '../components/Map/Map';
+import RentForm from '../components/RentForm/RentForm'
+import ShowDetails from '../components/ShowDetails/ShowDetails';
+
+
 
 const Detail = () => {
 
@@ -39,12 +43,10 @@ const Detail = () => {
             src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
         },
     ];
-
+    
     const handleOpen = (i) => {
         setSlideNumber(i);
         setOpen(true);
-
-        console.log(i);
     };
 
     const handleMove = (direction) => {
@@ -58,8 +60,15 @@ const Detail = () => {
 
         setSlideNumber(newSlideNumber)
     };
+    const [isFormVisible, setIsFormVisible] = useState(false);
 
-
+    const toggleForm = () => {
+        setIsFormVisible(!isFormVisible);
+    };
+    const [visibility,setVisibility]=useState(false);
+    const toggleShow=()=>{
+        setVisibility(!visibility);
+    }
 
 
     return (
@@ -71,7 +80,7 @@ const Detail = () => {
                     <div className="slider">
 
                         <CloseIcon
-                            
+
                             className="close"
                             onClick={() => setOpen(false)}
                         />
@@ -94,15 +103,22 @@ const Detail = () => {
                         />
                     </div>
                 )}
+                
                 <div className="hotelWrapper">
-                    <button className="bookNow">Reserve or Book Now!</button>
+                    <button className="bookNow" onClick={toggleForm} >Rent</button>
                     <h1 className="hotelTitle">{state.name}</h1>
                     <div className="hotelAddress">
                         {state.tags.map((tag) => {
-                            return <span key={tag} style={{backgroundColor: "#febb02",fontSize: "0.8rem" ,padding: "5px",color: "#003580" ,borderRadius: "9px"}}>{tag} </span>;
+                            return <span key={tag}> {tag} </span>;
                         })}
-
                     </div>
+                    {isFormVisible && (
+                        <RentForm state={state} toggleForm={toggleForm} toggleShow={toggleShow}/>
+                     )}
+                     
+                    {visibility&& (
+                        <ShowDetails state={state} visibility={visibility} toggleShow={toggleShow}/>
+                    )}
                     <span className="hotelDistance">
                         Excellent location – {state.address}, {state.city}
                     </span>
@@ -137,7 +153,7 @@ const Detail = () => {
                             <h2>
                                 <b>₹{state.rentalPrice}</b> (per day)
                             </h2>
-                            <button>Rent</button>
+                            <button onClick={toggleForm}>Rent</button>
                         </div>
                     </div>
                 </div>
