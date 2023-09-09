@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./rentForm.css" 
-const RentForm = ({toggleForm,state}) => {
+
+const RentForm = ({toggleForm,state,toggleShow}) => {
+    
     const uploader=state.owner;
-    console.log(uploader);
+    
     
   return (
     <div className="overlay">
         <div>
-            <form className="confirmation-form">
+            <div className="confirmation-form">
                 <button onClick={toggleForm} className='close'>X</button>
                     <h1>Final Confirmation</h1>
                     <h4>Here are the product details</h4>
@@ -31,8 +33,8 @@ const RentForm = ({toggleForm,state}) => {
                 
                     </ul>
                         
-                <button type="submit">Submit</button>
-            </form>
+                <button type="submit" onClick={()=>{toggleShow();toggleForm();}} >Submit</button>
+            </div>
         </div>
 
     </div>

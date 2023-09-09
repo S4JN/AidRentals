@@ -10,6 +10,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useLocation } from 'react-router-dom';
 import Map from '../components/Map/Map';
 import RentForm from '../components/RentForm/RentForm'
+import ShowDetails from '../components/ShowDetails/ShowDetails';
+
+
 const Detail = () => {
 
     const { state } = useLocation();
@@ -61,7 +64,10 @@ const Detail = () => {
     const toggleForm = () => {
         setIsFormVisible(!isFormVisible);
     };
-
+    const [visibility,setVisibility]=useState(false);
+    const toggleShow=()=>{
+        setVisibility(!visibility);
+    }
 
 
     return (
@@ -106,8 +112,12 @@ const Detail = () => {
                         })}
                     </div>
                     {isFormVisible && (
-                        <RentForm state={state} toggleForm={toggleForm} />
+                        <RentForm state={state} toggleForm={toggleForm} toggleShow={toggleShow}/>
                      )}
+                     
+                    {visibility&& (
+                        <ShowDetails state={state} visibility={visibility} toggleShow={toggleShow}/>
+                    )}
                     <span className="hotelDistance">
                         Excellent location – {state.address}, {state.city}
                     </span>
