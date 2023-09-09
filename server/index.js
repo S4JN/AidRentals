@@ -4,9 +4,10 @@ const authRoutes = require("./routes/authRoutes");
 const inventoryRoutes = require("./routes/inventoryRoutes");
 const morgan = require("morgan");
 const cors = require("cors");
-
 const app= express();
 const connectDB = require("./config/db.js");
+const mailRoutes=require("./routes/mailRoutes")
+const getOwnerRoutes=require("./routes/getOwnerRoutes");
 // const filesRoutes=require('./routes/fileRoutes');
 //dotenv config
 require("dotenv").config();
@@ -25,6 +26,8 @@ app.use(morgan("dev"));
 app.use("/api/v1/test",testRoutes);
 app.use("/api/v1/auth",authRoutes);
 app.use("/api/v1/inventory",inventoryRoutes);
+app.use("/sendMail",mailRoutes);
+app.use("/getOwner",getOwnerRoutes);
 // app.use("/add",filesRoutes);
 //made using mvc pattern 
 
