@@ -15,8 +15,8 @@ const ShowDetails = ({state,visibility,toggleShow}) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
               },
             };
-            const ownerDetails=await axios.post('http://localhost:8000/getOwner',ownerId,config);
-            console.log("ownerDetails="+ ownerDetails)
+            // const ownerDetails=await axios.post('http://localhost:8000/getOwner',ownerId,config);
+            // console.log("ownerDetails="+ ownerDetails)
             const { data } = await axios.post(
               'http://localhost:8000/sendMail',
               "adityasugandhi1203@gmail.com",
