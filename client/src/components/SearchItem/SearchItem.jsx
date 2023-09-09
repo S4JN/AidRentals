@@ -75,4 +75,3 @@ const SearchItem = ({ item }) => {
 
 export default SearchItem;
 
-
