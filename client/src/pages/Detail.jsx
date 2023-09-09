@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Mail from "../components/MailList/Mail";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import "./css/detail.css";
+import "./css/detail.css"
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
