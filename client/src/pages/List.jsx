@@ -91,10 +91,10 @@ const List = () => {
       <div className="listContainer">
         <div className="listWrapper">
           <div className="listSearch">
-            <h1 className="lsTitle">Search</h1>
+            <h1 className="lsTitle">Search </h1>
             <div className="lsItem">
               <label>Name</label>
-              <input placeholder={searchItem} type="text" />
+              <input placeholder={"Search by name, tags, location"} type="text" />
             </div>
             <div className="lsItem">
               <label>Renting Date</label>
@@ -115,7 +115,7 @@ const List = () => {
               </div>
             </div>
             <div className="lsItem">
-              <label>Options</label>
+              <label>Filters</label>
               <div className="lsOptions">
                 <div className="lsOptionItem">
                   <span className="lsOptionText">
@@ -123,13 +123,19 @@ const List = () => {
                   </span>
                   <input type="number" className="lsOptionInput" />
                 </div>
+                <div className="lsOptionItem">
+                  <span className="lsOptionText">
+                    City 
+                  </span>
+                  <input type="text" className="lsOptionInput" />
+                </div>
               </div>
             </div>
             <button>Search</button>
           </div>
           <div className="listResult">
             {inventories.map((item) => (
-              
+
               <SearchItem
                 key={item._id}
                 item={item}

@@ -13,6 +13,7 @@ import RentForm from '../components/RentForm/RentForm'
 import ShowDetails from '../components/ShowDetails/ShowDetails';
 
 
+
 const Detail = () => {
 
     const { state } = useLocation();
