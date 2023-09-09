@@ -71,7 +71,7 @@ const Detail = () => {
                     <div className="slider">
 
                         <CloseIcon
-
+                            
                             className="close"
                             onClick={() => setOpen(false)}
                         />
