@@ -40,6 +40,7 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
         config
       );
       console.log(data);
+      toggleShow();
       alert("mail sent")
 
     } catch (error) {
