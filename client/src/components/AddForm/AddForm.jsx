@@ -206,7 +206,7 @@ export default function AddForm({ setShowForm }) {
                           value={formData.description}
                           onChange={handleInputChange}
                           required
-                          maxLength="216"
+                          maxLength="516"
                           style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
 
                         />
