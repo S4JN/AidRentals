@@ -24,7 +24,7 @@ const addService = async (req, res) => {
             name: req.body.name,
             bio: req.body.bio,
             gender: req.body.gender,
-            pic: pic, 
+            pic: pic,
             phoneNumber: req.body.phoneNumber,
             yoe: req.body.yoe,
             specialty: req.body.specialty,
@@ -50,4 +50,35 @@ const addService = async (req, res) => {
     }
 };
 
-module.exports = { addService };
+const getAllService = async (req, res) => {
+    try {
+        // REQ PAGE FROM QUERY IF NOT PROVIDED THEN 1
+        const page = parseInt(req.query.page) || 1;
+        const itemsPerPage = 6;
+
+        const totalItems = await Service.countDocuments();
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        const services = await Service.find()
+            .skip((page - 1) * itemsPerPage)
+            .limit(itemsPerPage);
+
+        return res.status(200).send({
+            success: true,
+            message: "Service retrieved",
+            services,
+            currentPage: page,
+            totalPages
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error fetching Services"
+        });
+    }
+}
+
+
+
+module.exports = { addService, getAllService };
