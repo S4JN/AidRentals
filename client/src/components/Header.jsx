@@ -46,7 +46,7 @@ const Header = ({ type }) => {
           <div className="adjust"><TravelExploreIcon/> <span className="lmarg">Explore</span></div>
           </div>
           <div className={`headerListItem ${activeButton === '/AboutUs' ? 'active' : ''}`} onClick={() => handleButtonClick('/AboutUs')}>
-          <div className="adjust"><InfoSharpIcon /> <span className="lmarg">About US</span></div>
+          <div className="adjust"><InfoSharpIcon /> <span className="lmarg">Services</span></div>
           </div>
           <div className={`headerListItem ${activeButton === '/ViewProfile' ? 'active' : ''}`} onClick={() => handleButtonClick('/ViewProfile')}>
           <div className="adjust"><PersonSearchSharpIcon/> <span className="lmarg">View Profile</span></div>
