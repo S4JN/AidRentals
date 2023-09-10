@@ -80,5 +80,39 @@ const getAllService = async (req, res) => {
 }
 
 
+const getService = async (req, res) => {
+    try {
+        const { name, specialty, city } = req.query;
+        // http://localhost:8000/api/v1/service/get-service?name=John&specialty=Dentist&city=New%20York
+        const query = {};
 
-module.exports = { addService, getAllService };
+        if (name) {
+            query.name = { $regex: new RegExp(name, "i") };
+        }
+
+        if (specialty) {
+            query.specialty = { $regex: new RegExp(specialty, "i") };
+        }
+
+        if (city) {
+            query.city = { $regex: new RegExp(city, "i") };
+        }
+
+        const services = await Service.find(query);
+
+        res.status(200).send({
+            success: true,
+            message: "Services retrieved successfully",
+            data: services
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+};
+
+
+module.exports = { addService, getAllService, getService };
