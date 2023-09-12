@@ -48,7 +48,10 @@ function App() {
           </Route>
 
           <Route path="/services" element={
-            <Services />
+            <ProtectedRoute>
+
+              <Services />
+            </ProtectedRoute>
           }>
           </Route>
 
