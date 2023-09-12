@@ -7,12 +7,13 @@ const addService = async (req, res) => {
 
         let pic = req.body.pic;
 
-        const result = await cloudinary.uploader.upload(pic, {
-            folder: "photos"
-        });
+        if(pic){
+            const result = await cloudinary.uploader.upload(pic, {
+                folder: "photos"
+            });
 
-        pic = result.secure_url;
-
+            pic = result.secure_url;
+        }
         if (existing) {
             return res.status(200).send({
                 success: false,
@@ -23,6 +24,8 @@ const addService = async (req, res) => {
         const newService = await Service.create({
             name: req.body.name,
             bio: req.body.bio,
+            price: req.body.price,
+            age: req.body.age,
             gender: req.body.gender,
             pic: pic,
             phoneNumber: req.body.phoneNumber,
@@ -54,7 +57,7 @@ const getAllService = async (req, res) => {
     try {
         // REQ PAGE FROM QUERY IF NOT PROVIDED THEN 1
         const page = parseInt(req.query.page) || 1;
-        const itemsPerPage = 6;
+        const itemsPerPage = 3;
 
         const totalItems = await Service.countDocuments();
         const totalPages = Math.ceil(totalItems / itemsPerPage);

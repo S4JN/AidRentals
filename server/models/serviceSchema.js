@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 
 const serviceSchema = new mongoose.Schema({
     name: {
-      type: String,
-      required: true,
+        type: String,
+        required: true,
     },
     bio: {
         type: String
@@ -16,25 +16,33 @@ const serviceSchema = new mongoose.Schema({
     },
     pic: {
         type: String,
-        required: true
+        default : "https://www.nicepng.com/png/full/933-9332131_profile-picture-default-png.png",
+    },
+    age:{
+        type: String,
+        default: "23"
+    },
+    price: {
+        type: String,
+        default: "Free"
     },
     phoneNumber: [{
         type: String,
         required: true
     }],
-    yoe:{
+    yoe: {
         type: String,
         required: true
     },
-    specialty:[{
+    specialty: [{
         type: String,
         required: true,
     }],
-    email:{
+    email: {
         type: String,
-        required:true
+        required: true
     },
-    city:{
+    city: {
         type: String,
         required: true
     },
@@ -46,11 +54,11 @@ const serviceSchema = new mongoose.Schema({
     }],
     workingHours: {
         type: String
-    }  
-  },
+    }
+},
     { timestamps: true }
-  );
-  
-  const Service = mongoose.model('Service', serviceSchema);
-  
-  module.exports = { Service };
+);
+
+const Service = mongoose.model('Service', serviceSchema);
+
+module.exports = { Service };
