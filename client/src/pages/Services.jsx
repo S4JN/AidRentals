@@ -75,7 +75,7 @@ const Services = () => {
     const url = new URL(window.location);
     url.searchParams.set('page', page);
     window.history.pushState({ page }, '', url);
-    getInventory(page);
+    getServices(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
