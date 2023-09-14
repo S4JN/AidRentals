@@ -36,7 +36,7 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
       };
       const { data } = await axios.post(
         'http://localhost:8000/api/v1/sendMail',
-        "adityasugandhi1203@gmail.com",
+        ownerData,
         config
       );
       console.log(data);

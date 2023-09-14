@@ -12,7 +12,7 @@ const ServiceBox = ({ service }) => {
         //idhr change krna h ab
         // console.log(item);
         console.log("clicked");
-        // navigate(`/item-detail/${item._id}`, {state: item})
+        navigate(`/service-detail/${service._id}`, {state: service})
     }
 
     const truncateDescription = ( description, maxLength) => {
@@ -67,7 +67,7 @@ const ServiceBox = ({ service }) => {
                 <div className="siDetailTexts">
                     <span className="siPrice">₹{service.price} </span>
                     <span className="siTaxOp">Includes taxes and fees</span>
-                    <button className="siCheckButton" onClick={()=>handleItemsClick(item)}>See availability</button>
+                    <button className="siCheckButton" onClick={()=>handleItemsClick(service)}>See availability</button>
                 </div>
             </div>
         </div>

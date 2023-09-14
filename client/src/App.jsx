@@ -3,6 +3,7 @@ import { Home, Login, Register, List, Detail, ViewProfile } from "./pages/index.
 import PublicRoute from "./components/Routes/PublicRoute"
 import ProtectedRoute from "./components/Routes/ProtectedRoute"
 import Services from "./pages/Services.jsx"
+import ServiceDetail from "./pages/ServiceDetail.jsx"
 
 
 function App() {
@@ -51,6 +52,13 @@ function App() {
             <ProtectedRoute>
 
               <Services />
+            </ProtectedRoute>
+          }>
+          </Route>
+
+          <Route path="/service-detail/:id" element={
+            <ProtectedRoute>
+              <ServiceDetail />
             </ProtectedRoute>
           }>
           </Route>
