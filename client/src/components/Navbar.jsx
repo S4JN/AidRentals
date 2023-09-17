@@ -4,15 +4,18 @@ import AddSharpIcon from '@mui/icons-material/AddSharp';
 import AddForm from "./AddForm/AddForm";
 import { useState } from "react";
 import { useUserContext } from "../context/UserContext";
+import AddService from "./AddService/AddService";
 
 
 const Navbar = () => {
 
-  
+
 
   const [showForm, setShowForm] = useState(false);
+  const [showServiceForm, setShowServiceForm]= useState(false);
+
   const { user } = useUserContext();
-  const handleLogout=()=>{
+  const handleLogout = () => {
     localStorage.clear();
     window.location.reload();
   }
@@ -20,27 +23,43 @@ const Navbar = () => {
   const handleClick = () => {
     setShowForm(true);
   }
+
+
   const handleFormClose = () => {
     setShowForm(false); // Set showForm to false to close the form
+    setShowServiceForm(false);
   };
+
+  const handleServiceClick = () => {
+    setShowServiceForm(true);
+    
+  }
+
+
 
   return (
     <div>
       <div>
-      {showForm && (
-        <div className="overlay" >
-          <AddForm setShowForm={setShowForm} showForm={showForm} handleFormClose={handleFormClose} />
-        </div>
-      )}
+        {showForm && (
+          <div className="overlay" >
+            <AddForm setShowForm={setShowForm} showForm={showForm} handleFormClose={handleFormClose} />
+          </div>
+        )}
+
+        {showServiceForm && (
+          <div className="overlay" >
+            <AddService setShowServiceForm={setShowServiceForm} showServiceForm={showServiceForm} handleFormClose={handleFormClose} />
+          </div>
+        )}
       </div>
       <div className="navbar">
         <div className="navContainer">
           <span className="logo">Sahaayata</span>
           <div className="navItems">
             <span className="nnnn" onClick={handleClick}><AddSharpIcon />Add item</span>
-            <span className="nnnn">Track my Request</span>
+            <span className="nnnn" onClick={handleServiceClick}><AddSharpIcon />Add Service</span>
             <span className="nnnn">{user?.name}<br />{user?.role}</span>
-            <div onClick={()=>handleLogout()}>
+            <div onClick={() => handleLogout()}>
               <span className="nnnn"><LogoutSharpIcon />Sign Out</span>
             </div>
           </div>
