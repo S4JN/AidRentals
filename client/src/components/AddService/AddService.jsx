@@ -32,23 +32,26 @@ export default function AddService({ setShowServiceForm }) {
 
 
     const [formData, setFormData] = useState({
-        name: '',
-        owner: _id,
-        description: '',
-        rentalPrice: '',
-        life: '',
-        tags: '',
-        address: `${user?.address}`,
+        name: 'Aditya',
+        bio: '',
+        yoe: '',
+        price: '',
+        phoneNumber: '',
+        workingHours:'',
+        age:'',
+        email:'',
+        gender:'',
+        preferredAreas:'',
+        specialty:'',
         city: `${user?.city}`,
-        zip: `${user?.zip}`,
-        image: [],
+        pic: '',
     });
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
         // If the field name is "tags", split the comma-separated value into an array
-        if (name === "tags") {
+        if (name === "preferredAreas") {
             const tagsArray = value.split(",").map(tag => tag.trim());
             setFormData((prevData) => ({
                 ...prevData,
@@ -65,30 +68,30 @@ export default function AddService({ setShowServiceForm }) {
 
 
     const handleImageChange = async (files) => {
-        const resizedImages = [];
+        let resizedImages = "";
 
-        for (const file of files) {
+       
             try {
                 await ImageResizer.imageFileResizer(
-                    file,
+                    files,
                     300, // maxWidth
                     300, // maxHeight
                     'JPEG', // compressFormat
                     70, // quality
                     0, // rotation
                     (uri) => {
-                        resizedImages.push(uri);
+                        resizedImages=uri;
                     },
                     'base64' // outputType
                 );
             } catch (error) {
                 console.error('Error resizing image:', error);
             }
-        }
+        
 
         setFormData((prevData) => ({
             ...prevData,
-            image: resizedImages, // Set the resized base64 images
+            pic: resizedImages, // Set the resized base64 images
         }));
     };
 
@@ -97,25 +100,25 @@ export default function AddService({ setShowServiceForm }) {
         e.preventDefault();
         console.log('Form Data:', formData);
 
-        try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            };
-            setLoading(true);
-            const { data } = await axios.post(
-                'http://localhost:8000/api/v1/inventory/add',
-                formData,
-                config
-            );
-            console.log(data);
-            setLoading(false);
-            setShowServiceForm(false)
-        } catch (error) {
-            console.log(error);
-            setLoading(false);
-        }
+        // // try {
+        //     const config = {
+        //         headers: {
+        //             Authorization: `Bearer ${localStorage.getItem('token')}`,
+        //         },
+        //     };
+        //     setLoading(true);
+        //     const { data } = await axios.post(
+        //         'http://localhost:8000/api/v1/inventory/add',
+        //         formData,
+        //         config
+        //     );
+        //     console.log(data);
+        //     setLoading(false);
+        //     setShowServiceForm(false)
+        // // } catch (error) {
+        //     console.log(error);
+        //     setLoading(false);
+        // // }
     };
 
     const nextStep = () => {
@@ -247,8 +250,8 @@ export default function AddService({ setShowServiceForm }) {
 
                                                     <input
                                                         type="number"
-                                                        name="number"
-                                                        value={formData.number}
+                                                        name="phoneNumber"
+                                                        value={formData.phoneNumber}
                                                         onChange={handleInputChange}
                                                         required
                                                         style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
@@ -260,9 +263,9 @@ export default function AddService({ setShowServiceForm }) {
                                                     <br />
 
                                                     <input
-                                                        type="number"
-                                                        name="hours"
-                                                        value={formData.hours}
+                                                        type="text"
+                                                        name="workingHours"
+                                                        value={formData.workingHours}
                                                         onChange={handleInputChange}
                                                         required
                                                         style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
@@ -274,7 +277,7 @@ export default function AddService({ setShowServiceForm }) {
                                                     <br />
 
                                                     <input
-                                                        type="number"
+                                                        type="text"
                                                         name="age"
                                                         value={formData.age}
                                                         onChange={handleInputChange}
@@ -361,8 +364,8 @@ export default function AddService({ setShowServiceForm }) {
 
                                                 <input
                                                     type="text"
-                                                    name="area"
-                                                    value={formData.area}
+                                                    name="preferredAreas"
+                                                    value={formData.preferredAreas}
                                                     onChange={handleInputChange}
                                                     required
                                                     style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
@@ -383,21 +386,7 @@ export default function AddService({ setShowServiceForm }) {
 
                                                 />
                                                 </div>
-                                                <div>
-                                                <label>Tags:</label>
-                                                <br />
-
-                                                <input
-                                                    type="text"
-                                                    name="tags"
-                                                    value={formData.tags}
-                                                    onChange={handleInputChange}
-                                                    required
-                                                    style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-
-                                                />
-                                            </div>
-                                                
+                                               
                                                 <Button onClick={backStep} sx={{ mt: 3, ml: 1 }}>
                                                     Previous
                                                 </Button>
@@ -419,13 +408,6 @@ export default function AddService({ setShowServiceForm }) {
                                         <>
                                             {/* Step 3 */}
                                             <div>
-                                                <label>Address:</label>
-                                                <input
-                                                    type='text'
-                                                    name='address'
-                                                    value={formData.address}
-                                                    onChange={handleInputChange}
-                                                />
                                                 <label>city:</label>
                                                 <input
                                                     type='text'
@@ -433,13 +415,7 @@ export default function AddService({ setShowServiceForm }) {
                                                     value={formData.city}
                                                     onChange={handleInputChange}
                                                 />
-                                                <label>zip:</label>
-                                                <input
-                                                    type='text'
-                                                    name='zip'
-                                                    value={formData.zip}
-                                                    onChange={handleInputChange}
-                                                />
+                                               
                                             </div>
                                             <Map city={formData.city} address={formData.address} zip={formData.zip} />
                                             <div>
@@ -469,7 +445,6 @@ export default function AddService({ setShowServiceForm }) {
                                                     {/* <input type="file" multiple onChange={(e) => handleImageChange(e.target.files)} /> */}
                                                     <input
                                                         type="file"
-                                                        multiple
                                                         accept="image/*"
                                                         onChange={(e) => handleImageChange(e.target.files)}
                                                     />
