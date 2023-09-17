@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Mail from "../components/MailList/Mail";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import "./css/ServiceDetail.css"
+import "./css/serviceDetail.css"
 
 import { useLocation } from "react-router-dom";
 
@@ -57,7 +57,9 @@ const ServiceDetail = () => {
               </div>
             </div>
           </div>
-
+          <div className="review">
+                  Rivews
+          </div>
 
         </div>
         <Mail />
