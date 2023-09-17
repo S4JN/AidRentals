@@ -137,16 +137,30 @@ const Detail = () => {
           </span>
           <div className="hotelImages">
             {state.image.map((photo, i) => (
-              <div className="hotelImgWrapper" key={i}>
+              <div
+                key={i}
+                style={{
+                  width: '33%', 
+                  marginBottom: '3px'       // Added margin between images
+                }}
+              >
                 <img
                   onClick={() => handleOpen(i)}
                   src={photo}
                   alt=""
                   className="hotelImg"
+                  style={{
+                    width: '100%',
+                    height: '200px',
+                    objectFit: 'cover',
+                    cursor: 'pointer'
+                  }}
                 />
               </div>
             ))}
           </div>
+
+
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">
               {/* <h1 className="hotelTitle">{state.name}</h1> */}
