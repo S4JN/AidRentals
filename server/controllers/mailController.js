@@ -13,10 +13,10 @@ const sendMail=async(req,res)=>{
     })
     try {
         const info = await transporter.sendMail({
-          from: "adityaSugandhi1203@gmail.com",
+          from: "20bcs059@ietdavv.edu.in",
           to: "asv121313@gmail.com",
           subject: "hiii",
-          text: "chalo chala gya",
+          text: "this is testing",
           html: "good"
         });
         return info;
