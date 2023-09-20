@@ -10,7 +10,7 @@ const RentForm = ({toggleForm,state,toggleShow}) => {
     <div className="overlay">
         <div>
             <div className="confirmation-form">
-                <button onClick={toggleForm} className='close'>X</button>
+                <button onClick={toggleForm} className='closeeee'>X</button>
                     <h1>Final Confirmation</h1>
                     <h4>Here are the product details</h4>
                     <ul className="confirmation-list">

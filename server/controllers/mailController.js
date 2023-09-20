@@ -2,6 +2,9 @@ const nodemailer=require('nodemailer')
 
 
 const sendMail=async(req,res)=>{
+    console.log(req.body.data);
+    // res.send(req.body.data);
+
     const transporter=nodemailer.createTransport({
             host:process.env.SMTP_HOST,
             port:process.env.SMTP_PORT,
@@ -13,11 +16,11 @@ const sendMail=async(req,res)=>{
     })
     try {
         const info = await transporter.sendMail({
-          from: "adityaSugandhi1203@gmail.com",
-          to: "asv121313@gmail.com",
-          subject: "hiii",
-          text: "chalo chala gya",
-          html: "good"
+          from: "sahayta@sr.edu.in",
+          to: "20bcs060@ietdavv.edu.in",
+          subject: "Mail check",
+          text: "no reply",
+          html: req.body.data.name
         });
         return info;
       } catch (error) {

@@ -161,7 +161,7 @@ const Login = () => {
               </Grid>
               <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 5 }}>
                 {'Copyright © '}
-                <Link color="inherit" href="/AboutUs">
+                <Link color="inherit" href="/">
                   AidRentals
                 </Link>{' '}
                 {new Date().getFullYear()}

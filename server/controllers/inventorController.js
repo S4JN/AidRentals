@@ -55,7 +55,7 @@ const inventoryController = async (req, res) => {
 //         });
 //     }
 // };
-const getInventory = async (req, res) => {
+const getAllInventory = async (req, res) => {
     try {
         // REQ PAGE FROM QUERY IF NOT PROVIDED THEN 1
         const page = parseInt(req.query.page) || 1;
@@ -84,7 +84,44 @@ const getInventory = async (req, res) => {
     }
 };
 
+const getInventory = async (req, res) => {
+    try {
+        const {name, city, tags} = req.query;
 
-module.exports = { inventoryController, getInventory }
+        const query = {};
+
+        if (name) {
+            query.name = { $regex: new RegExp(name, "i") };
+        }
+
+        if (city) {
+            query.city = { $regex: new RegExp(city, "i") };
+        }
+
+        if (tags) {
+            query.tags = { $in: tags.split(",") };
+        }
+
+        const item = await Inventory.find(query);
+
+
+        return res.status(200).send({
+            success: true,
+            message: "Inventory aagai",
+            item
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error fetching inventory"
+        });
+    }
+}
+
+
+
+
+module.exports = { inventoryController, getAllInventory, getInventory }
 
 

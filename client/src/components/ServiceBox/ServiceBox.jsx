@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./searchItem.css";
+import "./serviceBox.css";
 import { Typography } from "@mui/material";
 
-const SearchItem = ({ item }) => {
+const ServiceBox = ({ service }) => {
     const navigate = useNavigate();
 
     
 
-    const handleItemsClick = (item) => {
+    const handleItemsClick = (service) => {
         //idhr change krna h ab
         // console.log(item);
         console.log("clicked");
-        navigate(`/item-detail/${item._id}`, {state: item})
+        navigate(`/service-detail/${service._id}`, {state: service})
     }
 
     const truncateDescription = ( description, maxLength) => {
@@ -28,21 +28,21 @@ const SearchItem = ({ item }) => {
     return (
         <div className="searchItem">
             <img
-                src={item.image[0]}
+                src={service.pic}
                 alt=""
                 className="siImg"
             />
             <div className="siDesc">
-                <h1 className="siTitle">{item.name}</h1>
-                <span className="siDistance">{item.life} yrs old</span>
-                <span className="siTaxiOp">In best Condition</span>
+                <h1 className="siTitle">{service.name}</h1>
+                <span className="siDistance">{service.age} yrs old</span>
+                <span className="siTaxiOp">{service.city}</span>
                 <span className="siSubtitle">
-                    {truncateDescription(item.description, 100)}
+                    {truncateDescription(service.bio, 100)}
                 </span>
 
 
                 <span className="siFeatures">
-                    {item.tags.map((tag, index) => (
+                    {service.specialty.map((tag, index) => (
                         <React.Fragment key={index}>
                             {index > 0 && ' • '}
                             {tag}
@@ -55,23 +55,24 @@ const SearchItem = ({ item }) => {
                 </span> */}
                 <span className="siCancelOp">Free cancellation </span>
                 <span className="siCancelOpSubtitle">
-                    Prices are per day!
+                    Prices are per visit!
                 </span>
             </div>
             <div className="siDetails">
                 <div className="siRating">
-                    <span>Excellent</span>
-                    <button>{item.rating}.0⋆</button>
+                <span style={{ opacity: "0" }}>{service.city}</span>
+
+                    <button>{"3"}⋆</button>
                 </div>
                 <div className="siDetailTexts">
-                    <span className="siPrice">₹{item.rentalPrice} </span>
+                    <span className="siPrice">₹{service.price} </span>
                     <span className="siTaxOp">Includes taxes and fees</span>
-                    <button className="siCheckButton" onClick={()=>handleItemsClick(item)}>See availability</button>
+                    <button className="siCheckButton" onClick={()=>handleItemsClick(service)}>See availability</button>
                 </div>
             </div>
         </div>
     );
 };
 
-export default SearchItem;
+export default ServiceBox;
 
