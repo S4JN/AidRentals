@@ -11,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import './addService.css'
 import { useUserContext } from '../../context/UserContext';
 import axios from 'axios';
-import "../AddForm/addForm.css"
 import { FallingLines, RotatingLines } from 'react-loader-spinner'
 import ImageResizer from 'react-image-file-resizer';
 import Map from '../Map/Map';
