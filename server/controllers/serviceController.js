@@ -4,11 +4,11 @@ const { Service } = require("../models/serviceSchema");
 const addService = async (req, res) => {
     try {
         const existing = await Service.findOne({ email: req.body.email });
-
+        //array
         let pic = req.body.pic;
 
-        if(pic){
-            const result = await cloudinary.uploader.upload(pic, {
+        if (pic[0]) {
+            const result = await cloudinary.uploader.upload(pic[0], {
                 folder: "photos"
             });
 
@@ -63,6 +63,7 @@ const getAllService = async (req, res) => {
         const totalPages = Math.ceil(totalItems / itemsPerPage);
 
         const services = await Service.find()
+            .sort({ createdAt: -1 })
             .skip((page - 1) * itemsPerPage)
             .limit(itemsPerPage);
 

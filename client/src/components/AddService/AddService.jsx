@@ -67,8 +67,8 @@ export default function AddService({ setShowServiceForm }) {
 
 
     const handleImageChange = async (files) => {
-        let resizedImages = "";
-
+        let resizedImages = [];
+            // console.log(files);
        
             try {
                 await ImageResizer.imageFileResizer(
@@ -79,10 +79,11 @@ export default function AddService({ setShowServiceForm }) {
                     70, // quality
                     0, // rotation
                     (uri) => {
-                        resizedImages=uri;
+                        resizedImages.push(uri);
                     },
                     'base64' // outputType
                 );
+                console.log(resizedImages);
             } catch (error) {
                 console.error('Error resizing image:', error);
             }
@@ -99,25 +100,25 @@ export default function AddService({ setShowServiceForm }) {
         e.preventDefault();
         console.log('Form Data:', formData);
 
-        // // try {
-        //     const config = {
-        //         headers: {
-        //             Authorization: `Bearer ${localStorage.getItem('token')}`,
-        //         },
-        //     };
-        //     setLoading(true);
-        //     const { data } = await axios.post(
-        //         'http://localhost:8000/api/v1/inventory/add',
-        //         formData,
-        //         config
-        //     );
-        //     console.log(data);
-        //     setLoading(false);
-        //     setShowServiceForm(false)
-        // // } catch (error) {
-        //     console.log(error);
-        //     setLoading(false);
-        // // }
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            };
+            setLoading(true);
+            const { data } = await axios.post(
+                'http://localhost:8000/api/v1/service',
+                formData,
+                config
+            );
+            console.log(data);
+            setLoading(false);
+            setShowServiceForm(false)
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
     };
 
     const nextStep = () => {
@@ -451,15 +452,8 @@ export default function AddService({ setShowServiceForm }) {
                                                     <input
                                                         type="file"
                                                         accept="image/*"
-                                                        onChange={(e) => handleImageChange(e.target.files)}
-                                                    />
-
-                                                    {/* <FileBase
-                          type="file"
-                          multiple={true}
-                          onDone={({ base64 }) => handleImageChange(base64)} // Pass an array of base64 strings
-                        /> */}
-
+                                                        onChange={(e) => handleImageChange(e.target.files[0])}
+                                                    />                   
                                                 </div>
                                             </div>
                                             <div>
