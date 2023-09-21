@@ -7,7 +7,7 @@ const addService = async (req, res) => {
         //array
         let pic = req.body.pic;
 
-        if(pic[0]){
+        if (pic[0]) {
             const result = await cloudinary.uploader.upload(pic[0], {
                 folder: "photos"
             });
@@ -63,6 +63,7 @@ const getAllService = async (req, res) => {
         const totalPages = Math.ceil(totalItems / itemsPerPage);
 
         const services = await Service.find()
+            .sort({ createdAt: -1 })
             .skip((page - 1) * itemsPerPage)
             .limit(itemsPerPage);
 

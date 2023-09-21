@@ -8,10 +8,9 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import './addService.css'
 import { useUserContext } from '../../context/UserContext';
 import axios from 'axios';
-import "../AddForm/addForm.css"
 import { FallingLines, RotatingLines } from 'react-loader-spinner'
 import ImageResizer from 'react-image-file-resizer';
 import Map from '../Map/Map';
@@ -217,7 +216,7 @@ export default function AddService({ setShowServiceForm }) {
 
                                             <div className='PriceandLife'>
                                                 <div>
-                                                    <label>Years of Experience</label>
+                                                    <label>Years of Experience:</label>
                                                     <br />
 
                                                     <input
@@ -232,7 +231,7 @@ export default function AddService({ setShowServiceForm }) {
                                                 </div>
                                                 
                                                 <div>
-                                                    <label>Price</label>
+                                                    <label>Price:</label>
                                                     <br />
 
                                                     <input
@@ -274,7 +273,7 @@ export default function AddService({ setShowServiceForm }) {
                                                     />
                                                 </div>
                                                 <div>
-                                                    <label>Age</label>
+                                                    <label>Age:</label>
                                                     <br />
 
                                                     <input
@@ -288,7 +287,7 @@ export default function AddService({ setShowServiceForm }) {
                                                     />
                                                 </div>
                                                 <div>
-                                                    <label>email</label>
+                                                    <label>Email:</label>
                                                     <br />
 
                                                     <input
@@ -304,42 +303,46 @@ export default function AddService({ setShowServiceForm }) {
                                                 <br/>
                                                 
                                             </div>
-                                            <div>
-                                                    <label>Gender</label>
-                                                    <br />
-                                                    <label>
-                                                    <input
-                                                        type="radio"
-                                                        name="gender"
-                                                        value="male"
-                                                        onChange={handleInputChange}
-                                                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-                                                    />
-                                                    Male
-                                                    </label>
-                                                    <label>
-                                                    <input
-                                                        type="radio"
-                                                        name="gender"
-                                                        value="female"
-                                                        onChange={handleInputChange}
-                                                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-                                                    />
-                                                    Female
-                                                    </label>
-                                                    <label>
-                                                    <input
-                                                        type="radio"
-                                                        name="gender"
-                                                        value="others"
-                                                        onChange={handleInputChange}
-                                                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-                                                    />
-                                                    Others
-                                                    </label>
+                                            <div className='radio-big'>
+                                            <label>Gender:</label>
+                                            <br />
+                                            <div className="radio-cont">
+                                            <label>
+                                                <input
+                                                    type="radio"
+                                                    name="gender"
+                                                    value="male"
+                                                    onChange={handleInputChange}
+                                                />
+                                                <span className="radio-label">Male</span>
+                                            </label>
+                                        </div>
+                                        <div className="radio-cont">
+                                            <label>
+                                                <input
+                                                    type="radio"
+                                                    name="gender"
+                                                    value="female"
+                                                    onChange={handleInputChange}
+                                                />
+                                                <span className="radio-label">Female</span>
+                                            </label>
+                                        </div>
+                                        <div className="radio-cont">
+                                            <label>
+                                                <input
+                                                    type="radio"
+                                                    name="gender"
+                                                    value="others"
+                                                    onChange={handleInputChange}
+                                                />
+                                                <span className="radio-label">Others</span>
+                                            </label>
+                                        </div>
+
                                                 </div>
                                             <div>
-
+                                                <div className='btn-cont'>
                                                 <Button onClick={() => setShowServiceForm(false)} sx={{ mt: 3, ml: 1 }}>
                                                     Close
                                                 </Button>
@@ -351,6 +354,8 @@ export default function AddService({ setShowServiceForm }) {
                                                 >
                                                     Next
                                                 </Button>
+                                                </div>
+                                                
                                             </div>
                                         </>
                                     )}
@@ -440,22 +445,15 @@ export default function AddService({ setShowServiceForm }) {
                                     {activeStep === 3 && (
                                         <>
                                             {/* Step 4 */}
-                                            <div>
+                                            <div className='img-outer'>
+                                                <div className='img-cont'>
                                                 <label>Image:</label>
-                                                <div>
-                                                    {/* <input type="file" multiple onChange={(e) => handleImageChange(e.target.files)} /> */}
+                                                <br />
                                                     <input
                                                         type="file"
                                                         accept="image/*"
                                                         onChange={(e) => handleImageChange(e.target.files[0])}
-                                                    />
-
-                                                    {/* <FileBase
-                          type="file"
-                          multiple={true}
-                          onDone={({ base64 }) => handleImageChange(base64)} // Pass an array of base64 strings
-                        /> */}
-
+                                                    />                   
                                                 </div>
                                             </div>
                                             <div>

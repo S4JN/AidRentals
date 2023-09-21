@@ -65,6 +65,8 @@ const getAllInventory = async (req, res) => {
         const totalPages = Math.ceil(totalItems / itemsPerPage);
 
         const inventories = await Inventory.find()
+            .sort({ createdAt: -1 })
+
             .skip((page - 1) * itemsPerPage)
             .limit(itemsPerPage);
 
@@ -86,7 +88,7 @@ const getAllInventory = async (req, res) => {
 
 const getInventory = async (req, res) => {
     try {
-        const {name, city, tags} = req.query;
+        const { name, city, tags } = req.query;
 
         const query = {};
 
