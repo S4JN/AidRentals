@@ -114,7 +114,8 @@ export default function AddService({ setShowServiceForm }) {
             );
             console.log(data);
             setLoading(false);
-            setShowServiceForm(false)
+            setShowServiceForm(false);
+            window.location.reload(false);
         } catch (error) {
             console.log(error);
             setLoading(false);

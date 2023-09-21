@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import "./showDetails.css"
 import axios from "axios"
+import { Oval } from 'react-loader-spinner'
+
 
 const ShowDetails = ({ state, visibility, toggleShow }) => {
   const o = { owner: state.owner }
-  const [ownerData, setOwnerData] = useState(null); 
+  const [ownerData, setOwnerData] = useState(null);
+
 
   const find = async () => {
     try {
@@ -15,7 +18,7 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
       };
       const { data } = await axios.post('http://localhost:8000/api/v1/getowner', o, config);
       console.log(data);
-      setOwnerData(data); 
+      setOwnerData(data);
     } catch (error) {
       console.log(error);
     }
@@ -57,17 +60,35 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
 
           <div>
             <p>Owner Details are</p>
-            {ownerData && (
+
+
+            {ownerData ? (
               <div>
                 <p>{ownerData?.data.role}</p>
                 <p>Name: {ownerData.data.name}</p>
                 <p>Email: {ownerData?.data.email}</p>
                 <p>Email: {ownerData?.data.phoneNumber}</p>
-                
 
-                
+
+
               </div>
+            ) : (
+              <Oval
+                height={80}
+                width={80}
+                color="blue"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel='oval-loading'
+                secondaryColor="black"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
+
+              />
             )}
+
+
           </div>
 
           <button onClick={handleSubmit}>Send Mail</button>
