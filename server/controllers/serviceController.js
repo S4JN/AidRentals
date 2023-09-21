@@ -53,6 +53,39 @@ const addService = async (req, res) => {
     }
 };
 
+//PATCH REQUEST 
+const updateService = async (req, res) => {
+    try {
+        const serviceId = req.body._id; 
+        const updateFields = req.body.fields; 
+
+        const updatedService = await Service.findByIdAndUpdate(
+            serviceId,
+            updateFields,
+            { new: true }
+        );
+            //used {new: true} so mongo db will return the updated document
+        if (!updatedService) {
+            return res.status(404).send({
+                success: false,
+                message: "Service not found"
+            });
+        }
+
+        res.status(200).send({
+            success: true,
+            message: "Service updated successfully",
+            data: updatedService
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            success: false,
+            message: "Updating service failed"
+        });
+    }
+}
+
 const getAllService = async (req, res) => {
     try {
         // REQ PAGE FROM QUERY IF NOT PROVIDED THEN 1
@@ -119,4 +152,4 @@ const getService = async (req, res) => {
 };
 
 
-module.exports = { addService, getAllService, getService };
+module.exports = { addService, getAllService, getService, updateService };
