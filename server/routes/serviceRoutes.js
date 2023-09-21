@@ -7,7 +7,6 @@ const router = express.Router()
 
 router.post("/",authMiddleware, addService);
 router.get("/get-services",authMiddleware, getAllService)
-//s
 router.get("/get-service",authMiddleware, getService)
 router.patch("/update-service",authMiddleware, updateService)
 

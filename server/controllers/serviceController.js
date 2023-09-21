@@ -55,6 +55,7 @@ const addService = async (req, res) => {
 
 //PATCH REQUEST 
 const updateService = async (req, res) => {
+    //can be used for reviews
     try {
         const serviceId = req.body._id; 
         const updateFields = req.body.fields; 
