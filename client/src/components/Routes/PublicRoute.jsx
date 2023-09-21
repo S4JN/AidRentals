@@ -6,7 +6,6 @@ const PublicRoute = ({children}) => {
         return React.createElement(Navigate, { to: '/' });
     }  else{
         return React.createElement(React.Fragment, null, children);
-
     }
  
 }

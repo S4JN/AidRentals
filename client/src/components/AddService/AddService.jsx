@@ -310,7 +310,7 @@ export default function AddService({ setShowServiceForm }) {
                                                 <input
                                                     type="radio"
                                                     name="gender"
-                                                    value="Male"
+                                                    value="male"
                                                     onChange={handleInputChange}
                                                 />
                                                 <span className="radio-label">Male</span>
@@ -321,7 +321,7 @@ export default function AddService({ setShowServiceForm }) {
                                                 <input
                                                     type="radio"
                                                     name="gender"
-                                                    value="Female"
+                                                    value="female"
                                                     onChange={handleInputChange}
                                                 />
                                                 <span className="radio-label">Female</span>
@@ -332,7 +332,7 @@ export default function AddService({ setShowServiceForm }) {
                                                 <input
                                                     type="radio"
                                                     name="gender"
-                                                    value="Others"
+                                                    value="others"
                                                     onChange={handleInputChange}
                                                 />
                                                 <span className="radio-label">Others</span>
