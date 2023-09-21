@@ -20,7 +20,7 @@ const sendMail=async(req,res)=>{
           to: "20bcs060@ietdavv.edu.in",
           subject: "Mail check",
           text: "no reply",
-          html: req.body.data.name
+          html: "sraaas"
         });
         return info;
       } catch (error) {
