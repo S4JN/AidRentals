@@ -68,8 +68,8 @@ export default function AddService({ setShowServiceForm }) {
 
 
     const handleImageChange = async (files) => {
-        let resizedImages = "";
-
+        let resizedImages = [];
+            // console.log(files);
        
             try {
                 await ImageResizer.imageFileResizer(
@@ -80,10 +80,11 @@ export default function AddService({ setShowServiceForm }) {
                     70, // quality
                     0, // rotation
                     (uri) => {
-                        resizedImages=uri;
+                        resizedImages.push(uri);
                     },
                     'base64' // outputType
                 );
+                console.log(resizedImages);
             } catch (error) {
                 console.error('Error resizing image:', error);
             }
@@ -100,25 +101,25 @@ export default function AddService({ setShowServiceForm }) {
         e.preventDefault();
         console.log('Form Data:', formData);
 
-        // // try {
-        //     const config = {
-        //         headers: {
-        //             Authorization: `Bearer ${localStorage.getItem('token')}`,
-        //         },
-        //     };
-        //     setLoading(true);
-        //     const { data } = await axios.post(
-        //         'http://localhost:8000/api/v1/inventory/add',
-        //         formData,
-        //         config
-        //     );
-        //     console.log(data);
-        //     setLoading(false);
-        //     setShowServiceForm(false)
-        // // } catch (error) {
-        //     console.log(error);
-        //     setLoading(false);
-        // // }
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            };
+            setLoading(true);
+            const { data } = await axios.post(
+                'http://localhost:8000/api/v1/service',
+                formData,
+                config
+            );
+            console.log(data);
+            setLoading(false);
+            setShowServiceForm(false)
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
     };
 
     const nextStep = () => {
@@ -310,7 +311,7 @@ export default function AddService({ setShowServiceForm }) {
                                                     <input
                                                         type="radio"
                                                         name="gender"
-                                                        value="Male"
+                                                        value="male"
                                                         onChange={handleInputChange}
                                                         style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
                                                     />
@@ -320,7 +321,7 @@ export default function AddService({ setShowServiceForm }) {
                                                     <input
                                                         type="radio"
                                                         name="gender"
-                                                        value="Female"
+                                                        value="female"
                                                         onChange={handleInputChange}
                                                         style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
                                                     />
@@ -330,7 +331,7 @@ export default function AddService({ setShowServiceForm }) {
                                                     <input
                                                         type="radio"
                                                         name="gender"
-                                                        value="Others"
+                                                        value="others"
                                                         onChange={handleInputChange}
                                                         style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
                                                     />
@@ -446,7 +447,7 @@ export default function AddService({ setShowServiceForm }) {
                                                     <input
                                                         type="file"
                                                         accept="image/*"
-                                                        onChange={(e) => handleImageChange(e.target.files)}
+                                                        onChange={(e) => handleImageChange(e.target.files[0])}
                                                     />
 
                                                     {/* <FileBase
