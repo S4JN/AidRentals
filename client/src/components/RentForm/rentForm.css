@@ -53,14 +53,9 @@
   }
 
   .closeeee {
-    top: 5px;
-    right: 10px;
-    font-size: 20px !important;
-    height: 30px;
-    width: 40px;
-    cursor: pointer;
-    color:black !important;
+    margin-right: 50px;
     background-color: transparent !important;
+    color: black !important;
   }
   
   

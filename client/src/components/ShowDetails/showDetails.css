@@ -25,3 +25,8 @@
   button:hover {
     background-color:#0071c2;
   }
+
+  .owner-details{
+    font-size: 1.5rem;
+    margin: 0;
+  }

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import "./showDetails.css"
 import axios from "axios"
 
-const ShowDetails = ({ state, visibility, toggleShow }) => {
+import {Oval} from "react-loader-spinner"
+
+const ShowDetails = ({ state, visibility, setVisibility}) => {
   const o = { owner: state.owner }
   const [ownerData, setOwnerData] = useState(null); 
 
@@ -40,7 +42,7 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
         config
       );
       console.log(data);
-      toggleShow();
+      setVisibility(false);
       alert("mail sent")
 
     } catch (error) {
@@ -50,26 +52,50 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
 
   }
 
+  const handleClose = ()=>{
+    setVisibility(false);
+
+  }
+
   return (
     <div className='overlay'>
       {visibility && (
-        <div style={{ backgroundColor: "white", height: "400px", width: "400px" }}>
+        <div style={{ backgroundColor: "white", height: "400px", width: "400px", padding: "50px" }}>
 
           <div>
-            <p>Owner Details are</p>
-            {ownerData && (
+            <h2 className='owner-details'>Owner Details are</h2>
+            <h4>Contact him/her directly!</h4>
+
+            {ownerData ? (
               <div>
                 <p>{ownerData?.data.role}</p>
                 <p>Name: {ownerData.data.name}</p>
                 <p>Email: {ownerData?.data.email}</p>
                 <p>Email: {ownerData?.data.phoneNumber}</p>
-                
 
-                
+
+
               </div>
-            )}
-          </div>
+            ) : (
+              <Oval
+                height={80}
+                width={80}
+                color="blue"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel='oval-loading'
+                secondaryColor="black"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
 
+              />
+            )}
+
+
+          </div>
+          <button onClick={()=> setVisibility(false)}>Close</button>
+          
           <button onClick={handleSubmit}>Send Mail</button>
 
         </div>
