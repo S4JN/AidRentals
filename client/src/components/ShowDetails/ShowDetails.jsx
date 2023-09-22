@@ -56,21 +56,16 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
   return (
     <div className='overlay'>
       {visibility && (
-        <div style={{ backgroundColor: "white", height: "400px", width: "400px" }}>
+        <div className='second-detail' style={{ backgroundColor: "white", height: "400px", width: "400px" }}>
 
-          <div>
-            <p>Owner Details are</p>
-
-
+          <div className='second-content'>
+            <h4>Owner Details are :</h4>
             {ownerData ? (
-              <div>
-                <p>{ownerData?.data.role}</p>
+              <div className='send-mail'>
+                <h2>{ownerData?.data.role}</h2>
                 <p>Name: {ownerData.data.name}</p>
                 <p>Email: {ownerData?.data.email}</p>
-                <p>Email: {ownerData?.data.phoneNumber}</p>
-
-
-
+                <p>Phone No.: {ownerData?.data.phoneNumber}</p>
               </div>
             ) : (
               <Oval
@@ -90,8 +85,12 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
 
 
           </div>
-
+          <div className='btn'>
           <button onClick={handleSubmit}>Send Mail</button>
+          <button onClick={toggleShow}>Close</button>
+          
+          </div>
+            
 
         </div>
       )}
