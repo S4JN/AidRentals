@@ -29,7 +29,7 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
   }, [])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     try {
       const config = {
@@ -44,6 +44,7 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
       );
       console.log(data);
       toggleShow();
+      console.log("mail sent");
       alert("mail sent")
 
     } catch (error) {
@@ -85,8 +86,8 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
 
 
           </div>
-          <div className='btn'>
-          <button onClick={handleSubmit}>Send Mail</button>
+          <div className='showdet-btn'>
+          <button onClick={()=>{toggleShow(),handleSubmit()}}>Send Mail</button>
           <button onClick={toggleShow}>Close</button>
           
           </div>

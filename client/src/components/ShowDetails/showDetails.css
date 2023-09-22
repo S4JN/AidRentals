@@ -11,7 +11,7 @@
     align-items: center;
     z-index: 1000; 
   }
-  button {
+  .showdet-btn button {
     background-color: #0056b3;
     color: #fff;
     text-align: center;
@@ -23,7 +23,7 @@
     margin:30px 20px;
   }
   
-  button:hover {
+  .showdet-btn button:hover {
     background-color:#0071c2;
   }
   .second-detail {
@@ -47,7 +47,7 @@
     padding: 5px 0; 
   }
   
- .btn {
+ .showdet-btn {
   display: flex;
   justify-content: center;
  }
