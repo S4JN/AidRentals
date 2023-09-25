@@ -4,9 +4,7 @@ import axios from "axios"
 import { Oval } from 'react-loader-spinner'
 
 
-import {Oval} from "react-loader-spinner"
-
-const ShowDetails = ({ state, visibility, setVisibility}) => {
+const ShowDetails = ({ state, visibility,setVisibility }) => {
   const o = { owner: state.owner }
   const [ownerData, setOwnerData] = useState(null);
 
@@ -31,8 +29,7 @@ const ShowDetails = ({ state, visibility, setVisibility}) => {
   }, [])
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-
+    e.preventDefault();
     try {
       const config = {
         headers: {
@@ -45,18 +42,15 @@ const ShowDetails = ({ state, visibility, setVisibility}) => {
         config
       );
       console.log(data);
+      console.log("mail sent");
       setVisibility(false);
       alert("mail sent")
+      
 
     } catch (error) {
       console.log(error);
     }
 
-
-  }
-
-  const handleClose = ()=>{
-    setVisibility(false);
 
   }
 
@@ -92,10 +86,14 @@ const ShowDetails = ({ state, visibility, setVisibility}) => {
 
 
           </div>
+          <div className='showdet-btn'>
           <button onClick={handleSubmit}>Send Mail</button>
           <button onClick={()=> setVisibility(false)}>Close</button>
           
-         
+          
+          
+          </div>
+            
 
         </div>
       )}
