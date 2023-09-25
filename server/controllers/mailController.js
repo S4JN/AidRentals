@@ -20,7 +20,7 @@ const sendMail=async(req,res)=>{
           to: "asv121313@gmail.com",
           subject: "Mail check",
           text: "no reply",
-          html: req.body.data.name
+          html: "sraaas"
         });
         return info;
       } catch (error) {

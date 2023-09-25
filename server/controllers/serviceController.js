@@ -1,5 +1,6 @@
 const cloudinary = require("../config/cloudinary");
 const { Service } = require("../models/serviceSchema");
+const validator = require('aadhaar-validator')
 
 const addService = async (req, res) => {
     try {
@@ -52,6 +53,40 @@ const addService = async (req, res) => {
         });
     }
 };
+
+//PATCH REQUEST 
+const updateService = async (req, res) => {
+    //can be used for reviews
+    try {
+        const serviceId = req.body._id;
+        const updateFields = req.body.fields;
+
+        const updatedService = await Service.findByIdAndUpdate(
+            serviceId,
+            updateFields,
+            { new: true }
+        );
+        //used {new: true} so mongo db will return the updated document
+        if (!updatedService) {
+            return res.status(404).send({
+                success: false,
+                message: "Service not found"
+            });
+        }
+
+        res.status(200).send({
+            success: true,
+            message: "Service updated successfully",
+            data: updatedService
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            success: false,
+            message: "Updating service failed"
+        });
+    }
+}
 
 const getAllService = async (req, res) => {
     try {
@@ -118,5 +153,46 @@ const getService = async (req, res) => {
     }
 };
 
+const verifyService = async (req, res) => {
+    try {
+        const { id, aadhar, phone } = req.body;
+        const service = await Service.findById(id);
 
-module.exports = { addService, getAllService, getService };
+        if (!service) {
+            return res.status(404).send({
+                success: false,
+                message: "Service not found",
+            });
+        }
+
+        const ans = validator.isValidNumber(aadhar);
+
+        if (ans) {
+            service.verified = true;
+            await service.save();
+        } else{
+            res.status(200).send({
+                success: false,
+                message: "adhar failure",
+                ans
+            });
+        }
+
+        res.status(200).send({
+            success: true,
+            message: "adhar success",
+            ans
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            success: false,
+            message: "Internal server error",
+            error: error.message
+        });
+    }
+}
+
+
+module.exports = { addService, getAllService, getService, updateService };

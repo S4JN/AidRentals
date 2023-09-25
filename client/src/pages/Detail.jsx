@@ -126,7 +126,7 @@ const Detail = () => {
             <ShowDetails
               state={state}
               visibility={visibility}
-              toggleShow={toggleShow}
+              setVisibility={setVisibility}
             />
           )}
           <span className="hotelDistance">

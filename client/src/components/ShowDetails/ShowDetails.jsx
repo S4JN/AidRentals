@@ -4,7 +4,9 @@ import axios from "axios"
 import { Oval } from 'react-loader-spinner'
 
 
-const ShowDetails = ({ state, visibility, toggleShow }) => {
+import {Oval} from "react-loader-spinner"
+
+const ShowDetails = ({ state, visibility, setVisibility}) => {
   const o = { owner: state.owner }
   const [ownerData, setOwnerData] = useState(null);
 
@@ -43,14 +45,18 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
         config
       );
       console.log(data);
-      toggleShow();
-      console.log("mail sent");
+      setVisibility(false);
       alert("mail sent")
 
     } catch (error) {
       console.log(error);
     }
 
+
+  }
+
+  const handleClose = ()=>{
+    setVisibility(false);
 
   }
 
@@ -86,12 +92,10 @@ const ShowDetails = ({ state, visibility, toggleShow }) => {
 
 
           </div>
-          <div className='showdet-btn'>
-          <button onClick={()=>{toggleShow(),handleSubmit()}}>Send Mail</button>
-          <button onClick={toggleShow}>Close</button>
+          <button onClick={handleSubmit}>Send Mail</button>
+          <button onClick={()=> setVisibility(false)}>Close</button>
           
-          </div>
-            
+         
 
         </div>
       )}

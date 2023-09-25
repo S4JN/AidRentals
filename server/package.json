@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aadhaar-validator": "^1.1.0",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.40.0",
     "cors": "^2.8.5",
