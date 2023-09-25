@@ -1,14 +1,15 @@
 const cloudinary = require("../config/cloudinary");
 const { Service } = require("../models/serviceSchema");
+const validator = require('aadhaar-validator')
 
 const addService = async (req, res) => {
     try {
         const existing = await Service.findOne({ email: req.body.email });
-
+        //array
         let pic = req.body.pic;
 
-        if(pic){
-            const result = await cloudinary.uploader.upload(pic, {
+        if (pic[0]) {
+            const result = await cloudinary.uploader.upload(pic[0], {
                 folder: "photos"
             });
 
@@ -53,6 +54,40 @@ const addService = async (req, res) => {
     }
 };
 
+//PATCH REQUEST 
+const updateService = async (req, res) => {
+    //can be used for reviews
+    try {
+        const serviceId = req.body._id;
+        const updateFields = req.body.fields;
+
+        const updatedService = await Service.findByIdAndUpdate(
+            serviceId,
+            updateFields,
+            { new: true }
+        );
+        //used {new: true} so mongo db will return the updated document
+        if (!updatedService) {
+            return res.status(404).send({
+                success: false,
+                message: "Service not found"
+            });
+        }
+
+        res.status(200).send({
+            success: true,
+            message: "Service updated successfully",
+            data: updatedService
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            success: false,
+            message: "Updating service failed"
+        });
+    }
+}
+
 const getAllService = async (req, res) => {
     try {
         // REQ PAGE FROM QUERY IF NOT PROVIDED THEN 1
@@ -63,6 +98,7 @@ const getAllService = async (req, res) => {
         const totalPages = Math.ceil(totalItems / itemsPerPage);
 
         const services = await Service.find()
+            .sort({ createdAt: -1 })
             .skip((page - 1) * itemsPerPage)
             .limit(itemsPerPage);
 
@@ -117,5 +153,40 @@ const getService = async (req, res) => {
     }
 };
 
+const verifyService = async (req, res) => {
+    try {
+        const { id, aadhar, phone } = req.body;
+        const service = await Service.findById(id);
 
-module.exports = { addService, getAllService, getService };
+        if (!service) {
+            return res.status(404).send({
+                success: false,
+                message: "Service not found",
+            });
+        }
+
+        const ans = validator.isValidNumber(aadhar);
+
+        if (ans) {
+            service.verified = true;
+            await service.save();
+        } 
+        
+        res.status(200).send({
+            success: true,
+            message: "adhar success",
+            service
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            success: false,
+            message: "Internal server error",
+            error: error.message
+        });
+    }
+}
+
+
+module.exports = { addService, getAllService, getService, updateService,verifyService };

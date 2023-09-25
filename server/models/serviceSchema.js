@@ -54,6 +54,10 @@ const serviceSchema = new mongoose.Schema({
     }],
     workingHours: {             
         type: String
+    },
+    verified: {
+        type: Boolean,
+        default: false
     }
 },
     { timestamps: true }
