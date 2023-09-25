@@ -170,18 +170,12 @@ const verifyService = async (req, res) => {
         if (ans) {
             service.verified = true;
             await service.save();
-        } else{
-            res.status(200).send({
-                success: false,
-                message: "adhar failure",
-                ans
-            });
-        }
-
+        } 
+        
         res.status(200).send({
             success: true,
             message: "adhar success",
-            ans
+            service
         });
 
     } catch (error) {
@@ -195,4 +189,4 @@ const verifyService = async (req, res) => {
 }
 
 
-module.exports = { addService, getAllService, getService, updateService };
+module.exports = { addService, getAllService, getService, updateService,verifyService };
