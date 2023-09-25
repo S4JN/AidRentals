@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import "./showDetails.css"
 import axios from "axios"
+import { Oval } from 'react-loader-spinner'
 
-import {Oval} from "react-loader-spinner"
 
-const ShowDetails = ({ state, visibility, setVisibility}) => {
+const ShowDetails = ({ state, visibility,setVisibility }) => {
   const o = { owner: state.owner }
-  const [ownerData, setOwnerData] = useState(null); 
+  const [ownerData, setOwnerData] = useState(null);
+
 
   const find = async () => {
     try {
@@ -17,7 +18,7 @@ const ShowDetails = ({ state, visibility, setVisibility}) => {
       };
       const { data } = await axios.post('http://localhost:8000/api/v1/getowner', o, config);
       console.log(data);
-      setOwnerData(data); 
+      setOwnerData(data);
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +30,6 @@ const ShowDetails = ({ state, visibility, setVisibility}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const config = {
         headers: {
@@ -42,8 +42,10 @@ const ShowDetails = ({ state, visibility, setVisibility}) => {
         config
       );
       console.log(data);
+      console.log("mail sent");
       setVisibility(false);
       alert("mail sent")
+      
 
     } catch (error) {
       console.log(error);
@@ -52,29 +54,19 @@ const ShowDetails = ({ state, visibility, setVisibility}) => {
 
   }
 
-  const handleClose = ()=>{
-    setVisibility(false);
-
-  }
-
   return (
     <div className='overlay'>
       {visibility && (
-        <div style={{ backgroundColor: "white", height: "400px", width: "400px", padding: "50px" }}>
+        <div className='second-detail' style={{ backgroundColor: "white", height: "400px", width: "400px" }}>
 
-          <div>
-            <h2 className='owner-details'>Owner Details are</h2>
-            <h4>Contact him/her directly!</h4>
-
+          <div className='second-content'>
+            <h4>Owner Details are :</h4>
             {ownerData ? (
-              <div>
-                <p>{ownerData?.data.role}</p>
+              <div className='send-mail'>
+                <h2>{ownerData?.data.role}</h2>
                 <p>Name: {ownerData.data.name}</p>
                 <p>Email: {ownerData?.data.email}</p>
-                <p>Email: {ownerData?.data.phoneNumber}</p>
-
-
-
+                <p>Phone No.: {ownerData?.data.phoneNumber}</p>
               </div>
             ) : (
               <Oval
@@ -94,9 +86,14 @@ const ShowDetails = ({ state, visibility, setVisibility}) => {
 
 
           </div>
+          <div className='showdet-btn'>
+          <button onClick={handleSubmit}>Send Mail</button>
           <button onClick={()=> setVisibility(false)}>Close</button>
           
-          <button onClick={handleSubmit}>Send Mail</button>
+          
+          
+          </div>
+            
 
         </div>
       )}

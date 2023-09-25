@@ -17,7 +17,7 @@ const sendMail=async(req,res)=>{
     try {
         const info = await transporter.sendMail({
           from: "sahayta@sr.edu.in",
-          to: "20bcs060@ietdavv.edu.in",
+          to: "asv121313@gmail.com",
           subject: "Mail check",
           text: "no reply",
           html: "sraaas"

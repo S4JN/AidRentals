@@ -13,7 +13,7 @@
   }
 
   .confirmation-form {
-    width: 300px;
+    width: 400px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f7f7f7;
@@ -34,6 +34,7 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    margin: 20px 20px;
   }
   
   .confirmation-form button:hover {
@@ -41,23 +42,30 @@
   }
   
   
-  .confirmation-list li {
-    text-align: left;
-    margin-bottom: 10px;
+  .confirmation-list  {
+     text-align: left; 
+    background-color: #f0f0f0; 
+    padding: 20px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    font-family: Arial, sans-serif; 
+    font-size: 15px;
+    width: 300px;
+    margin: 0 auto;
+    
   }
-  
+  .confirmation-list  p {
+    margin: 0;
+    padding: 5px 0; 
+  }
+.confirmation-key{
+  margin-right: 2px;
+  /* font-weight: 600; */
+}
+h1{
+  margin: 20px;
+}
 
-  .confirmation-key {
-    font-weight: bold;
-    margin-right: 5px;
-  }
-
-  .closeeee {
-    margin-right: 50px;
-    background-color: transparent !important;
-    color: black !important;
-  }
-  
   
   
 
