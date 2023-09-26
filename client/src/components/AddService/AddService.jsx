@@ -48,9 +48,8 @@ export default function AddService({ setShowServiceForm }) {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-
         // If the field name is "tags", split the comma-separated value into an array
-        if (name === "preferredAreas") {
+        if (name === "preferredAreas"||name==="specialty") {
             const tagsArray = value.split(",").map(tag => tag.trim());
             setFormData((prevData) => ({
                 ...prevData,

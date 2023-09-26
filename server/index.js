@@ -10,6 +10,7 @@ const mailRoutes=require("./routes/mailRoutes")
 const getOwnerRoutes=require("./routes/getOwnerRoutes");
 const serviceRoutes = require("./routes/serviceRoutes")
 // const filesRoutes=require('./routes/fileRoutes');
+const countRoutes=require('./routes/countRoutes');
 //dotenv config
 require("dotenv").config();
 
@@ -30,7 +31,7 @@ app.use("/api/v1/inventory",inventoryRoutes);
 app.use("/api/v1/sendMail",mailRoutes);
 app.use("/api/v1/getowner",getOwnerRoutes);
 app.use("/api/v1/service",serviceRoutes);
-
+app.use("/api/v1/count",countRoutes);
 //made using mvc pattern 
 
 const PORT = process.env.PORT || 8000;

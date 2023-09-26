@@ -51,6 +51,47 @@ const ServiceDetail = () => {
                   Excellent location – {state.city}
                 </span>
                 <br />
+                <span>
+                  {state.gender} - {state.age} yrs old
+                </span>
+                <br />
+                <h3 className="">
+                  Bio - {state.bio}
+                  <br />
+                  Years of Experience - {state.yoe} years
+                  <br />
+                  Working Hours - {state.workingHours} hrs /day
+                </h3>
+                <h4 className="h4chng">
+                Email - {state.email}
+                <br />
+                Contact No. - {state.phoneNumber}
+                <br />
+                <span className="dispArea">
+                Preferred Areas to work -  
+                <div className="hotelAddress">
+                {state.preferredAreas.map((tag) => {
+                    return (
+                      <span
+                        key={tag}
+                        style={{
+                          backgroundColor: " #30D5C8",
+                          fontSize: "0.8rem",
+                          padding: "5px",
+                          color: "#003580",
+                          borderRadius: "9px",
+                        }}
+                      >
+                        {tag}{" "}
+                      </span>
+                    );
+                  })}
+                  </div>
+                </span>
+                 
+                
+                </h4>
+                <br />
                 <span className="hotelPriceHighlight">
                   Rent these items at the cheapest price.
                 </span>

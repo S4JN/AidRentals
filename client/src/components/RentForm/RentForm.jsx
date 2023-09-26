@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
 import "./rentForm.css" 
-
+import axios from 'axios'
 const RentForm = ({toggleForm,state,toggleShow}) => {
-    
+
     const uploader=state.owner;
+
+    const hitsOnRent=async()=>{
+        axios.get('http://localhost:8000/api/v1/count')
+        .then(response => {
+            console.log(response.data.count);
+        })
+        .catch(error=> {
+          console.error(error);
+        });
+    }
     
     
   return (
@@ -31,7 +41,7 @@ const RentForm = ({toggleForm,state,toggleShow}) => {
                 
                     </div>
                     <div className='btn'></div>
-                    <button type="submit" onClick={()=>{toggleShow();toggleForm();}} >Submit</button>
+                    <button type="submit" onClick={()=>{hitsOnRent(); toggleShow();toggleForm();}} >Submit</button>
                     <button onClick={toggleForm} >Close</button>
                     
             </div>
