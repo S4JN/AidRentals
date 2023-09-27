@@ -4,7 +4,6 @@ const authMiddleware = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
-router.get("/",countController);
-
+router.get("/",authMiddleware,countController);
 
 module.exports = router;

@@ -5,14 +5,26 @@ const RentForm = ({toggleForm,state,toggleShow}) => {
 
     const uploader=state.owner;
 
+    
+
     const hitsOnRent=async()=>{
-        axios.get('http://localhost:8000/api/v1/count')
-        .then(response => {
+        try {
+            const config = {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+            };
+            // setLoading(true);
+            const response  = await axios.get(
+              'http://localhost:8000/api/v1/count',
+              config
+            );
             console.log(response.data.count);
-        })
-        .catch(error=> {
-          console.error(error);
-        });
+            // setLoading(false);
+          } catch (error) {
+            console.log(error);
+            // setLoading(false);
+          }
     }
     
     
