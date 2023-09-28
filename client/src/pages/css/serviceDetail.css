@@ -39,7 +39,7 @@
 .hotelServiceDetails {
   flex: 2;
   max-width: 66%;
-  padding-top: 50px;
+  /* padding-left:200px ; */
 }
 
 .hotelTitle {
@@ -61,7 +61,7 @@
   font-weight: 500;
 }
 
-.hotelPriceHighlight {
+.hotelPriceHighlight h3{
   color: #008009;
   font-weight: 500;
 }
@@ -84,4 +84,54 @@
 }
 .dispArea{
   display: flex;
+}
+.review{
+  /* height: 400px;
+  width: 100%;
+  background-color: #008009; */
+  
+}
+.review {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  /* margin-top: 20px; */
+}
+
+.comment {
+  margin-bottom: 30px;
+}
+
+.seeMoreButton {
+  background-color: transparent;
+  color: #0071c2;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.seeMoreButton:hover {
+  /* background-color: #005905; */
+}
+.diba{
+  display: flex;
+  justify-content: space-between;
+}
+.reviewshead{
+  font-weight: bold;
+  font-size: 2rem
+}
+
+.addReview{
+  background: none;
+  border: 0;
+}
+
+.user{
+  font-weight:bolder;
 }
