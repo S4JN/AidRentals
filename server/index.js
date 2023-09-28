@@ -31,7 +31,8 @@ app.use("/api/v1/inventory",inventoryRoutes);
 app.use("/api/v1/sendMail",mailRoutes);
 app.use("/api/v1/getowner",getOwnerRoutes);
 app.use("/api/v1/service",serviceRoutes);
-app.use("/api/v1/count",countRoutes);
+
+app.use("/api/admin/count",countRoutes);
 //made using mvc pattern 
 
 const PORT = process.env.PORT || 8000;

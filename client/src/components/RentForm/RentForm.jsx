@@ -16,7 +16,7 @@ const RentForm = ({toggleForm,state,toggleShow}) => {
             };
             // setLoading(true);
             const response  = await axios.get(
-              'http://localhost:8000/api/v1/count',
+              'http://localhost:8000/api/admin/count',
               config
             );
             console.log(response.data.count);
