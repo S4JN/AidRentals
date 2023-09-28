@@ -2,23 +2,23 @@ const mongoose = require("mongoose");
 
 
 const serviceSchema = new mongoose.Schema({
-    name: {                         
+    name: {                        ////// 
         type: String,
         required: true,
     },
-    bio: {             
+    bio: {             //////
         type: String
     },
-    gender: {          
+    gender: {     ///     
         type: String,
         enum: ["male", "female", "other"],
         required: true,
     },
-    pic: {
+    pic: {////
         type: String,
         default : "https://www.nicepng.com/png/full/933-9332131_profile-picture-default-png.png",
     },
-    age:{                  
+    age:{           ////       
         type: String,
         default: "23"
     },
@@ -26,33 +26,33 @@ const serviceSchema = new mongoose.Schema({
         type: String,
         default: "Free"
     },
-    phoneNumber: [{               
+    phoneNumber: [{       ///        
         type: String,
         required: true
     }],
-    yoe: {           
+    yoe: {           //////
         type: String,
         required: true
     },
-    specialty: [{         
+    specialty: [{         ///////
         type: String,
         required: true,
     }],
-    email: {             
+    email: {             ////////
         type: String,
         required: true
     },
-    city: {             
+    city: {             /////////
         type: String,
         required: true
     },
-    preferredAreas: [{            
+    preferredAreas: [{     ///////       
         type: String
     }],
     reviews: [{
         type: String
     }],
-    workingHours: {             
+    workingHours: {   //////            
         type: String
     },
     verified: {

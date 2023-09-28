@@ -71,4 +71,17 @@
   margin-top: 20px;
 }
 
-
+.hotelServiceDetailsTexts h3{
+  text-align: left;
+  color: black;
+  margin-bottom: 0;
+}
+.h4chng{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 4px 0;
+}
+.dispArea{
+  display: flex;
+}

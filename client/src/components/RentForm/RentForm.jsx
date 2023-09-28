@@ -1,9 +1,31 @@
 import React, { useState } from 'react'
 import "./rentForm.css" 
-
+import axios from 'axios'
 const RentForm = ({toggleForm,state,toggleShow}) => {
-    
+
     const uploader=state.owner;
+
+    
+
+    const hitsOnRent=async()=>{
+        try {
+            const config = {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+            };
+            // setLoading(true);
+            const response  = await axios.get(
+              'http://localhost:8000/api/v1/count',
+              config
+            );
+            console.log(response.data.count);
+            // setLoading(false);
+          } catch (error) {
+            console.log(error);
+            // setLoading(false);
+          }
+    }
     
     
   return (
@@ -31,7 +53,7 @@ const RentForm = ({toggleForm,state,toggleShow}) => {
                 
                     </div>
                     <div className='btn'></div>
-                    <button type="submit" onClick={()=>{toggleShow();toggleForm();}} >Submit</button>
+                    <button type="submit" onClick={()=>{hitsOnRent(); toggleShow();toggleForm();}} >Submit</button>
                     <button onClick={toggleForm} >Close</button>
                     
             </div>
