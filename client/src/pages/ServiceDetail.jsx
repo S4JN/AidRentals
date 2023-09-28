@@ -9,7 +9,23 @@ import { useLocation } from "react-router-dom";
 
 const ServiceDetail = () => {
   const { state } = useLocation();
+  const [showAllReviews, setShowAllReviews] = useState(false);
   console.log(state);
+  const reviews = [
+    'Great product, exceeded my expectations!',
+    'Excellent service and fast shipping!',
+    'Good but could be improved in some areas.',
+    'Satisfied with the purchase.',
+    'Outstanding quality!',
+    'Not what I expected, but it works.',
+    'Decent value for the price.',
+    'Impressive design and functionality.',
+    'Good, but had some minor issues.',
+    'Overall happy with the product.'
+  ];
+  const displayedReviews = showAllReviews ? reviews : reviews.slice(0, 3);
+
+
 
   return (
     <div>
@@ -55,51 +71,76 @@ const ServiceDetail = () => {
                   {state.gender} - {state.age} yrs old
                 </span>
                 <br />
-                <h3 className="">
-                  Bio - {state.bio}
-                  <br />
-                  Years of Experience - {state.yoe} years
-                  <br />
-                  Working Hours - {state.workingHours} hrs /day
-                </h3>
-                <h4 className="h4chng">
-                Email - {state.email}
-                <br />
-                Contact No. - {state.phoneNumber}
-                <br />
-                <span className="dispArea">
-                Preferred Areas to work -  
-                <div className="hotelAddress">
-                {state.preferredAreas.map((tag) => {
-                    return (
-                      <span
-                        key={tag}
-                        style={{
-                          backgroundColor: " #30D5C8",
-                          fontSize: "0.8rem",
-                          padding: "5px",
-                          color: "#003580",
-                          borderRadius: "9px",
-                        }}
-                      >
-                        {tag}{" "}
-                      </span>
-                    );
-                  })}
-                  </div>
-                </span>
-                 
-                
-                </h4>
-                <br />
                 <span className="hotelPriceHighlight">
-                  Rent these items at the cheapest price.
+                  Bio - {state.bio}
                 </span>
+                <br />
+                <span>
+                  Years of Experience - {state.yoe} years
+                </span>
+                <br />
+
+                <span>
+
+                  Working Hours - {state.workingHours} hrs /day
+                </span>
+                {/* <h4 className="h4chng">
+                  Email - {state.email}
+                  <br />
+                  Contact No. - {state.phoneNumber}
+                  <br />
+                  <span className="dispArea">
+                    Preferred Areas to work -
+                    <div className="hotelAddress">
+                      {state.preferredAreas.map((tag) => {
+                        return (
+                          <span
+                            key={tag}
+                            style={{
+                              backgroundColor: " #30D5C8",
+                              fontSize: "0.8rem",
+                              padding: "5px",
+                              color: "#003580",
+                              borderRadius: "9px",
+                            }}
+                          >
+                            {tag}{" "}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </span>
+
+
+                </h4> */}
+                <br />
               </div>
             </div>
           </div>
+
+          <div className="diba">
+            <span className="reviewshead">Reviews</span>
+            <button className="addReview">+ Add Review</button>
+          </div>
+
           <div className="review">
-                  Rivews
+            <div className="reviewContainer">
+              {displayedReviews.map((comment, index) => (
+                <div key={index} className="comment">
+                  <span className="user">Anonymous User:</span>
+                  <br />
+                  <span>
+                    {comment}
+                  </span>
+
+                </div>
+              ))}
+            </div>
+            {!showAllReviews && reviews.length > 3 &&
+              <button className="seeMoreButton" onClick={() => setShowAllReviews(true)}>
+                See More
+              </button>
+            }
           </div>
 
         </div>
