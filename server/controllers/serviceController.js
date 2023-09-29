@@ -56,17 +56,17 @@ const addService = async (req, res) => {
 
 //PATCH REQUEST 
 const updateService = async (req, res) => {
-    //can be used for reviews
     try {
         const serviceId = req.body._id;
         const updateFields = req.body.fields;
+        const reviewToAdd = req.body.review; 
 
         const updatedService = await Service.findByIdAndUpdate(
             serviceId,
-            updateFields,
+            { $push: { reviews: reviewToAdd }, ...updateFields },
             { new: true }
         );
-        //used {new: true} so mongo db will return the updated document
+
         if (!updatedService) {
             return res.status(404).send({
                 success: false,
@@ -87,6 +87,9 @@ const updateService = async (req, res) => {
         });
     }
 }
+
+
+
 
 const getAllService = async (req, res) => {
     try {

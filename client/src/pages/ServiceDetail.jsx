@@ -129,18 +129,33 @@ const ServiceDetail = () => {
                 <div key={index} className="comment">
                   <span className="user">Anonymous User:</span>
                   <br />
-                  <span>
-                    {comment}
-                  </span>
-
+                  <span>{comment}</span>
                 </div>
               ))}
             </div>
-            {!showAllReviews && reviews.length > 3 &&
-              <button className="seeMoreButton" onClick={() => setShowAllReviews(true)}>
-                See More
-              </button>
-            }
+            {reviews.length > 3 && (
+              <div>
+                {!showAllReviews ? (
+                  <button
+                    className="seeMoreButton"
+                    onClick={() => setShowAllReviews(true)}
+                  >
+                    See More
+                  </button>
+                ) : (
+                  <button
+                    className="seeMoreButton"
+                    onClick={() =>{
+                      setShowAllReviews(false)
+                      window.scrollTo({ top: 500, behavior: 'smooth' });
+
+                    }}
+                  >
+                    See Less
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
         </div>
