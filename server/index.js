@@ -11,6 +11,7 @@ const getOwnerRoutes=require("./routes/getOwnerRoutes");
 const serviceRoutes = require("./routes/serviceRoutes")
 // const filesRoutes=require('./routes/fileRoutes');
 const countRoutes=require('./routes/countRoutes');
+const reviewRoutes=require('./routes/reviewRoutes');
 //dotenv config
 require("dotenv").config();
 
@@ -23,14 +24,13 @@ app.use(express.urlencoded({limit: '25mb', extended: true}));
 app.use(cors());
 app.use(morgan("dev"));
 
-
-
 app.use("/api/v1/test",testRoutes);
 app.use("/api/v1/auth",authRoutes);
 app.use("/api/v1/inventory",inventoryRoutes);
 app.use("/api/v1/sendMail",mailRoutes);
 app.use("/api/v1/getowner",getOwnerRoutes);
 app.use("/api/v1/service",serviceRoutes);
+app.use("/api/v1/review",reviewRoutes);
 
 app.use("/api/admin/count",countRoutes);
 //made using mvc pattern 

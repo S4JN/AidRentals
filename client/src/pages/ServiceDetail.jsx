@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Mail from "../components/MailList/Mail";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import axios from 'axios'
 import "./css/serviceDetail.css"
 
 import { useLocation } from "react-router-dom";
@@ -11,17 +12,42 @@ const ServiceDetail = () => {
   const { state } = useLocation();
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [reviewForm,setReviewForm]=useState(false);
+  const [review,setReview]=useState({email:state.email,data:""});
   console.log(state);
   const reviews = [
     "poty",
     ...state.reviews
   ];
-
+  
   // const reviews=state.reviews;
-
+  const submitReview=async(e)=>{
+    e.preventDefault();
+    console.log('Review:', review);
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            };
+            const { data } = await axios.post(
+                'http://localhost:8000/api/v1/review',
+                review,
+                config
+            );
+            console.log(data.success);
+            // window.location.reload(false);
+        } catch (error) {
+            console.log(error);
+        }
+  }
   console.log(state);
   const displayedReviews = showAllReviews ? reviews : reviews.slice(0, 3);
-
+  
+  const handleInputChange=(e)=>{
+    e.preventDefault();
+    const { name, value } = e.target;
+    setReview({email:state.email,data:value});
+  }
 
 
   return (
@@ -31,7 +57,7 @@ const ServiceDetail = () => {
       
       {reviewForm &&
       <div className="overlay" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <form >
+                  <form onSubmit={submitReview} onChange={handleInputChange}>
                     <div>
                     <label htmlFor="">Enter your Review</label>
                     <br />
@@ -41,8 +67,7 @@ const ServiceDetail = () => {
                     style={{ width: '300%', margin:'auto',padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
                     />
                     </div>
-                    
-                    
+                    <button type="submit">Send</button>
                   </form>
         </div>
         }
