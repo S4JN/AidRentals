@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 const ServiceDetail = () => {
   const { state } = useLocation();
   const [showAllReviews, setShowAllReviews] = useState(false);
+  const [reviewForm,setReviewForm]=useState(false);
   console.log(state);
   const reviews = [
     'Great product, exceeded my expectations!',
@@ -31,7 +32,27 @@ const ServiceDetail = () => {
     <div>
       <Navbar />
       <Header type={"list"} />
+      
+      {reviewForm &&
+      <div className="overlay" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <form >
+                    <div>
+                    <label htmlFor="">Enter your Review</label>
+                    <br />
+                    <textarea
+                    name="review"
+                    required
+                    style={{ width: '300%', margin:'auto',padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+                    />
+                    </div>
+                    
+                    
+                  </form>
+        </div>
+        }
+     
       <div className="hotelContainer">
+      
         <div className="hotelWrapper">
           <div className="hotelImages">
             <div className="hotelImgWrapper">
@@ -113,6 +134,7 @@ const ServiceDetail = () => {
 
 
                 </h4> */}
+                
                 <br />
               </div>
             </div>
@@ -120,7 +142,7 @@ const ServiceDetail = () => {
 
           <div className="diba">
             <span className="reviewshead">Reviews</span>
-            <button className="addReview">+ Add Review</button>
+            <button className="addReview" onClick={()=>{setReviewForm(true)}}>+ Add Review</button>
           </div>
 
           <div className="review">
