@@ -13,17 +13,13 @@ const ServiceDetail = () => {
   const [reviewForm,setReviewForm]=useState(false);
   console.log(state);
   const reviews = [
-    'Great product, exceeded my expectations!',
-    'Excellent service and fast shipping!',
-    'Good but could be improved in some areas.',
-    'Satisfied with the purchase.',
-    'Outstanding quality!',
-    'Not what I expected, but it works.',
-    'Decent value for the price.',
-    'Impressive design and functionality.',
-    'Good, but had some minor issues.',
-    'Overall happy with the product.'
+    "poty",
+    ...state.reviews
   ];
+
+  // const reviews=state.reviews;
+
+  console.log(state);
   const displayedReviews = showAllReviews ? reviews : reviews.slice(0, 3);
 
 
@@ -151,18 +147,33 @@ const ServiceDetail = () => {
                 <div key={index} className="comment">
                   <span className="user">Anonymous User:</span>
                   <br />
-                  <span>
-                    {comment}
-                  </span>
-
+                  <span>{comment}</span>
                 </div>
               ))}
             </div>
-            {!showAllReviews && reviews.length > 3 &&
-              <button className="seeMoreButton" onClick={() => setShowAllReviews(true)}>
-                See More
-              </button>
-            }
+            {reviews.length > 3 && (
+              <div>
+                {!showAllReviews ? (
+                  <button
+                    className="seeMoreButton"
+                    onClick={() => setShowAllReviews(true)}
+                  >
+                    See More
+                  </button>
+                ) : (
+                  <button
+                    className="seeMoreButton"
+                    onClick={() =>{
+                      setShowAllReviews(false)
+                      window.scrollTo({ top: 500, behavior: 'smooth' });
+
+                    }}
+                  >
+                    See Less
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
         </div>
