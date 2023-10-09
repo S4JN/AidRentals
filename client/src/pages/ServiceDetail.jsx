@@ -12,10 +12,9 @@ const ServiceDetail = () => {
   const { state } = useLocation();
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [reviewForm,setReviewForm]=useState(false);
-  const [review,setReview]=useState({email:state.email,data:""});
+  const [review,setReview]=useState({id:state._id,data:""});
   console.log(state);
   const reviews = [
-    "poty",
     ...state.reviews
   ];
   
@@ -35,7 +34,7 @@ const ServiceDetail = () => {
                 config
             );
             console.log(data.success);
-            // window.location.reload(false);
+            window.location.reload(false);
         } catch (error) {
             console.log(error);
         }
@@ -46,7 +45,7 @@ const ServiceDetail = () => {
   const handleInputChange=(e)=>{
     e.preventDefault();
     const { name, value } = e.target;
-    setReview({email:state.email,data:value});
+    setReview({id:state._id,data:value});
   }
 
 
