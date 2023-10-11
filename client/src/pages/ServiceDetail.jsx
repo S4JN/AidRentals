@@ -55,18 +55,24 @@ const ServiceDetail = () => {
       <Header type={"list"} />
       
       {reviewForm &&
-      <div className="overlay" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <form onSubmit={submitReview} onChange={handleInputChange}>
+      <div className="overlay" >
+                  <form className="reviewForm" onSubmit={submitReview} onChange={handleInputChange}>
                     <div>
-                    <label htmlFor="">Enter your Review</label>
+                    <label htmlFor="" style={{display:" block",fontWeight: "bold",marginBottom: "10px"}}>Enter your Review</label>
                     <br />
                     <textarea
                     name="review"
                     required
-                    style={{ width: '300%', margin:'auto',padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+                    style={{ width: '100%',height:'80px', margin:'auto',padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
                     />
                     </div>
-                    <button type="submit">Send</button>
+                    <div className="btn-cont">
+                      <button onClick={()=>{setReviewForm(false);}} style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer',margin:'0px 5px'
+  }}>Close</button>
+                    <button type="submit" style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer'
+  }}>Send</button>
+                    </div>
+                    
                   </form>
         </div>
         }
