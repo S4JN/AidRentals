@@ -1,25 +1,50 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Mail from "../components/MailList/Mail";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import axios from 'axios'
 import "./css/serviceDetail.css"
-
 import { useLocation } from "react-router-dom";
 
 const ServiceDetail = () => {
   const { state } = useLocation();
   const [showAllReviews, setShowAllReviews] = useState(false);
-  console.log(state);
-  const reviews = [
-    "poty",
-    ...state.reviews
-  ];
+  const [reviewForm, setReviewForm] = useState(false);
+  const [review, setReview] = useState({ id: state._id, data: "" });
+  const [reviews, setReviews] = useState([...state.reviews]);
 
-  // const reviews=state.reviews;
+  const submitReview = async (e) => {
+    e.preventDefault();
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      };
+      const { data } = await axios.post(
+        'http://localhost:8000/api/v1/review',
+        review,
+        config
+      );
+      setReviews([...data.reviews]);
+      setReview({ id: state._id, data: "" }); // Clear the review input
+      setReviewForm(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  console.log(state);
   const displayedReviews = showAllReviews ? reviews : reviews.slice(0, 3);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setReview({ id: state._id, data: value });
+  }
+
+  useEffect(() => {
+    state.reviews=[...reviews];
+  }, [reviews]);
 
 
 
@@ -27,7 +52,32 @@ const ServiceDetail = () => {
     <div>
       <Navbar />
       <Header type={"list"} />
+      
+      {reviewForm &&
+      <div className="overlay" >
+                  <form className="reviewForm" onSubmit={submitReview} onChange={handleInputChange}>
+                    <div>
+                    <label htmlFor="" style={{display:" block",fontWeight: "bold",marginBottom: "10px"}}>Enter your Review</label>
+                    <br />
+                    <textarea
+                    name="review"
+                    required
+                    style={{ width: '100%',height:'80px', margin:'auto',padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+                    />
+                    </div>
+                    <div className="btn-cont">
+                      <button onClick={()=>{setReviewForm(false);}} style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer',margin:'0px 5px'
+  }}>Close</button>
+                    <button  type="submit" style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer'
+  }}>Send</button>
+                    </div>
+                    
+                  </form>
+        </div>
+        }
+     
       <div className="hotelContainer">
+      
         <div className="hotelWrapper">
           <div className="hotelImages">
             <div className="hotelImgWrapper">
@@ -109,6 +159,7 @@ const ServiceDetail = () => {
 
 
                 </h4> */}
+                
                 <br />
               </div>
             </div>
@@ -116,7 +167,7 @@ const ServiceDetail = () => {
 
           <div className="diba">
             <span className="reviewshead">Reviews</span>
-            <button className="addReview">+ Add Review</button>
+            <button className="addReview" onClick={()=>{setReviewForm(true)}}>+ Add Review</button>
           </div>
 
           <div className="review">
