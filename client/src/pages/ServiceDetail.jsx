@@ -1,54 +1,51 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Mail from "../components/MailList/Mail";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import axios from 'axios'
 import "./css/serviceDetail.css"
-
 import { useLocation } from "react-router-dom";
 
 const ServiceDetail = () => {
   const { state } = useLocation();
   const [showAllReviews, setShowAllReviews] = useState(false);
-  const [reviewForm,setReviewForm]=useState(false);
-  const [review,setReview]=useState({id:state._id,data:""});
-  
+  const [reviewForm, setReviewForm] = useState(false);
+  const [review, setReview] = useState({ id: state._id, data: "" });
+  const [reviews, setReviews] = useState([...state.reviews]);
 
-  let reviews = [
-    ...state.reviews
-  ];
-  
-  // const reviews=state.reviews;
-  const submitReview=async(e)=>{
+  const submitReview = async (e) => {
     e.preventDefault();
-    console.log('Review:', review);
-        try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            };
-            const { data } = await axios.post(
-                'http://localhost:8000/api/v1/review',
-                review,
-                config
-            );
-            console.log(data);
-            //data m sare reviews h
-            reviews=[...data.reviews]
-        } catch (error) {
-            console.log(error);
-        }
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      };
+      const { data } = await axios.post(
+        'http://localhost:8000/api/v1/review',
+        review,
+        config
+      );
+      setReviews([...data.reviews]);
+      setReview({ id: state._id, data: "" }); // Clear the review input
+      setReviewForm(false);
+    } catch (error) {
+      console.log(error);
+    }
   }
-  
+
   const displayedReviews = showAllReviews ? reviews : reviews.slice(0, 3);
-  
-  const handleInputChange=(e)=>{
-    e.preventDefault();
+
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setReview({id:state._id,data:value});
+    setReview({ id: state._id, data: value });
   }
+
+  useEffect(() => {
+    state.reviews=[...reviews];
+  }, [reviews]);
+
 
 
   return (
@@ -71,7 +68,7 @@ const ServiceDetail = () => {
                     <div className="btn-cont">
                       <button onClick={()=>{setReviewForm(false);}} style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer',margin:'0px 5px'
   }}>Close</button>
-                    <button type="submit" style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer'
+                    <button  type="submit" style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer'
   }}>Send</button>
                     </div>
                     
