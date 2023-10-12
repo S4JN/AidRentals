@@ -13,8 +13,9 @@ const ServiceDetail = () => {
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [reviewForm,setReviewForm]=useState(false);
   const [review,setReview]=useState({id:state._id,data:""});
-  console.log(state);
-  const reviews = [
+  
+
+  let reviews = [
     ...state.reviews
   ];
   
@@ -33,13 +34,14 @@ const ServiceDetail = () => {
                 review,
                 config
             );
-            console.log(data.success);
-            window.location.reload(false);
+            console.log(data);
+            //data m sare reviews h
+            reviews=[...data.reviews]
         } catch (error) {
             console.log(error);
         }
   }
-  console.log(state);
+  
   const displayedReviews = showAllReviews ? reviews : reviews.slice(0, 3);
   
   const handleInputChange=(e)=>{
