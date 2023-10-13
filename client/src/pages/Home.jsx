@@ -21,7 +21,7 @@ const Home = () => {
       <Container className='homeContainer'>
         <Featured />
         <Wrapper>
-          <Heading variant="h2">We have various categories</Heading>
+          <Heading variant="h2">We are in various cities</Heading>
           <Itemlist />
           <Heading variant="h2">Browse the inventory</Heading>
           <FeaturedList />

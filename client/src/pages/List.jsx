@@ -16,28 +16,15 @@ import axios from 'axios';
 
 
 const List = () => {
-  const location = useLocation();
+  const { state } = useLocation();
+  // console.log(state,"search");
   const navigate = useNavigate();
   // console.log(location.state?.searchItem);
 
-  const [searchItem, setSearchItem] = useState(location.state?.searchItem);
-  const [date, setDate] = useState(
-    location.state?.date || [
-      {
-        startDate: new Date(),
-        endDate: new Date(),
-        key: 'selection',
-      },
-    ]
-  );
-  const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state?.options || {
-    adult: '',
-    children: '',
-    room: '',
-  });
+  const [searchItem, setSearchItem] = useState(state?.searchItem);
+  console.log(searchItem);
 
-  //
+
   const [inventories, setInventories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -54,6 +41,7 @@ const List = () => {
       setInventories(response.data.inventories);
       setCurrentPage(response.data.currentPage);
       setTotalPages(response.data.totalPages);
+
     } catch (error) {
       console.error('Error fetching inventories:', error);
     }
@@ -63,7 +51,6 @@ const List = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const pageParam = urlParams.get('page');
     const page = pageParam ? parseInt(pageParam) : 1;
-
     getInventory(page);
     setCurrentPage(page);
   }, []);
@@ -75,6 +62,35 @@ const List = () => {
     window.history.pushState({ page }, '', url);
     getInventory(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+
+  const [searchName, setSearchName] = useState('');
+  const [searchCity, setSearchCity] = useState('');
+
+  const handleSearch = async () => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+
+      const {data} = await axios.get(`http://localhost:8000/api/v1/inventory/get-inventory`, {
+        params: {
+          name: searchName,
+          city: searchCity,
+        },
+        ...config,
+      });
+
+      setInventories(data.item);
+      console.log(data);
+      setCurrentPage(1); // Reset page to 1 after search
+      setTotalPages(1); // Reset total pages after search
+    } catch (error) {
+      console.error('Error fetching inventories:', error);
+    }
   };
 
 
@@ -94,67 +110,33 @@ const List = () => {
             <h1 className="lsTitle">Search </h1>
             <div className="lsItem">
               <label>Name</label>
-              <input placeholder={"Search by name, tags, location"} type="text" />
+              <input
+                placeholder={"Search by name"}
+                type="text"
+                value={searchName}
+                onChange={(e) => setSearchName(e.target.value)}
+              />
             </div>
             <div className="lsItem">
-              <label>Renting Date</label>
-              <span onClick={() => setOpenDate(!openDate)}>
-                {`${format(date[0].startDate, 'MM/dd/yyyy')} to ${format(
-                  date[0].endDate,
-                  'MM/dd/yyyy'
-                )}`}
-              </span>
-              <div className="tttt">
-                {openDate && (
-                  <DateRange
-                    onChange={(item) => setDate([item.selection])}
-                    minDate={new Date()}
-                    ranges={date}
-                  />
-                )}
-              </div>
+              <label>City</label>
+              <input
+                placeholder={"Search by city"}
+                type="text"
+                value={searchCity}
+                onChange={(e) => setSearchCity(e.target.value)}
+              />
             </div>
-            <div className="lsItem">
-              <label>Filters</label>
-              <div className="lsOptions">
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">
-                    Min price <small>per day</small>
-                  </span>
-                  <input type="number" className="lsOptionInput" />
-                </div>
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">
-                    City 
-                  </span>
-                  <input type="text" className="lsOptionInput" />
-                </div>
-              </div>
-            </div>
-            <button>Search</button>
+            <button onClick={handleSearch}>Search</button>
           </div>
           <div className="listResult">
-            {inventories.map((item) => (
-
+            {inventories && inventories.map((item) => (
               <SearchItem
                 key={item._id}
                 item={item}
               />
             ))}
 
-            {/* <ul>
-              {inventories.map((item) => (
-                <li key={item._id}>
-                  <p>Name: {item.name}, life: {item.life} </p>
-                  <p>Owner: {item.owner} , Price: {item.rentalPrice} </p>
-                  <p>{item.description}</p>
-                  {item.image.map((im, index) => (
-                    <img key={index} src={im} alt={`Inventory ${index}`} />
-                  ))}
 
-                </li>
-              ))}
-            </ul> */}
 
 
 

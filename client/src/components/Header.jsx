@@ -23,7 +23,7 @@ const Header = ({ type }) => {
     };
 
     const handleSearch = () => {
-        //console.log(searchItem);
+        console.log(searchItem);
         navigate("/explore",{state: {searchItem}});
     };
   const handleButtonClick = (redir) => {

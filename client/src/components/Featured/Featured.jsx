@@ -2,12 +2,24 @@ import "./featured.css";
 import bedImg from "../../assets/bed.jpg"
 import oxygen from "../../assets/oxygen.jpg"
 import nurse from "../../assets/nurse.jpg"
+import { useNavigate } from "react-router-dom";
+
+
 
 
 const Featured = () => {
+
+  const navigate= useNavigate();
+  
+  const handleClick = ()=>{
+    navigate("/explore");
+  }
+
+
+
   return (
     <div className="featured">
-      <div className="featuredItem">
+      <div className="featuredItem" onClick={handleClick}>
         <img
           src={bedImg}
           alt=""
@@ -19,7 +31,7 @@ const Featured = () => {
         </div>
       </div>
       
-      <div className="featuredItem">
+      <div className="featuredItem" onClick={handleClick}>
         <img
           src={oxygen}
           alt=""
@@ -29,7 +41,7 @@ const Featured = () => {
           <h1 className="text">Oxygen Cylinders</h1>
         </div>
       </div>
-      <div className="featuredItem">
+      <div className="featuredItem" onClick={handleClick}>
         <img
           src={nurse}
           alt=""

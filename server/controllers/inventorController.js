@@ -88,7 +88,8 @@ const getAllInventory = async (req, res) => {
 
 const getInventory = async (req, res) => {
     try {
-        const { name, city, tags } = req.query;
+        const { name, city, tags, page } = req.query;
+        const itemsPerPage = 4;
 
         const query = {};
 
@@ -104,8 +105,8 @@ const getInventory = async (req, res) => {
             query.tags = { $in: tags.split(",") };
         }
 
-        const item = await Inventory.find(query);
-
+        const skip = (page - 1) * itemsPerPage;
+        const item = await Inventory.find(query).skip(skip).limit(itemsPerPage);
 
         return res.status(200).send({
             success: true,
@@ -121,9 +122,30 @@ const getInventory = async (req, res) => {
     }
 }
 
+const getRandom = async (req, res)=>{
+    try {
+        const randomItems = await Inventory.aggregate([
+            { $sample: { size: 4 } } 
+          ]);
+          
+          return res.status(200).send({
+            success: true,
+            message: "random Item aagya",
+            randomItems
+        });
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Random Item failed"
+        });
+    }
+}
 
 
 
-module.exports = { inventoryController, getAllInventory, getInventory }
+module.exports = { inventoryController, getAllInventory, getInventory, getRandom }
 
 

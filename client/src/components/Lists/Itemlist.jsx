@@ -6,57 +6,54 @@ const Itemlist = () => {
     <div className="pList">
     <div className="pListItem">
       <img
-        src="https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o="
+        src="https://www.holidify.com/images/cmsuploads/compressed/3551_20190228103219.jpg"
         alt=""
         className="pListImg"
       />
             <div className="pListTitles">
-        <h1>Category</h1>
-        <h2>233</h2>
+        <h1>Indore</h1>
       </div>
     </div>
     <div className="pListItem">
       <img
-       src="https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-apartments_300/9f60235dc09a3ac3f0a93adbc901c61ecd1ce72e.jpg"
+       src="https://img.etimg.com/thumb/msid-94741949,width-300,height-225,imgsize-270960,,resizemode-75/shri-mahakal-lok.jpg"
         alt=""
         className="pListImg"
       />
       <div className="pListTitles">
-        <h1>Category</h1>
-        <h2>2331</h2>
+        <h1>Ujjain</h1>
       </div>
     </div>
     <div className="pListItem">
       <img
-      src="https://5.imimg.com/data5/SELLER/Default/2021/9/BB/QC/NL/5038493/neonatal-pulse-oximeter.png"
+      src="https://www.livelaw.in/h-upload/2023/07/14/750x450_481164-bhopal-lake.webp"
         alt=""
         className="pListImg"
       />
       <div className="pListTitles">
-        <h1>Category</h1>
-        <h2>2331</h2>
+        <h1>Bhopal</h1>
       </div>
     </div>
     <div className="pListItem">
       <img
-        src="https://5.imimg.com/data5/SELLER/Default/2021/9/BB/QC/NL/5038493/neonatal-pulse-oximeter.png"
+        src="https://www.nationsonline.org/gallery/India/Gateway-of-India.jpg"
         alt=""
         className="pListImg"
       />
       <div className="pListTitles">
-        <h1>Category</h1>
-        <h2>2331</h2>
+        <h1>Mumbai</h1>
+        
       </div>
     </div>
     <div className="pListItem">
       <img
-        src="https://5.imimg.com/data5/SELLER/Default/2021/9/BB/QC/NL/5038493/neonatal-pulse-oximeter.png"
+        src="https://cdn.britannica.com/37/189837-050-F0AF383E/New-Delhi-India-War-Memorial-arch-Sir.jpg"
         alt=""
         className="pListImg"
       />
       <div className="pListTitles">
-        <h1>Category</h1>
-        <h2>2331</h2>
+        <h1>Delhi</h1>
+        
       </div>
     </div>
   </div>

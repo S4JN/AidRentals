@@ -1,5 +1,5 @@
 const express = require("express");
-const { inventoryController, getAllInventory,getInventory } = require("../controllers/inventorController");
+const { inventoryController, getAllInventory,getInventory, getRandom } = require("../controllers/inventorController");
 
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -12,6 +12,7 @@ router.post("/add", authMiddleware, inventoryController);
 router.get("/get", authMiddleware, getAllInventory);
 
 router.get("/get-inventory", authMiddleware, getInventory);
+router.get("/get-random", authMiddleware,getRandom)
 
 
 module.exports = router;

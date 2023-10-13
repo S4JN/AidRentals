@@ -1,20 +1,10 @@
-# Project
+ # Tasks
+    ## Home page
+    
+   [] Search Bar functionality
 
-## Tags                      done
-## loader                    done  
-## map
-## multiple files now ye      done
+   [] on click dalna h home page ke Featured vale m
+         onClick-> explore ->search
 
-# decrease size of image      Tend to do
-
-
-
-## effective gridfs
-
-### queries
-### pagination
-### image loading feature
-
-
-## compunder
-## //   src="https://5.imimg.com/data5/SELLER/Default/2021/9/BB/QC/NL/5038493/neonatal-pulse-oximeter.png"
+   [] categories m cities dalna h , we are in various cities
+   [] browse inventory m 4 random item dalna h (Inventory.aggregate)

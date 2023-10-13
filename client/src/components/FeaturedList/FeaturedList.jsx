@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useState, useEffect } from 'react'
 import "./featuredList.css"
+import axios from 'axios';
 
 
-
+// http://localhost:8000/api/v1/inventory/get-random
 const getRatingColor = (ratingValue) => {
   if (ratingValue >= 1 && ratingValue <= 2) {
     return 'red';
@@ -17,7 +18,10 @@ const getRatingColor = (ratingValue) => {
 
 
 
+
 const Item = ({ name, city, price, rating, review,image }) => { 
+
+
   return (
     <div className="fpItem">
       <img
@@ -38,8 +42,30 @@ const Item = ({ name, city, price, rating, review,image }) => {
 
 
 const FeaturedList = () => {
+  const [randItem,setrandItem]=useState([]);
 
- 
+  const getRandom =async()=>{
+    try{
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      };
+      const {data}=await axios.get('http://localhost:8000/api/v1/inventory/get-random',
+      config
+      );
+      //data. random items
+      setrandItem(data.randomItems);
+      console.log(data);
+    }catch (error) {
+      console.log(error);
+    }
+  }
+  
+  
+  useEffect(()=>{
+    getRandom();
+  },[])
 
   const getRatingColor = (ratingValue) => {
     if (ratingValue >= 1 && ratingValue <= 2) {
@@ -66,7 +92,7 @@ const FeaturedList = () => {
   ];
   return (
     <div className="fp">
-      {items.map((item, index) => (
+      {randItem.map((item, index) => (
         <Item key={index} {...item} />
       ))}
     </div>
