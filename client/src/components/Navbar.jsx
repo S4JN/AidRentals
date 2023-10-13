@@ -54,7 +54,7 @@ const Navbar = () => {
       </div>
       <div className="navbar">
         <div className="navContainer">
-          <span className="logo">Sahaayata</span>
+          <span className="logo">AidRentals</span>
           <div className="navItems">
             <span className="nnnn" onClick={handleClick}><AddSharpIcon />Add item</span>
             <span className="nnnn" onClick={handleServiceClick}><AddSharpIcon />Add Service</span>

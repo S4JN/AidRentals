@@ -1,9 +1,8 @@
-import React,{useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./featuredList.css"
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-
-// http://localhost:8000/api/v1/inventory/get-random
 const getRatingColor = (ratingValue) => {
   if (ratingValue >= 1 && ratingValue <= 2) {
     return 'red';
@@ -12,84 +11,60 @@ const getRatingColor = (ratingValue) => {
   } else if (ratingValue >= 4 && ratingValue <= 5) {
     return 'green';
   } else {
-    return 'blue'; 
+    return 'blue';
   }
 };
 
+const Item = (props) => {
+  const navigate = useNavigate();
 
-
-
-const Item = ({ name, city, price, rating, review,image }) => { 
-
+  const handleMove = () => {
+    navigate("/explore");
+  }
 
   return (
-    <div className="fpItem">
+    <div onClick={handleMove} className="fpItem">
       <img
-        src={image}
+        src={props.image[0]}
         alt="img"
         className="fpImg"
       />
-      <span className="fpName">{name}</span>
-      <span className="fpCity">{city}</span>
-      <span className="fpPrice">Available ₹{price}</span>
+      <span className="fpName">{props.name}</span>
+      <span className="fpCity">
+        {props.city.charAt(0).toUpperCase() + props.city.slice(1)}
+      </span>
+      <span className="fpPrice">Available ₹{props.rentalPrice}</span>
       <div className="fpRating">
-        <button style={{ backgroundColor: getRatingColor(rating) }}>{rating}</button>
-        <span>{review}</span>
+        <button style={{ backgroundColor: getRatingColor(props.rating) }}>{props.rating}</button>
+        <span>{props.review}</span>
       </div>
     </div>
   );
 };
 
-
 const FeaturedList = () => {
-  const [randItem,setrandItem]=useState([]);
+  const [randItem, setrandItem] = useState([]);
 
-  const getRandom =async()=>{
-    try{
+  const getRandom = async () => {
+    try {
       const config = {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       };
-      const {data}=await axios.get('http://localhost:8000/api/v1/inventory/get-random',
-      config
+      const { data } = await axios.get('http://localhost:8000/api/v1/inventory/get-random',
+        config
       );
-      //data. random items
       setrandItem(data.randomItems);
-      console.log(data);
-    }catch (error) {
+    } catch (error) {
       console.log(error);
     }
   }
-  
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     getRandom();
-  },[])
+  }, [])
 
-  const getRatingColor = (ratingValue) => {
-    if (ratingValue >= 1 && ratingValue <= 2) {
-      return 'red';
-    } else if (ratingValue === 3) {
-      return 'yellow';
-    } else if (ratingValue >= 4 && ratingValue <= 5) {
-      return 'green';
-    } else {
-      return 'blue'; 
-    }
-  };
-
-  
-
-
-  const rating = 4;
-  const items = [
-    { name: 'Bed', city: 'Indore', price: '10', review: 'Bad', rating: '1', image: "https://images.unsplash.com/photo-1519494080410-f9aa76cb4283" },
-    { name: 'Wheel Chair', city: 'Indore', price: '10', review: 'Good', rating: '3',image: "https://images.unsplash.com/photo-1593086586362-d83c6bf009b3" },
-    { name: 'Oxymeter', city: 'Indore', price: '10', review: 'Good', rating: '4', image: "https://5.imimg.com/data5/SELLER/Default/2021/9/BB/QC/NL/5038493/neonatal-pulse-oximeter.png" },
-    { name: 'Vital Monitor', city: 'Indore', price: '100', review: 'Good', rating: '5' ,image: "https://images.unsplash.com/photo-1513224502586-d1e602410265" },
-    
-  ];
   return (
     <div className="fp">
       {randItem.map((item, index) => (
