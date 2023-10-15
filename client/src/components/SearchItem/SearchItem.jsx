@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./searchItem.css";
 import { Typography } from "@mui/material";
 
-const SearchItem = ({ item }) => {
+const SearchItem = ({ item, type }) => {
     const navigate = useNavigate();
 
-    
+    console.log(item);
 
     const handleItemsClick = (item) => {
         //idhr change krna h ab
@@ -62,11 +62,18 @@ const SearchItem = ({ item }) => {
                 <div className="siRating">
                     <span>Excellent</span>
                     <button>{item.rating}.0⋆</button>
+
                 </div>
                 <div className="siDetailTexts">
                     <span className="siPrice">₹{item.rentalPrice} </span>
                     <span className="siTaxOp">Includes taxes and fees</span>
+                    {item.isRented ? (
+                    <button className="siCheckButton" style={{backgroundColor : "red"}} onClick={()=>handleItemsClick(item)}>Rented</button>
+
+                    ) : (
                     <button className="siCheckButton" onClick={()=>handleItemsClick(item)}>See availability</button>
+
+                    )}
                 </div>
             </div>
         </div>

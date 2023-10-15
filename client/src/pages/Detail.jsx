@@ -19,7 +19,7 @@ const Detail = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
- 
+
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -73,9 +73,13 @@ const Detail = () => {
         )}
 
         <div className="hotelWrapper">
-          <button className="bookNow" onClick={toggleForm}>
-            Rent
-          </button>
+          {state.isRented ? (
+
+            <button className="bookNow" style={{ backgroundColor: "red" }}>Rented</button>
+
+          ) : (
+            <button className="bookNow" onClick={toggleForm}>Rent</button>
+          )}
           <h1 className="hotelTitle">{state.name}</h1>
           <div className="hotelAddress">
             {state.tags.map((tag) => {
@@ -121,7 +125,7 @@ const Detail = () => {
               <div
                 key={i}
                 style={{
-                  width: '33%', 
+                  width: '33%',
                   marginBottom: '3px'       // Added margin between images
                 }}
               >
@@ -156,7 +160,13 @@ const Detail = () => {
               <h2>
                 <b>₹{state.rentalPrice}</b> (per day)
               </h2>
-              <button onClick={toggleForm}>Rent</button>
+              {state.isRented ? (
+
+                <button style={{ backgroundColor: "red" }}>Rented</button>
+
+              ) : (
+                <button onClick={toggleForm}>Rent</button>
+              )}
             </div>
           </div>
         </div>

@@ -89,7 +89,7 @@ const getAllInventory = async (req, res) => {
 const getInventory = async (req, res) => {
     try {
         const { name, city, tags, page } = req.query;
-        const itemsPerPage = 4;
+        // const itemsPerPage = 4;
 
         const query = {};
 
@@ -105,8 +105,8 @@ const getInventory = async (req, res) => {
             query.tags = { $in: tags.split(",") };
         }
 
-        const skip = (page - 1) * itemsPerPage;
-        const item = await Inventory.find(query).skip(skip).limit(itemsPerPage);
+        // const skip = (page - 1) * itemsPerPage;
+        const item = await Inventory.find(query)
 
         return res.status(200).send({
             success: true,
@@ -122,13 +122,13 @@ const getInventory = async (req, res) => {
     }
 }
 
-const getRandom = async (req, res)=>{
+const getRandom = async (req, res) => {
     try {
         const randomItems = await Inventory.aggregate([
-            { $sample: { size: 4 } } 
-          ]);
-          
-          return res.status(200).send({
+            { $sample: { size: 4 } }
+        ]);
+
+        return res.status(200).send({
             success: true,
             message: "random Item aagya",
             randomItems
@@ -145,7 +145,35 @@ const getRandom = async (req, res)=>{
 }
 
 
+const getUserInventory = async (req, res) => {
+    try {
+        const id = req.query.id; 
+        const inv = await Inventory.find({owner: id});
 
-module.exports = { inventoryController, getAllInventory, getInventory, getRandom }
+        if (!inv) {
+            return res.status(404).json({
+                success: false,
+                message: "Inventory not found"
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Inventory retrieved successfully",
+            inventory: inv
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+}
+
+
+
+
+module.exports = { inventoryController, getAllInventory, getInventory, getRandom, getUserInventory }
 
 
