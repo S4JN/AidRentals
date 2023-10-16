@@ -31,7 +31,7 @@ const ViewProfile = () => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             };
-            const { data } = await axios.get(`http://localhost:8000/api/v1/inventory/get-user-inv`, {
+                const { data } = await axios.get(`http://localhost:8000/api/v1/inventory/get-user-inv`, {
                 params: {
                     id: id
                 },
@@ -47,7 +47,7 @@ const ViewProfile = () => {
 
     useEffect(() => {
         getInv();
-    },)
+    },[id])
 
 
     return (
@@ -73,7 +73,8 @@ const ViewProfile = () => {
                 <div className='isko-width'>
                     {items.map((i) => {
                         return (
-                            <SearchItem
+                            <SearchItem  
+                            getInv={getInv}
                                 key={i._id}
                                 item={i}
                                 type={"myProfile"}

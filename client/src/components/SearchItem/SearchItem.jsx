@@ -4,7 +4,7 @@ import "./searchItem.css";
 import { Typography } from "@mui/material";
 import axios from "axios"
 
-const SearchItem = ({ item, type }) => {
+const SearchItem = ({ item, type ,getInv}) => {
     const navigate = useNavigate();
 
 
@@ -40,6 +40,7 @@ const SearchItem = ({ item, type }) => {
             const { data } = await axios.patch("http://localhost:8000/api/v1/inventory/set-rent",{
                 _id
             },config);
+            getInv();
             console.log(data);
 
         } catch (error) {
