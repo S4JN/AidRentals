@@ -68,16 +68,22 @@ const ViewProfile = () => {
 
             <h2 className='profile_head'>My Rented Items</h2>
 
-            <div className='isko-width'>
-                {items.map((i) => {
-                    return (
-                        <SearchItem
-                            key={i._id}
-                            item={i}
-                            type={"myProfile"}
-                        />
-                    )
-                })}
+            <div className='vgito'>
+
+                <div className='isko-width'>
+                    {items.map((i) => {
+                        return (
+                            <SearchItem
+                                key={i._id}
+                                item={i}
+                                type={"myProfile"}
+                            />
+                        )
+                    })}
+                </div>
+
+                
+
             </div>
 
             <Mail />

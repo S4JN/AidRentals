@@ -6,21 +6,39 @@ import { Typography } from "@mui/material";
 const SearchItem = ({ item, type }) => {
     const navigate = useNavigate();
 
-    console.log(item);
 
     const handleItemsClick = (item) => {
         //idhr change krna h ab
         // console.log(item);
         console.log("clicked");
-        navigate(`/item-detail/${item._id}`, {state: item})
+        navigate(`/item-detail/${item._id}`, { state: item })
     }
 
-    const truncateDescription = ( description, maxLength) => {
+    const truncateDescription = (description, maxLength) => {
         if (description.length > maxLength) {
             return description.slice(0, maxLength) + '...';
         }
         return description;
     };
+    //make this in Profilr
+    const handleTogglerClick = async (item) => {
+        console.log("wuff", item._id);
+
+        try {
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            };
+
+            const { data } = await axios.patch("url",true,config);
+
+        } catch (error) {
+
+        }
+
+    }
 
 
 
@@ -68,12 +86,16 @@ const SearchItem = ({ item, type }) => {
                     <span className="siPrice">₹{item.rentalPrice} </span>
                     <span className="siTaxOp">Includes taxes and fees</span>
                     {item.isRented ? (
-                    <button className="siCheckButton" style={{backgroundColor : "red"}} onClick={()=>handleItemsClick(item)}>Rented</button>
+                        <button className="siCheckButton" style={{ backgroundColor: "red" }} onClick={() => handleItemsClick(item)}>Rented</button>
 
                     ) : (
-                    <button className="siCheckButton" onClick={()=>handleItemsClick(item)}>See availability</button>
+                        <button className="siCheckButton" onClick={() => handleItemsClick(item)}>See availability</button>
+                    )}
+                    {type === "myProfile" && (
+                        <button className="siCheckButton" onClick={() => handleTogglerClick(item)}>Togggle to Rent</button>
 
                     )}
+
                 </div>
             </div>
         </div>
