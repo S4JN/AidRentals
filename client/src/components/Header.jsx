@@ -10,6 +10,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import PersonSearchSharpIcon from '@mui/icons-material/PersonSearchSharp';
 import InfoSharpIcon from '@mui/icons-material/InfoSharp';
+import ChecklistRtl from '@mui/icons-material/ChecklistRtl';
+
 
 const Header = ({ type }) => {
     const location=useLocation();
@@ -49,7 +51,7 @@ const Header = ({ type }) => {
           <div className="adjust"><InfoSharpIcon /> <span className="lmarg">Services</span></div>
           </div>
           <div className={`headerListItem ${activeButton === '/ViewProfile' ? 'active' : ''}`} onClick={() => handleButtonClick('/ViewProfile')}>
-          <div className="adjust"><PersonSearchSharpIcon/> <span className="lmarg">View Profile</span></div>
+          <div className="adjust"><ChecklistRtl/> <span className="lmarg">My Items</span></div>
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./searchItem.css";
 import { Typography } from "@mui/material";
+import axios from "axios"
 
 const SearchItem = ({ item, type }) => {
     const navigate = useNavigate();
@@ -21,8 +22,12 @@ const SearchItem = ({ item, type }) => {
         return description;
     };
     //make this in Profilr
+
+
+
     const handleTogglerClick = async (item) => {
         console.log("wuff", item._id);
+        const _id= item._id;
 
         try {
 
@@ -32,10 +37,13 @@ const SearchItem = ({ item, type }) => {
                 },
             };
 
-            const { data } = await axios.patch("url",true,config);
+            const { data } = await axios.patch("http://localhost:8000/api/v1/inventory/set-rent",{
+                _id
+            },config);
+            console.log(data);
 
         } catch (error) {
-
+            console.log(error);
         }
 
     }

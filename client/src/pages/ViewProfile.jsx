@@ -47,7 +47,7 @@ const ViewProfile = () => {
 
     useEffect(() => {
         getInv();
-    }, [])
+    },)
 
 
     return (
@@ -55,7 +55,7 @@ const ViewProfile = () => {
             <Navbar />
             <Header type="list" />
 
-            <Profile
+            {/* <Profile
                 name={name}
                 address={address}
                 phone={phone}
@@ -64,7 +64,7 @@ const ViewProfile = () => {
                 city={city}
                 zip={zip}
 
-            />
+            /> */}
 
             <h2 className='profile_head'>My Rented Items</h2>
 
