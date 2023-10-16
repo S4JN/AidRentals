@@ -170,10 +170,38 @@ const getUserInventory = async (req, res) => {
         });
     }
 }
+const setRent = async (req, res) => {
+    try {
+        const itemId = req.body._id;
+
+        const item = await Inventory.findById(itemId);
+
+        if (!item) {
+            return res.status(404).send({
+                success: false,
+                message: "Item not found"
+            });
+        }
+
+        item.isRented = !item.isRented;
+        await item.save();
+
+        return res.status(200).send({
+            success: true,
+            message: "Item updated successfully",
+            item
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Random Item failed"
+        });
+    }
+}
 
 
 
-
-module.exports = { inventoryController, getAllInventory, getInventory, getRandom, getUserInventory }
+module.exports = { inventoryController, getAllInventory, getInventory, getRandom, getUserInventory,setRent }
 
 

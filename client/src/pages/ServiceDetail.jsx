@@ -27,9 +27,10 @@ const ServiceDetail = () => {
         review,
         config
       );
+      setReviewForm(false);
       setReviews([...data.reviews]);
       setReview({ id: state._id, data: "" }); // Clear the review input
-      setReviewForm(false);
+      
     } catch (error) {
       console.log(error);
     }
