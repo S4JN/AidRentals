@@ -126,7 +126,7 @@ const Detail = () => {
                 key={i}
                 style={{
                   width: '33%',
-                  marginBottom: '3px'       // Added margin between images
+                  marginBottom: '3px'   
                 }}
               >
                 <img
