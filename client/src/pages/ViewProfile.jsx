@@ -26,19 +26,22 @@ const ViewProfile = () => {
 
     const getInv = async () => {
         try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            };
+            if (id) {
+
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                };
                 const { data } = await axios.get(`http://localhost:8000/api/v1/inventory/get-user-inv`, {
-                params: {
-                    id: id
-                },
-                ...config,
-            })
-            setItems(data.inventory);
-            console.log(data);
+                    params: {
+                        id: id
+                    },
+                    ...config,
+                })
+                setItems(data.inventory);
+                console.log(data);
+            }
         } catch (error) {
             console.log(error);
             console.log("error  in fetching khud ke orders");
@@ -47,7 +50,7 @@ const ViewProfile = () => {
 
     useEffect(() => {
         getInv();
-    },[id])
+    }, [id])
 
 
     return (
@@ -73,8 +76,8 @@ const ViewProfile = () => {
                 <div className='isko-width'>
                     {items.map((i) => {
                         return (
-                            <SearchItem  
-                            getInv={getInv}
+                            <SearchItem
+                                getInv={getInv}
                                 key={i._id}
                                 item={i}
                                 type={"myProfile"}
@@ -83,7 +86,7 @@ const ViewProfile = () => {
                     })}
                 </div>
 
-                
+
 
             </div>
 
