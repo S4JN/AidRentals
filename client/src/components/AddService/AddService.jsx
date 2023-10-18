@@ -25,7 +25,8 @@ const steps = ['Item details',"More Details","Upload Address", 'Upload Image'];
 export default function AddService({ setShowServiceForm }) {
     const { user } = useUserContext();
     const _id = user._id;
-
+    console.log(_id,"check 1");
+    console.log(user?._id,"check 2");
     const [activeStep, setActiveStep] = useState(0);
     const [loading, setLoading] = useState(false);
 
@@ -44,6 +45,7 @@ export default function AddService({ setShowServiceForm }) {
         specialty:'',
         city: `${user?.city}`,
         pic: '',
+        owner: `${user?._id}`
     });
 
     const handleInputChange = (e) => {

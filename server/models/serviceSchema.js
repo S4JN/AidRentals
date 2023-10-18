@@ -6,6 +6,10 @@ const serviceSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
     bio: {             //////
         type: String
     },
@@ -16,13 +20,13 @@ const serviceSchema = new mongoose.Schema({
     },
     pic: {////
         type: String,
-        default : "https://www.nicepng.com/png/full/933-9332131_profile-picture-default-png.png",
+        default: "https://www.nicepng.com/png/full/933-9332131_profile-picture-default-png.png",
     },
-    age:{           ////       
+    age: {           ////       
         type: String,
         default: "23"
     },
-    price: {                  
+    price: {
         type: String,
         default: "Free"
     },

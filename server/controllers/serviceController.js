@@ -21,7 +21,8 @@ const addService = async (req, res) => {
                 message: "Service Already Exists"
             });
         }
-
+        // jese hi ye create ho iske bad one more user role
+        // ownerid -> user ka role change krna h
         const newService = await Service.create({
             name: req.body.name,
             bio: req.body.bio,
@@ -36,8 +37,11 @@ const addService = async (req, res) => {
             city: req.body.city,
             preferredAreas: req.body.preferredAreas,
             reviews: req.body.reviews,
-            workingHours: req.body.workingHours
+            workingHours: req.body.workingHours,
+            owner: req.body.owner
         });
+
+
 
         res.status(201).send({
             success: true,

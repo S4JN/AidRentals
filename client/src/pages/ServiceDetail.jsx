@@ -143,7 +143,7 @@ const ServiceDetail = () => {
                 </span>
                 <br />
                 <span className="hotelPriceHighlight">
-                  Bio - {state.bio}
+                  Bio - {state.bio}, {state.owner}
                 </span>
                 <br />
                 <span>
