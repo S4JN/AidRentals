@@ -57,7 +57,12 @@ const Navbar = () => {
           <span className="logo">AidRentals</span>
           <div className="navItems">
             <span className="nnnn" onClick={handleClick}><AddSharpIcon />Add item</span>
+            {user?.role == "service" ? (
+              <span className="nnnn">bani hui h</span>
+            ) : (
+
             <span className="nnnn" onClick={handleServiceClick}><AddSharpIcon />Add Service</span>
+            )}
             <span className="nnnn">{user?.name}<br />{user?.role}</span>
             <div onClick={() => handleLogout()}>
               <span className="nnnn"><LogoutSharpIcon />Sign Out</span>

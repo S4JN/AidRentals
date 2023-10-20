@@ -1,5 +1,7 @@
 const cloudinary = require("../config/cloudinary");
 const { Service } = require("../models/serviceSchema");
+const User = require("../models/userSchema");
+
 const validator = require('aadhaar-validator')
 
 const addService = async (req, res) => {
@@ -41,6 +43,14 @@ const addService = async (req, res) => {
             owner: req.body.owner
         });
 
+        const newUser = await User.findOneAndUpdate(
+            { _id: req.body.owner },
+            { $set: { role: 'service' } },
+            { new: true }
+          );
+          
+
+        console.log(newUser);
 
 
         res.status(201).send({
