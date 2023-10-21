@@ -1,5 +1,7 @@
 const cloudinary = require("../config/cloudinary");
 const { Service } = require("../models/serviceSchema");
+const User = require("../models/userSchema");
+
 const validator = require('aadhaar-validator')
 
 const addService = async (req, res) => {
@@ -21,7 +23,8 @@ const addService = async (req, res) => {
                 message: "Service Already Exists"
             });
         }
-
+        // jese hi ye create ho iske bad one more user role
+        // ownerid -> user ka role change krna h
         const newService = await Service.create({
             name: req.body.name,
             bio: req.body.bio,
@@ -36,8 +39,19 @@ const addService = async (req, res) => {
             city: req.body.city,
             preferredAreas: req.body.preferredAreas,
             reviews: req.body.reviews,
-            workingHours: req.body.workingHours
+            workingHours: req.body.workingHours,
+            owner: req.body.owner
         });
+
+        const newUser = await User.findOneAndUpdate(
+            { _id: req.body.owner },
+            { $set: { role: 'service' } },
+            { new: true }
+        );
+
+
+        console.log(newUser);
+
 
         res.status(201).send({
             success: true,
@@ -59,7 +73,7 @@ const updateService = async (req, res) => {
     try {
         const serviceId = req.body._id;
         const updateFields = req.body.fields;
-        const reviewToAdd = req.body.review; 
+        const reviewToAdd = req.body.review;
 
         const updatedService = await Service.findByIdAndUpdate(
             serviceId,
@@ -87,9 +101,6 @@ const updateService = async (req, res) => {
         });
     }
 }
-
-
-
 
 const getAllService = async (req, res) => {
     try {
@@ -173,8 +184,8 @@ const verifyService = async (req, res) => {
         if (ans) {
             service.verified = true;
             await service.save();
-        } 
-        
+        }
+
         res.status(200).send({
             success: true,
             message: "adhar success",
@@ -192,4 +203,45 @@ const verifyService = async (req, res) => {
 }
 
 
-module.exports = { addService, getAllService, getService, updateService,verifyService };
+const getMyService = async (req, res) => {
+    try {
+        const { owner } = req.query;
+
+       console.log(req);
+        const query = {};
+        if (owner) {
+            query.owner = owner; 
+        }
+
+        
+        try {
+            // Find services using the constructed query
+            const services = await Service.find(query);
+
+            // Send a successful response with the retrieved services
+            res.status(200).send({
+                success: true,
+                message: "Services retrieved successfully",
+                data: services
+            });
+        } catch (error) {
+            // Handle any errors related to finding services
+            console.error(error);
+            res.status(500).send({
+                success: false,
+                message: "Internal Server Error"
+            });
+        }
+    } catch (error) {
+
+        console.error(error);
+        res.status(500).send({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+};
+
+
+
+module.exports = { addService, getAllService, getService, updateService, verifyService, getMyService };

@@ -11,9 +11,10 @@ const ServiceDetail = () => {
   const { state } = useLocation();
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [reviewForm, setReviewForm] = useState(false);
+  const [serviceDet,setServiceDet]=useState(false);
   const [review, setReview] = useState({ id: state._id, data: "" });
   const [reviews, setReviews] = useState([...state.reviews]);
-
+  // console.log(state);
   const submitReview = async (e) => {
     e.preventDefault();
     try {
@@ -42,7 +43,10 @@ const ServiceDetail = () => {
     const { name, value } = e.target;
     setReview({ id: state._id, data: value });
   }
-
+  const handleChange=(e)=>{
+    const {name,value}=e.target;
+    setServiceDet(value);
+  }
   useEffect(() => {
     state.reviews=[...reviews];
   }, [reviews]);
@@ -53,7 +57,27 @@ const ServiceDetail = () => {
     <div>
       <Navbar />
       <Header type={"list"} />
-      
+      {serviceDet &&
+      <div className="overly" >
+      <ul className="det-service">
+      <h2>Here is the service provider contact details :</h2>
+        <div className="listItems">
+          
+        <li><strong>Name:</strong> {state.name}</li>
+        <li><strong>Email:</strong> {state.email}</li>
+        <li><strong>Phone Number:</strong> {state.phoneNumber[0]}</li>
+        <li><strong>Price:</strong> {state.price}</li>
+        <li><strong>Verified:</strong> {state.verified ? 'Yes' : 'No'}</li>
+        </div>
+      </ul>
+        <div className="btn-cont">
+              <button onClick={()=>{setServiceDet(false);}} style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer',margin:'0px 5px'
+  }}>Close</button>
+                {/* <button onClick={()=>{setServiceDet(false);}} type="submit" style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer'
+  }}>Send</button> */}
+            </div>
+        </div>
+        }
       {reviewForm &&
       <div className="overlay" >
                   <form className="reviewForm" onSubmit={submitReview} onChange={handleInputChange}>
@@ -119,7 +143,7 @@ const ServiceDetail = () => {
                 </span>
                 <br />
                 <span className="hotelPriceHighlight">
-                  Bio - {state.bio}
+                  Bio - {state.bio}, {state.owner}
                 </span>
                 <br />
                 <span>
@@ -163,6 +187,7 @@ const ServiceDetail = () => {
                 
                 <br />
               </div>
+              <button className="btn-close" onClick={()=>{setServiceDet(true);}}>Contact Me</button>
             </div>
           </div>
 

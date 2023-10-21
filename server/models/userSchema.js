@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     address: { type: String, required: true },
     city: { type: String, required: true },
     zip: { type: String, required: true },
-    role: { type: String, enum: ["admin", "organisation", "user"], default: 'user' },
+    role: { type: String, enum: ["admin", "organisation", "user","service"], default: 'user' },
     orders: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Inventory",
