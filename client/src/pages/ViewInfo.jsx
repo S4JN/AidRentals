@@ -133,6 +133,7 @@ const ViewInfo = () => {
             {/* <div onSubmit={handleVerification}>Verify</div> */}
             <Mail />
             <Footer />
+            
         </div>
     )
 
