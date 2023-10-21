@@ -8,11 +8,12 @@ import Mail from '../components/MailList/Mail';
 import "./css/viewProfile.css"
 import axios from 'axios';
 import SearchItem from '../components/SearchItem/SearchItem';
-
+import { Typography } from '@mui/material';
 
 const ViewInfo = () => {
     const { user } = useUserContext();
     const [items, setItems] = useState([]);
+    const [myService, setMyService] = useState(null); // Added state for the service
 
     const address = user?.address;
     const name = user?.name;
@@ -23,77 +24,46 @@ const ViewInfo = () => {
     const zip = user?.zip;
     const id = user?._id;
 
+    const getMyService = async (id) => {
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            };
 
-    // const getInv = async () => {
-    //     try {
-    //         if (id) {
+            // Make a GET request to your API endpoint
+            const response = await axios.get(`http://localhost:8000/api/v1/service/my-service?owner=${id}`, config);
+            console.log(response.data);
+            // Set the service data to state
+            setMyService(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-    //             const config = {
-    //                 headers: {
-    //                     Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //                 },
-    //             };
-    //             const { data } = await axios.get(`http://localhost:8000/api/v1/inventory/get-user-inv`, {
-    //                 params: {
-    //                     id: id
-    //                 },
-    //                 ...config,
-    //             })
-    //             setItems(data.inventory);
-    //             console.log(data);
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //         console.log("error  in fetching khud ke orders");
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getInv();
-    // }, [id])
-
+    useEffect(() => {
+        // Check if user id is available before making the request
+        if (id) {
+            getMyService(id);
+        }
+    }, [id]); // Trigger the effect whenever id changes
 
     return (
         <div>
             <Navbar />
             <Header type="list" />
-
             <Profile
-                name={name}
+                name={id}
                 address={address}
                 phone={phone}
                 email={email}
                 role={role}
                 city={city}
                 zip={zip}
-
             />
-
-            {/* <h2 className='profile_head'>My Rented Items</h2>
-
-            <div className='vgito'>
-
-                <div className='isko-width'>
-                    {items.map((i) => {
-                        return (
-                            <SearchItem
-                                getInv={getInv}
-                                key={i._id}
-                                item={i}
-                                type={"myProfile"}
-                            />
-                        )
-                    })}
-                </div>
-
-
-
-            </div>
- */}
             <Mail />
             <Footer />
-
-
         </div>
     )
 }
