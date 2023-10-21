@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Home, Login, Register, List, Detail, ViewProfile } from "./pages/index.js"
+import { Home, Login, Register, List, Detail, ViewProfile ,ViewInfo} from "./pages/index.js"
 import PublicRoute from "./components/Routes/PublicRoute"
 import ProtectedRoute from "./components/Routes/ProtectedRoute"
 import Services from "./pages/Services.jsx"
@@ -69,7 +69,14 @@ function App() {
             </ProtectedRoute>
 
           }></Route>
-
+          
+          <Route path="/View-Info" element={
+            <ProtectedRoute>
+              <ViewInfo />
+            </ProtectedRoute>
+          }>
+          </Route>
+          
 
         </Routes>
 
