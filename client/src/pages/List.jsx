@@ -12,6 +12,7 @@ import Mail from '../components/MailList/Mail'
 import Footer from '../components/Footer'
 import { Pagination } from '@mui/material';
 import axios from 'axios';
+import DummyAds from '../components/DummyAds/DummyAds';
 
 
 
@@ -76,7 +77,7 @@ const List = () => {
         },
       };
 
-      const {data} = await axios.get(`http://localhost:8000/api/v1/inventory/get-inventory`, {
+      const { data } = await axios.get(`http://localhost:8000/api/v1/inventory/get-inventory`, {
         params: {
           name: searchName,
           city: searchCity,
@@ -105,28 +106,34 @@ const List = () => {
       <Header type={'list'} />
 
       <div className="listContainer">
-        <div className="listWrapper">
-          <div className="listSearch">
-            <h1 className="lsTitle">Search </h1>
-            <div className="lsItem">
-              <label>Name</label>
-              <input
-                placeholder={"Search by name"}
-                type="text"
-                value={searchName}
-                onChange={(e) => setSearchName(e.target.value)}
-              />
+        <div className="listWrapper" >
+          <div>
+            <div className="listSearch">
+              <h1 className="lsTitle">Search </h1>
+              <div className="lsItem">
+                <label>Name</label>
+                <input
+                  placeholder={"Search by name"}
+                  type="text"
+                  value={searchName}
+                  onChange={(e) => setSearchName(e.target.value)}
+                />
+              </div>
+              <div className="lsItem">
+                <label>City</label>
+                <input
+                  placeholder={"Search by city"}
+                  type="text"
+                  value={searchCity}
+                  onChange={(e) => setSearchCity(e.target.value)}
+                />
+              </div>
+              <button onClick={handleSearch}>Search</button>
             </div>
-            <div className="lsItem">
-              <label>City</label>
-              <input
-                placeholder={"Search by city"}
-                type="text"
-                value={searchCity}
-                onChange={(e) => setSearchCity(e.target.value)}
-              />
-            </div>
-            <button onClick={handleSearch}>Search</button>
+
+            <DummyAds />
+            <DummyAds />
+
           </div>
           <div className="listResult">
             {inventories && inventories.map((item) => (
