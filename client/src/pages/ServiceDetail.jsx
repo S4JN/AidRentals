@@ -7,6 +7,7 @@ import axios from 'axios'
 import "./css/serviceDetail.css"
 import { useLocation } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import QRCode from "react-qr-code";
 
 const ServiceDetail = () => {
   const { state } = useLocation();
@@ -61,6 +62,7 @@ const ServiceDetail = () => {
     setCaptchaClicked(true);
   }
 
+  const value =`Name : ${state.name}\n Phone Number: ${state.phoneNumber[0]}`
 
 
   return (
@@ -207,11 +209,17 @@ const ServiceDetail = () => {
                 onChange={onChange}
                 size="compact"
               />
-              
+
             </div>
           </div>
+          <QRCode
+            size={256}
+            style={{ height: "200px", width: "200px" }}
+            value={value}
+            
+          />
 
-          <div className="diba">
+          <div className="diba" style={{marginTop: "20px"}}>
             <span className="reviewshead">Reviews</span>
             <button className="addReview" onClick={() => { setReviewForm(true) }}>+ Add Review</button>
           </div>
