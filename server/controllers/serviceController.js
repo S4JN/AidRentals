@@ -207,7 +207,7 @@ const getMyService = async (req, res) => {
     try {
         const { owner } = req.query;
 
-       console.log(req);
+    //    console.log(req);
         const query = {};
         if (owner) {
             query.owner = owner; 
@@ -216,7 +216,7 @@ const getMyService = async (req, res) => {
         
         try {
             // Find services using the constructed query
-            const services = await Service.find(query);
+            const services = await Service.findOne(query);
 
             // Send a successful response with the retrieved services
             res.status(200).send({
