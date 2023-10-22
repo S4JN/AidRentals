@@ -58,7 +58,7 @@ const Navbar = () => {
           <div className="navItems">
             <span className="nnnn" onClick={handleClick}><AddSharpIcon />Add item</span>
             {user?.role == "service" ? (
-              <span className="nnnn">bani hui h</span>
+              <span className="nnnn"></span>
             ) : (
 
             <span className="nnnn" onClick={handleServiceClick}><AddSharpIcon />Add Service</span>
