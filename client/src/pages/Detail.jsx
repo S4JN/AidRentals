@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Mail from "../components/MailList/Mail";
 import Footer from "../components/Footer";
@@ -11,6 +11,8 @@ import { useLocation } from "react-router-dom";
 import Map from "../components/Map/Map";
 import RentForm from "../components/RentForm/RentForm";
 import ShowDetails from "../components/ShowDetails/ShowDetails";
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 const Detail = () => {
   const { state } = useLocation();
@@ -18,6 +20,7 @@ const Detail = () => {
 
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [captchaClicked, setCaptchaClicked] = useState(false);
 
 
 
@@ -47,6 +50,21 @@ const Detail = () => {
     setVisibility(!visibility);
   };
 
+  function onChange(value) {
+    console.log("Captcha value:", value);
+    setCaptchaClicked(true);
+  }
+  const handledowncllick = () => {
+    // window.scrollTo({ top: 999, behavior: 'smooth' })
+    console.log("clickd");
+
+  }
+
+  useEffect(() => {
+    setCaptchaClicked(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   return (
     <div>
       <Navbar />
@@ -75,10 +93,23 @@ const Detail = () => {
         <div className="hotelWrapper">
           {state.isRented ? (
 
-            <button className="bookNow" style={{ backgroundColor: "red" }}>Rented</button>
+            <>
+              <button className="bookNow" style={{ backgroundColor: "red" }}>Rented</button>
+
+            </>
+
 
           ) : (
-            <button className="bookNow" onClick={toggleForm}>Rent</button>
+
+            <>
+              <button className="bookNow"
+                onClick={handledowncllick}
+                disabled={!captchaClicked}
+              >
+                Rent
+              </button>
+
+            </>
           )}
           <h1 className="hotelTitle">{state.name}</h1>
           <div className="hotelAddress">
@@ -126,7 +157,7 @@ const Detail = () => {
                 key={i}
                 style={{
                   width: '33%',
-                  marginBottom: '3px'   
+                  marginBottom: '3px'
                 }}
               >
                 <img
@@ -165,7 +196,13 @@ const Detail = () => {
                 <button style={{ backgroundColor: "red" }}>Rented</button>
 
               ) : (
-                <button onClick={toggleForm}>Rent</button>
+                <>
+                  <button onClick={toggleForm} disabled={!captchaClicked} >Rent</button>
+                  <ReCAPTCHA
+                    sitekey="6Lc7sr8oAAAAABPYEpja1v5r_c3SC9yceQp_Ll1O"
+                    onChange={onChange}
+                  />
+                </>
               )}
             </div>
           </div>
