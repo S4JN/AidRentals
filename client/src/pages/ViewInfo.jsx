@@ -15,7 +15,7 @@ const ViewInfo = () => {
     const [items, setItems] = useState([]);
     const [myService, setMyService] = useState(null);
     const [aadharIp, setAadharIp] = useState(false);
-    const [aadharValue, setAadharValue] = useState('213123123');
+    const [aadharValue, setAadharValue] = useState('');
     const address = user?.address;
     const name = user?.name;
     const phone = user?.phoneNumber;
@@ -39,7 +39,6 @@ const ViewInfo = () => {
 
             // Make a GET request to your API endpoint
             const { data } = await axios.get(`http://localhost:8000/api/v1/service/my-service?owner=${id}`, config);
-
             // Set the service data to state
             setMyService(data.data);
             console.log(data);
@@ -48,9 +47,8 @@ const ViewInfo = () => {
             console.log(error);
         }
     }
-
-    const handleVerification = async (e) => {
-        e.preventDefault();
+    const handleVerification = async () => {
+        // e.preventDefault();
         console.log('handleVerification called');
         try {
             console.log(aadharValue);
@@ -67,8 +65,7 @@ const ViewInfo = () => {
 
             console.log(data);
             alert("verification request sent")
-
-
+            setAadharIp(false);
         } catch (error) {
             console.log(error);
         }
@@ -89,7 +86,6 @@ const ViewInfo = () => {
         
             {myService && (
                 <div>
-                    
                     <Profile
                         name={myService.name}
                         bio={myService.bio}
@@ -102,24 +98,29 @@ const ViewInfo = () => {
                 </div>
 
             )}
-            {/* {aadharIp && (
-                <div>
-                    <form ></form>
-                        <label>Enter Aadhar Number:</label>
+            {aadharIp && (
+                <div className='overlay ' >
+                    <div className='aadhar'>
+                    <div className='form-aadhar' >
+                    <form >
+                        <label style={{fontWeight:"bolder"}}>Enter Aadhar Number:</label>
+                        <br />
                         <input type="text" 
                         name='aadhar'
                         value={aadharValue}
                         onChange={handleInputChange}
+                        style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc', margin:'10px auto' }}
                     />
-                    <button onSubmit={handleVerification}>Verify</button>
                     </form>
+                    </div>
+                    <button className='aadhar-ver' onClick={async(e)=>{e.preventDefault(); await handleVerification();}}>Verify</button>
+                    </div>
                     
                 </div>
             )}
             <div className='edit-div' >
-                <button className='edit-btn'></button>
                 <button className='edit-btn' onClick={() => { setAadharIp(true) }} >Verify Yourself</button>
-            </div> */}
+            </div>
           
             {/* <div onSubmit={handleVerification}>Verify</div> */}
             <Mail />
