@@ -86,17 +86,10 @@ const ViewInfo = () => {
         <div>
             <Navbar />
             <Header type="list" />
-            {/* <Profile
-                name={id}
-                address={address}
-                phone={phone}
-                email={email}
-                role={role}
-                city={city}
-                zip={zip}
-            /> */}
+        
             {myService && (
                 <div>
+                    
                     <Profile
                         name={myService.name}
                         bio={myService.bio}
