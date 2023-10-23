@@ -63,7 +63,7 @@ const ServiceDetail = () => {
   }
 
   const value =`Name : ${state.name}\n Phone Number: ${state.phoneNumber[0]}`
-
+    //  const value = `${state.phoneNumber[0]}`; 
 
   return (
     <div>
@@ -234,7 +234,7 @@ const ServiceDetail = () => {
           <QRCode
             size={256}
             style={{ height: "200px", width: "200px" }}
-            value={value}
+            value={`tel:${state.phoneNumber[0]}`}
             
           />
 
