@@ -177,28 +177,42 @@
 
 
 .listItems{
-  margin: auto;
+  margin: auto auto auto 25%;
 }
 .listItems li{
   margin-top: 20px;
 }
-.det-service {
-  background-color: #f0f0f0; 
-  padding: 20px;
-  border: 1px solid #ccc; 
-  border-radius: 5px;
-  font-family: Arial, sans-serif; 
-  width: 300px;
-  margin: 0 auto; 
-}
+
 .captcha-cont{
   display: flex;
   flex-direction: column;
   margin-left: auto;
 }
-.qr-cont{
+.det-qr-cont{
   display: flex;
+  margin: 20px 2px;
+  
+}
+.det-service {
+  background-color:white; 
+  /* padding: 20px; */
+  margin: auto;
+  font-family: Arial, sans-serif; 
+  width: 45%;
+  margin: auto; 
+}
+.whole-cont{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: auto;
+}
+.mid-cont{
+  width: 10%;
+  margin: auto ;
+  text-decoration: underline;
 }
 .qr{
-  /* margin-left: 20%; */
+  width: 45%;
+  margin: auto;
 }

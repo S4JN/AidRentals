@@ -71,7 +71,8 @@ const ServiceDetail = () => {
       <Header type={"list"} />
       {serviceDet &&
         <div className="overly" >
-          <div className="qr-cont" style={{backgroundColor:'white'}}>
+          <div className="whole-cont">
+          <div className="det-qr-cont" >
           <ul className="det-service">
             <h2>Here is the service provider contact details :</h2>
             <div className="listItems">
@@ -82,17 +83,18 @@ const ServiceDetail = () => {
               <li><strong>Verified:</strong> {state.verified ? 'Yes' : 'No'}</li>
             </div>
           </ul>
+          <div className="mid-cont">
+            or scan the QR to share the details
+          </div>
           <div className="qr">
           <QRCode
             size={256}
-            style={{ height: "200px", width: "200px" }}
+            style={{ height: "200px", width: "200px", margin:"0 25%" }}
             value={value}
-            
           />
           </div>
           
           </div>
-          
           <div className="btn-cont">
             <button onClick={() => { setServiceDet(false); }} style={{
               backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', borderRadius: '4px', border: 'none', cursor: 'pointer', margin: '0px 5px'
@@ -100,6 +102,9 @@ const ServiceDetail = () => {
             {/* <button onClick={()=>{setServiceDet(false);}} type="submit" style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer'
   }}>Send</button> */}
           </div>
+          </div>
+          
+         
         </div>
       }
       {reviewForm &&
