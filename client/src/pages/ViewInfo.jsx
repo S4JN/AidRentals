@@ -86,7 +86,7 @@ const ViewInfo = () => {
         <div>
             <Navbar />
             <Header type="list" />
-            <Profile
+            {/* <Profile
                 name={id}
                 address={address}
                 phone={phone}
@@ -94,11 +94,9 @@ const ViewInfo = () => {
                 role={role}
                 city={city}
                 zip={zip}
-            />
+            /> */}
             {myService && (
                 <div>
-                    <Typography>{myService.name}</Typography>
-                    <Typography>{myService.bio}</Typography>
                     <Profile
                         name={myService.name}
                         bio={myService.bio}
@@ -133,7 +131,7 @@ const ViewInfo = () => {
             {/* <div onSubmit={handleVerification}>Verify</div> */}
             <Mail />
             <Footer />
-            
+
         </div>
     )
 
