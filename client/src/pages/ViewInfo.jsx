@@ -41,8 +41,7 @@ const ViewInfo = () => {
             const { data } = await axios.get(`http://localhost:8000/api/v1/service/my-service?owner=${id}`, config);
             // Set the service data to state
             setMyService(data.data);
-            console.log(data);
-            console.log(myService);
+            console.log(data.data, "test");
         } catch (error) {
             console.log(error);
         }
@@ -83,7 +82,7 @@ const ViewInfo = () => {
         <div>
             <Navbar />
             <Header type="list" />
-        
+
             {myService && (
                 <div>
                     <Profile
@@ -92,7 +91,15 @@ const ViewInfo = () => {
                         city={myService.city}
                         email={myService.email}
                         phone={myService.phoneNumber}
-                        zip={zip}
+                        gender={myService.gender}
+                        pic={myService.pic}
+                        preferredAreas={myService.preferredAreas}
+                        price={myService.price}
+                        reviews={myService.reviews}
+                        specialty={myService.specialty}
+                        verified={myService.verified}
+                        workingHours={myService.workingHours}
+                        yoe={myService.yoe}
                     />
                 </div>
 
@@ -100,31 +107,42 @@ const ViewInfo = () => {
             {aadharIp && (
                 <div className='overlay ' >
                     <div className='aadhar'>
-                    <div className='form-aadhar' >
-                    <form >
-                        <label style={{fontWeight:"bolder"}}>Enter Aadhar Number:</label>
-                        <br />
-                        <input type="text" 
-                        name='aadhar'
-                        value={aadharValue}
-                        onChange={handleInputChange}
-                        style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc', margin:'10px auto' }}
-                    />
-                    </form>
+                        <div className='form-aadhar' >
+                            <form >
+                                <label style={{ fontWeight: "bolder" }}>Enter Aadhar Number:</label>
+                                <br />
+                                <input type="text"
+                                    name='aadhar'
+                                    value={aadharValue}
+                                    onChange={handleInputChange}
+                                    style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc', margin: '10px auto' }}
+                                />
+                            </form>
+                        </div>
+                        <div className='aadhar-btn'>
+                            <button className='aadhar-ver' onClick={async (e) => { e.preventDefault(); await handleVerification(); }}>Verify</button>
+                            <button className='aadhar-ver' onClick={() => { setAadharIp(false) }}>Close</button>
+                        </div>
+
                     </div>
-                    <div className='aadhar-btn'>
-                    <button className='aadhar-ver' onClick={async(e)=>{e.preventDefault(); await handleVerification();}}>Verify</button>
-                    <button className='aadhar-ver' onClick={()=>{setAadharIp(false)}}>Close</button>
-                    </div>
-                    
-                    </div>
-                    
+
                 </div>
             )}
-            <div className='edit-div' >
-                <button className='edit-btn' onClick={() => { setAadharIp(true) }} >Verify Yourself</button>
-            </div>
-          
+
+
+
+            {myService?.verified === true ? (
+                <div className='edit-div' >
+                    <button className='edit-btn'  >Verified</button>
+                </div>
+            ) : (
+
+
+                <div className='edit-div' >
+                    <button className='edit-btn' onClick={() => { setAadharIp(true) }} >Verify Yourself</button>
+                </div>
+            )}
+
             {/* <div onSubmit={handleVerification}>Verify</div> */}
             <Mail />
             <Footer />

@@ -6,7 +6,12 @@ import {
     CardContent,
     Typography,
     Divider,
+    Tooltip,
 } from '@mui/material';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+
+
+
 
 const styles = {
     root: {
@@ -14,7 +19,7 @@ const styles = {
         margin: 'auto',
         marginTop: 20,
         border: 0,
-        
+
 
     },
     avatar: {
@@ -28,76 +33,128 @@ const styles = {
         marginTop: 16,
     },
 };
-
+// import VerifiedUserIcon from "@mui/icons-material/VerifiedUserIcon"
 const Profile = (props) => {
     const {
         name,
-        address,
+        bio,
+        city,
         phone,
         email,
-        role,
-        city,
-        zip,
+        gender,
+        pic,
+        preferredAreas,
+        price,
+        reviews,
+        specialty,
+        verified,
+        workingHours
+        , yoe
+
     } = props;
 
     return (
         <Card style={styles.root}>
-            <CardHeader
+            <div style={{ display: "flex", margin: "90px" }}>
+                <div style={{ marginRight: "auto" }}>
+                    <Avatar
+                        alt="Pic"
+                        src={pic}
+                        sx={{ width: 300, height: 300 }}
+                    />
+                    <div style={{display: "flex"}}>
+                        <CardHeader
 
-                titleTypographyProps={{ variant: 'h4' }}
-                title={name}
-            />
-            <CardContent>
-                <div style={styles.content}>
-                    <Typography variant="subtitle1" component="span" style={styles.label}>
-                        Address:
-                    </Typography>
-                    <Typography variant="body1" component="span">
-                        {address}, {city}, {zip}
-                    </Typography>
+                            titleTypographyProps={{ variant: 'h4' }}
+                            title={name}
+                        />
+                        {verified && (
+                            <>
+                                <Tooltip title="Verified" placement="top">
+                                    <span style={{ marginTop: "23px", color: "blue" }}><VerifiedUserIcon /></span>
+                                </Tooltip>
+                            </>
+                        )}
+                    </div>
                 </div>
-                <Divider variant="middle" />
-                <div style={styles.content}>
-                    <Typography variant="subtitle1" component="span" style={styles.label}>
-                        Phone:
-                    </Typography>
-                    <Typography variant="body1" component="span">
-                        {phone}
-                    </Typography>
-                </div>
-                <Divider variant="middle" />
-                <div style={styles.content}>
-                    <Typography variant="subtitle1" component="span" style={styles.label}>
-                        Email:
-                    </Typography>
-                    <Typography variant="body1" component="span">
-                        {email}
-                    </Typography>
-                </div>
-                <Divider variant="middle" />
-                <div style={styles.content}>
-                    <Typography variant="subtitle1" component="span" style={styles.label}>
-                        Role:
-                    </Typography>
-                    <Typography variant="body1" component="span">
-                        {role}
-                    </Typography>
-                </div>
-                <Divider variant="middle" />
-                <div style={styles.content}>
-                    <Typography variant="subtitle1" component="span" style={styles.label}>
-                        City:
-                    </Typography>
-                    <Typography variant="body1" component="span">
-                        {city}
-                    </Typography>
-                </div>
-                <Divider variant="middle" />
-                <div style={styles.content}>
+                <CardContent>
+                    <div style={styles.content}>
+                        <Typography variant="subtitle1" component="span" style={styles.label}>
+                            Bio:
+                        </Typography>
+                        <Typography variant="body1" component="span">
+                            {bio}
+                        </Typography>
+                    </div>
+                    <Divider variant="middle" />
+                    <div style={styles.content}>
+                        <Typography variant="subtitle1" component="span" style={styles.label}>
+                            Phone:
+                        </Typography>
+                        <Typography variant="body1" component="span">
+                            {phone}
+                        </Typography>
+                    </div>
+                    <Divider variant="middle" />
+                    <div style={styles.content}>
+                        <Typography variant="subtitle1" component="span" style={styles.label}>
+                            Email:
+                        </Typography>
+                        <Typography variant="body1" component="span">
+                            {email}
+                        </Typography>
+                    </div>
+                    <Divider variant="middle" />
+                    <div style={styles.content}>
+                        <Typography variant="subtitle1" component="span" style={styles.label}>
+                            Gender
+                        </Typography>
+                        <Typography variant="body1" component="span">
+                            {gender}
+                        </Typography>
+                    </div>
+                    <Divider variant="middle" />
+                    <div style={styles.content}>
+                        <Typography variant="subtitle1" component="span" style={styles.label}>
+                            City:
+                        </Typography>
+                        <Typography variant="body1" component="span">
+                            {city}
+                        </Typography>
+                    </div>
+                    <Divider variant="middle" />
+                    <div style={styles.content}>
+                        <Typography variant="subtitle1" component="span" style={styles.label}>
+                            Price:
+                        </Typography>
+                        <Typography variant="body1" component="span">
+                            {price}
+                        </Typography>
+                    </div>
+                    <Divider variant="middle" />
+                    <div style={styles.content}>
+                        <Typography variant="subtitle1" component="span" style={styles.label}>
+                            Year of Experience:
+                        </Typography>
+                        <Typography variant="body1" component="span">
+                            {yoe}
+                        </Typography>
+                    </div>
+                    <Divider variant="middle" />
+                    <div style={styles.content}>
+                        <Typography variant="subtitle1" component="span" style={styles.label}>
+                            Working Hours:
+                        </Typography>
+                        <Typography variant="body1" component="span">
+                            {workingHours}
+                        </Typography>
+                    </div>
+                    <Divider variant="middle" />
+                </CardContent>
+            </div>
 
-                </div>
-            </CardContent>
         </Card>
+
     );
 };
 
