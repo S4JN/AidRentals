@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./searchItem.css";
-import { Typography } from "@mui/material";
+import { Tooltip, Typography } from "@mui/material";
 import axios from "axios"
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 
-const SearchItem = ({ item, type ,getInv}) => {
+
+const SearchItem = ({ item, type, getInv }) => {
     const navigate = useNavigate();
 
 
@@ -27,7 +29,7 @@ const SearchItem = ({ item, type ,getInv}) => {
 
     const handleTogglerClick = async (item) => {
         console.log("wuff", item._id);
-        const _id= item._id;
+        const _id = item._id;
 
         try {
 
@@ -37,9 +39,9 @@ const SearchItem = ({ item, type ,getInv}) => {
                 },
             };
 
-            const { data } = await axios.patch("http://localhost:8000/api/v1/inventory/set-rent",{
+            const { data } = await axios.patch("http://localhost:8000/api/v1/inventory/set-rent", {
                 _id
-            },config);
+            }, config);
             getInv();
             console.log(data);
 
@@ -49,6 +51,7 @@ const SearchItem = ({ item, type ,getInv}) => {
 
     }
 
+    // console.log(item);
 
 
 
@@ -60,7 +63,16 @@ const SearchItem = ({ item, type ,getInv}) => {
                 className="siImg"
             />
             <div className="siDesc">
-                <h1 className="siTitle">{item.name}</h1>
+                <div style={{ display: "flex" }}>
+                    <h1 className="siTitle">{item.name}</h1>
+                    {true && (
+                        <>
+                            <Tooltip title="Verified" placement="top">
+                                <span style={{ marginTop: "23px", color: "blue" }}><VerifiedUserIcon /></span>
+                            </Tooltip>
+                        </>
+                    )}
+                </div>
                 <span className="siDistance">{item.life} yrs old</span>
                 <span className="siTaxiOp">In best Condition</span>
                 <span className="siSubtitle">

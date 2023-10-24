@@ -15,7 +15,7 @@ const ViewInfo = () => {
     const [items, setItems] = useState([]);
     const [myService, setMyService] = useState(null);
     const [aadharIp, setAadharIp] = useState(false);
-    const [aadharValue, setAadharValue] = useState('213123123');
+    const [aadharValue, setAadharValue] = useState('');
     const address = user?.address;
     const name = user?.name;
     const phone = user?.phoneNumber;
@@ -39,7 +39,6 @@ const ViewInfo = () => {
 
             // Make a GET request to your API endpoint
             const { data } = await axios.get(`http://localhost:8000/api/v1/service/my-service?owner=${id}`, config);
-
             // Set the service data to state
             setMyService(data.data);
             console.log(data);
@@ -48,9 +47,8 @@ const ViewInfo = () => {
             console.log(error);
         }
     }
-
-    const handleVerification = async (e) => {
-        e.preventDefault();
+    const handleVerification = async () => {
+        // e.preventDefault();
         console.log('handleVerification called');
         try {
             console.log(aadharValue);
@@ -67,8 +65,7 @@ const ViewInfo = () => {
 
             console.log(data);
             alert("verification request sent")
-
-
+            setAadharIp(false);
         } catch (error) {
             console.log(error);
         }
@@ -86,54 +83,52 @@ const ViewInfo = () => {
         <div>
             <Navbar />
             <Header type="list" />
-            <Profile
-                name={id}
-                address={address}
-                phone={phone}
-                email={email}
-                role={role}
-                city={city}
-                zip={zip}
-            />
+        
             {myService && (
                 <div>
-                    <Typography>{myService.name}</Typography>
-                    <Typography>{myService.bio}</Typography>
                     <Profile
                         name={myService.name}
                         bio={myService.bio}
                         city={myService.city}
                         email={myService.email}
                         phone={myService.phoneNumber}
-
                         zip={zip}
                     />
                 </div>
 
             )}
-            {/* {aadharIp && (
-                <div>
-                    <form ></form>
-                        <label>Enter Aadhar Number:</label>
+            {aadharIp && (
+                <div className='overlay ' >
+                    <div className='aadhar'>
+                    <div className='form-aadhar' >
+                    <form >
+                        <label style={{fontWeight:"bolder"}}>Enter Aadhar Number:</label>
+                        <br />
                         <input type="text" 
                         name='aadhar'
                         value={aadharValue}
                         onChange={handleInputChange}
+                        style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc', margin:'10px auto' }}
                     />
-                    <button onSubmit={handleVerification}>Verify</button>
                     </form>
+                    </div>
+                    <div className='aadhar-btn'>
+                    <button className='aadhar-ver' onClick={async(e)=>{e.preventDefault(); await handleVerification();}}>Verify</button>
+                    <button className='aadhar-ver' onClick={()=>{setAadharIp(false)}}>Close</button>
+                    </div>
+                    
+                    </div>
                     
                 </div>
             )}
             <div className='edit-div' >
-                <button className='edit-btn'></button>
                 <button className='edit-btn' onClick={() => { setAadharIp(true) }} >Verify Yourself</button>
-            </div> */}
+            </div>
           
             {/* <div onSubmit={handleVerification}>Verify</div> */}
             <Mail />
             <Footer />
-            
+
         </div>
     )
 

@@ -29,7 +29,8 @@
     color: #0071c2;
     margin-bottom: 0;
     font-weight: bold;
-    
+    margin-left: 0;
+    margin-right: 5px;
   }
   
   .siDistance {
