@@ -92,7 +92,6 @@ const ViewInfo = () => {
                         city={myService.city}
                         email={myService.email}
                         phone={myService.phoneNumber}
-
                         zip={zip}
                     />
                 </div>
@@ -113,7 +112,11 @@ const ViewInfo = () => {
                     />
                     </form>
                     </div>
+                    <div className='aadhar-btn'>
                     <button className='aadhar-ver' onClick={async(e)=>{e.preventDefault(); await handleVerification();}}>Verify</button>
+                    <button className='aadhar-ver' onClick={()=>{setAadharIp(false)}}>Close</button>
+                    </div>
+                    
                     </div>
                     
                 </div>
