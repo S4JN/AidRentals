@@ -9,6 +9,7 @@ import "./css/viewInfo.css"
 import axios from 'axios';
 import SearchItem from '../components/SearchItem/SearchItem';
 import { Typography } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 const ViewInfo = () => {
     const { user } = useUserContext();
@@ -84,7 +85,9 @@ const ViewInfo = () => {
             <Header type="list" />
 
             {myService && (
+
                 <div>
+                    
                     <Profile
                         name={myService.name}
                         bio={myService.bio}
