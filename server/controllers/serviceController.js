@@ -185,6 +185,7 @@ const verifyService = async (req, res) => {
             service.verified = true;
             await service.save();
         }
+        
 
         res.status(200).send({
             success: true,
