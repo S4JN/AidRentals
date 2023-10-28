@@ -137,7 +137,7 @@ const deleteInventory = async (req, res) => {
 
 const deleteService = async (req, res) => {
     const { _id } = req.body;
-  
+  console.log(req.body);
     try {
       const deletedService = await Service.findByIdAndDelete(_id);
   
@@ -152,4 +152,41 @@ const deleteService = async (req, res) => {
     }
   };
 
-module.exports = { adminTest, login, register, getInventoryCount,getAllInventory, getServiceCount, getUsersCount,deleteInventory,deleteService }
+
+  const getAllService = async (req, res) => {
+    try {
+        const services = await Service.find(); // Retrieve all inventories from the database
+        return res.status(200).send({
+            success: true,
+            message: "Inventories retrieved",
+            services
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error fetching inventories"
+        });
+    }
+}
+
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find(); // Retrieve all inventories from the database
+        return res.status(200).send({
+            success: true,
+            message: "Inventories retrieved",
+            users
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error fetching inventories"
+        });
+    }
+}
+
+
+
+module.exports = { adminTest, login, register, getInventoryCount,getAllInventory, getServiceCount, getUsersCount,deleteInventory,deleteService,getAllService,getAllUsers }
