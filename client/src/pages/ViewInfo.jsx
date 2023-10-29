@@ -17,6 +17,7 @@ const ViewInfo = () => {
     const [myService, setMyService] = useState(null);
     const [aadharIp, setAadharIp] = useState(false);
     const [aadharValue, setAadharValue] = useState('');
+    const [loading, setLoading] = useState(true);
     const address = user?.address;
     const name = user?.name;
     const phone = user?.phoneNumber;
@@ -37,13 +38,16 @@ const ViewInfo = () => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             };
-
+            // setLoading(true);
             // Make a GET request to your API endpoint
             const { data } = await axios.get(`http://localhost:8000/api/v1/service/my-service?owner=${id}`, config);
             // Set the service data to state
             setMyService(data.data);
+            setLoading(false);
             console.log(data.data, "test");
         } catch (error) {
+            setLoading(false);
+
             console.log(error);
         }
     }
@@ -87,23 +91,30 @@ const ViewInfo = () => {
             {myService && (
 
                 <div>
-                    
-                    <Profile
-                        name={myService.name}
-                        bio={myService.bio}
-                        city={myService.city}
-                        email={myService.email}
-                        phone={myService.phoneNumber}
-                        gender={myService.gender}
-                        pic={myService.pic}
-                        preferredAreas={myService.preferredAreas}
-                        price={myService.price}
-                        reviews={myService.reviews}
-                        specialty={myService.specialty}
-                        verified={myService.verified}
-                        workingHours={myService.workingHours}
-                        yoe={myService.yoe}
-                    />
+                    {loading ?
+                        (
+                            <p>Loading</p>
+
+                        ) : (
+
+
+                            <Profile
+                                name={myService.name}
+                                bio={myService.bio}
+                                city={myService.city}
+                                email={myService.email}
+                                phone={myService.phoneNumber}
+                                gender={myService.gender}
+                                pic={myService.pic}
+                                preferredAreas={myService.preferredAreas}
+                                price={myService.price}
+                                reviews={myService.reviews}
+                                specialty={myService.specialty}
+                                verified={myService.verified}
+                                workingHours={myService.workingHours}
+                                yoe={myService.yoe}
+                            />
+                        )}
                 </div>
 
             )}

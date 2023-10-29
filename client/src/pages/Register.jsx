@@ -50,6 +50,7 @@ const Register = () => {
           navigate("/login");
       }
       } catch (error) {
+        alert(error);
         console.log(error);
       }
     }
@@ -103,7 +104,7 @@ const Register = () => {
               <Dabba>
 
                 <RadioGroup aria-label="role" name="role" value={selectedRole} onChange={handleRoleChange}>
-                  <FormControlLabel value="user" control={<Radio />} label="Customer" />
+                  <FormControlLabel value="user" control={<Radio />} label="User" />
                   <FormControlLabel value="organisation" control={<Radio />} label="Organisation" />
                 </RadioGroup>
               </Dabba>

@@ -49,11 +49,14 @@ const Login = () => {
           console.log(data.user);
           setUser(data.user);
           navigate("/")
-
+        }
+        if(data.success === false){
+          alert(data.message)
         }
 
       } catch (error) {
         console.log(error);
+        alert(error)
       }
 
 
@@ -110,7 +113,7 @@ const Login = () => {
 
                 <RadioGroup aria-label="role" name="role" value={selectedRole} onChange={handleRoleChange}>
                   <FormControlLabel value="user" control={<Radio />} label="User" />
-                  <FormControlLabel value="admin" control={<Radio />} label="Admin" />
+                  {/* <FormControlLabel value="admin" control={<Radio />} label="Admin" /> */}
                   <FormControlLabel value="organisation" control={<Radio />} label="Organisation" />
                   <FormControlLabel value="service" control={<Radio />} label="Service" />
 

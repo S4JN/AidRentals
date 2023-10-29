@@ -38,14 +38,14 @@ const login = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
-            return res.status(500).send({
+            return res.status(200).send({
                 success: false,
                 message: "No user with this email found"
             });
         }
         //if the user exist we will compare the password
         if(user.role !== req.body.role){
-            return res.status(500).send({
+            return res.status(200).send({
                 success: false,
                 message: "Entered Role is wrong"
             })
@@ -54,7 +54,7 @@ const login = async (req, res) => {
         const comparePassword = await bcrypt.compare(req.body.password, user.password);
         if (!comparePassword) {
             console.log("Enterd password is wrong");
-            return res.status(500).send({
+            return res.status(200).send({
                 success: false,
                 message: "Wrong Password"
             });

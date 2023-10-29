@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Mail from "../components/MailList/Mail";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import DummyAds from "../components/DummyAds/DummyAds"
 import axios from 'axios'
 import "./css/serviceDetail.css"
 import { useLocation } from "react-router-dom";
@@ -62,8 +63,8 @@ const ServiceDetail = () => {
     setCaptchaClicked(true);
   }
 
-  const value =`Name : ${state.name}\n Phone Number: ${state.phoneNumber[0]}`
-    //  const value = `${state.phoneNumber[0]}`; 
+  const value = `Name : ${state.name}\n Phone Number: ${state.phoneNumber[0]}`
+  //  const value = `${state.phoneNumber[0]}`; 
 
   return (
     <div>
@@ -72,39 +73,39 @@ const ServiceDetail = () => {
       {serviceDet &&
         <div className="overly" >
           <div className="whole-cont">
-          <div className="det-qr-cont" >
-          <ul className="det-service">
-            <h2>Here is the service provider contact details :</h2>
-            <div className="listItems">
-              <li><strong>Name:</strong> {state.name}</li>
-              <li><strong>Email:</strong> {state.email}</li>
-              <li><strong>Phone Number:</strong> {state.phoneNumber[0]}</li>
-              <li><strong>Price:</strong> {state.price}</li>
-              <li><strong>Verified:</strong> {state.verified ? 'Yes' : 'No'}</li>
+            <div className="det-qr-cont" >
+              <ul className="det-service">
+                <h2>Here is the service provider contact details :</h2>
+                <div className="listItems">
+                  <li><strong>Name:</strong> {state.name}</li>
+                  <li><strong>Email:</strong> {state.email}</li>
+                  <li><strong>Phone Number:</strong> {state.phoneNumber[0]}</li>
+                  <li><strong>Price:</strong> {state.price}</li>
+                  <li><strong>Verified:</strong> {state.verified ? 'Yes' : 'No'}</li>
+                </div>
+              </ul>
+              <div className="mid-cont">
+                or scan the QR to share the details
+              </div>
+              <div className="qr">
+                <QRCode
+                  size={256}
+                  style={{ height: "200px", width: "200px", margin: "0 25%" }}
+                  value={value}
+                />
+              </div>
+
             </div>
-          </ul>
-          <div className="mid-cont">
-            or scan the QR to share the details
-          </div>
-          <div className="qr">
-          <QRCode
-            size={256}
-            style={{ height: "200px", width: "200px", margin:"0 25%" }}
-            value={value}
-          />
-          </div>
-          
-          </div>
-          <div className="btn-cont">
-            <button onClick={() => { setServiceDet(false); }} style={{
-              backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', borderRadius: '4px', border: 'none', cursor: 'pointer', margin: '0px 5px'
-            }}>Close</button>
-            {/* <button onClick={()=>{setServiceDet(false);}} type="submit" style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer'
+            <div className="btn-cont">
+              <button onClick={() => { setServiceDet(false); }} style={{
+                backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', borderRadius: '4px', border: 'none', cursor: 'pointer', margin: '0px 5px'
+              }}>Close</button>
+              {/* <button onClick={()=>{setServiceDet(false);}} type="submit" style={{backgroundColor:'#007bff',color:'#fff',padding:'10px 20px',borderRadius: '4px',border:'none',cursor: 'pointer'
   }}>Send</button> */}
+            </div>
           </div>
-          </div>
-          
-         
+
+
         </div>
       }
       {reviewForm &&
@@ -218,27 +219,39 @@ const ServiceDetail = () => {
 
                 <br />
               </div>
-                <div className="captcha-cont">
+              <div className="captcha-cont">
                 <button className="btn-close" onClick={() => { setServiceDet(true); }} disabled={!captchaClicked} >Contact Me</button>
-              <ReCAPTCHA
-                sitekey="6Lc7sr8oAAAAABPYEpja1v5r_c3SC9yceQp_Ll1O"
-                onChange={onChange}
-                size="compact"
-              />
-                </div>
-              
+                <ReCAPTCHA
+                  sitekey="6Lc7sr8oAAAAABPYEpja1v5r_c3SC9yceQp_Ll1O"
+                  onChange={onChange}
+                  size="compact"
+                />
+
+              </div>
+
 
             </div>
           </div>
-          
-          <QRCode
-            size={256}
-            style={{ height: "200px", width: "200px" }}
-            value={`tel:${state.phoneNumber[0]}`}
-            
-          />
 
-          <div className="diba" style={{marginTop: "20px"}}>
+          <div style={{display: "flex", justifyContent: "space-between"}}>
+
+
+            <div>
+
+              <QRCode
+                size={256}
+                style={{ height: "200px", width: "200px", marginTop: "60px" }}
+                value={`tel:${state.phoneNumber[0]}`}
+
+              />
+              <p style={{fontSize: "1.5rem"}}>Scan the above<br /> Qr code to call</p>
+
+            </div>
+                <DummyAds />
+
+          </div>
+
+          <div className="diba" style={{ marginTop: "20px" }}>
             <span className="reviewshead">Reviews</span>
             <button className="addReview" onClick={() => { setReviewForm(true) }}>+ Add Review</button>
           </div>
