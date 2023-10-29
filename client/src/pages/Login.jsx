@@ -112,6 +112,7 @@ const Login = () => {
                   <FormControlLabel value="user" control={<Radio />} label="User" />
                   <FormControlLabel value="admin" control={<Radio />} label="Admin" />
                   <FormControlLabel value="organisation" control={<Radio />} label="Organisation" />
+                  <FormControlLabel value="service" control={<Radio />} label="Service" />
 
                 </RadioGroup>
               </Dabba>

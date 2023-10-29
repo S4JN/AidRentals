@@ -12,6 +12,7 @@ const serviceRoutes = require("./routes/serviceRoutes")
 // const filesRoutes=require('./routes/fileRoutes');
 const countRoutes=require('./routes/countRoutes');
 const reviewRoutes=require('./routes/reviewRoutes');
+const adminRoutes = require("./routes/adminRoutes");
 //dotenv config
 require("dotenv").config();
 
@@ -33,6 +34,8 @@ app.use("/api/v1/service",serviceRoutes);
 app.use("/api/v1/review",reviewRoutes);
 
 app.use("/api/admin/count",countRoutes);
+app.use("/api/admin", adminRoutes);
+
 //made using mvc pattern 
 
 const PORT = process.env.PORT || 8000;

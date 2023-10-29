@@ -112,6 +112,7 @@ export default function AddForm({ setShowForm }) {
       console.log(data);
       setLoading(false);
       setShowForm(false)
+      alert("Item added successfully")
     } catch (error) {
       console.log(error);
       setLoading(false);
