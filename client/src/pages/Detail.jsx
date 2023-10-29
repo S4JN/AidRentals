@@ -55,7 +55,7 @@ const Detail = () => {
     setCaptchaClicked(true);
   }
   const handledowncllick = () => {
-    // window.scrollTo({ top: 999, behavior: 'smooth' })
+    window.scrollTo({ top: 999, behavior: 'smooth' })
     console.log("clickd");
 
   }
@@ -104,7 +104,7 @@ const Detail = () => {
             <>
               <button className="bookNow"
                 onClick={handledowncllick}
-                disabled={!captchaClicked}
+                
               >
                 Rent
               </button>
@@ -193,7 +193,7 @@ const Detail = () => {
               </h2>
               {state.isRented ? (
 
-                <button style={{ backgroundColor: "red" }}>Rented</button>
+                <button style={{ backgroundColor: "red" }} onClick={()=> alert("Item already rented")}>Rented</button>
 
               ) : (
                 <>
